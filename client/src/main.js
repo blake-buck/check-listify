@@ -1,8 +1,22 @@
 import Vue from 'vue'
-import App from './App.vue'
+import routes from './routes';
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  el:'#app',
+  data:{
+    currentRoute:window.location.pathname
+  },
+
+  computed:{
+    viewComponent(){
+      const matchingRoute = routes[this.currentRoute]
+      return matchingRoute ? require(`./components/${matchingRoute}.vue`) : require('./components/NotFound.vue')
+    }
+  },
+
+  render: function(h){
+    return h(this.viewComponent.default)
+  },
+})
