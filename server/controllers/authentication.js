@@ -35,8 +35,24 @@ function formatHeaders(headers){
     return newHeaders;
 }
 
-async function register(req, res){
+function callback(successHandler, res){
+    return function(err, data){
+        if(err){
+            res.status(400).send(err.message);
+        }
+        if(data){
+            if(typeof successHandler === 'function'){
+                successHandler(data);
+            }
+            else{
+                res.status(200).send(successHandler);
+            }
+            
+        }
+    }
+}
 
+async function register(req, res){
     const {username, password} = req.body;
 
     const params = {
@@ -46,24 +62,13 @@ async function register(req, res){
         SecretHash: createSecrectHash(username)
     }
 
-    const callback = (err, data) => {
-        if(err){
-            res.status(400).send(err.message);
-        }
-        if(data){
-            res.status(200).send('Check your email for a registration message.');
-        }
-    }
-
-    cognito.signUp(params, callback);
+    cognito.signUp(params, callback('Check your email for a registration message', res));
 }
 
 async function login(req, res){
-
     const {username, password} = req.body;
 
     const params = {
-
         AuthFlow:   'ADMIN_USER_PASSWORD_AUTH',
         UserPoolId: AWS_USER_POOL_ID,
         ClientId:   AWS_CLIENT_ID,
@@ -80,40 +85,22 @@ async function login(req, res){
             ServerPath:  '/api/login',
             HttpHeaders: formatHeaders(req.headers)
         }
-
     }
 
-    const callback = (err, data) => {
-        if(err){
-            res.status(400).send(err.message);
-        }
-        if(data){
-            let jwt = data.AuthenticationResult.AccessToken;
-            res.status(200).send(jwt);
-        }
+    let successHandler = (data) => {
+        let jwt = data.AuthenticationResult.AccessToken;
+        res.status(200).send(jwt);
     }
 
-    cognito.adminInitiateAuth(params, callback);
-
+    cognito.adminInitiateAuth(params, callback(successHandler, res));
 }
 
 async function deleteAccount(req, res){
-
     const params = {
         AccessToken:req.headers.jwt
     }
 
-    const callback = (err, data) => {
-        if(err){
-            res.status(400).send(err.message);
-        }
-        if(data){
-            res.status(200).send('Account is deleted.');
-        }
-    }
-
-    cognito.deleteUser(params, callback);
-
+    cognito.deleteUser(params, callback('Account is deleted.', res));
 }
 
 module.exports = {
