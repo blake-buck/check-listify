@@ -1,7 +1,6 @@
 require('dotenv').config();
 const aws = require('aws-sdk');
-const crypto = require('crypto')
-
+const crypto = require('crypto');
 
 // Environment Variables
 const {
@@ -76,12 +75,59 @@ async function deleteAccount(req, res){
     cognito.deleteUser(params, callback('Account is deleted.', res));
 }
 
+// if user is signed in, they can change their password
+async function changePassword(req, res){
+    const {previousPassword, proposedPassword} = req.body;
+    const params = {
+        AccessToken:      req.headers.jwt,
+        PreviousPassword: previousPassword,
+        ProposedPassword: proposedPassword
+    }
+
+    // If password is successfully changed, invalidate every jwt in circulation
+    const successHandler = (data) => {
+        cognito.globalSignOut({AccessToken: req.headers.jwt}, callback('Password is changed.', res))
+    }
+
+    cognito.changePassword(params, callback(successHandler, res))
+}
+
+// send confirmation code to a user's email address
+async function forgotPassword(req, res){
+    const {username} = req.body;
+
+    const params = {
+        ClientId: AWS_CLIENT_ID,
+        Username: username,
+        SecretHash: createSecrectHash(username)
+    }
+
+    cognito.forgotPassword(params, callback('Check your email for a code.', res))
+}
+
+// use confirmation code from email to change password
+async function confirmForgotPassword(req, res){
+    const {confirmationCode, username, password} = req.body;
+
+    const params = {
+        ClientId: AWS_CLIENT_ID,
+        ConfirmationCode: confirmationCode,
+        Username:username,
+        Password:password,
+        SecretHash: createSecrectHash(username)
+    }
+
+    cognito.confirmForgotPassword(params, callback('Your password has been reset.', res))
+}
+
 module.exports = {
     register,
     login,
-    deleteAccount
+    deleteAccount,
+    changePassword,
+    forgotPassword,
+    confirmForgotPassword
 }
-
 
 // certain Cognito functions require a "Secret Hash", which is an HMAC consisting of the Secret hash for the App Client,
 // the username of the user, and the Id of the App Client
