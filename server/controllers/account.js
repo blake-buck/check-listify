@@ -1,4 +1,4 @@
-const accountModel = require('../models/account');
+const {accountModel} = require('../models/models');
 const jsonwebtoken = require('jsonwebtoken');
 
 async function getAccountConfig(req, res){

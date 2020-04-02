@@ -1,49 +1,20 @@
-const mysql = require('mysql');
-const {AWS_RDS_HOST, AWS_RDS_PORT, AWS_RDS_USER, AWS_RDS_PASSWORD, AWS_RDS_DATABASE} = process.env;
+const {queryToPromise} = require('./util');
 
-const connection = mysql.createConnection({
-    host:AWS_RDS_HOST,
-    port:AWS_RDS_PORT,   
-    user:AWS_RDS_USER,  
-    password:AWS_RDS_PASSWORD,
-    database:AWS_RDS_DATABASE,
-    timeout:15000
-});
-
+// takes in a userId and returns their accountConfig settings
 async function getAccountConfig(userId){
-    return new Promise((resolve, reject) => {
-        connection.query(
-            'SELECT ThemeId, LineThrough, Opacity FROM users WHERE Id = ?',
-            [userId],
-            (err, results, fields) => {
-                if(err){
-                    reject(err);
-                }
-                if(results){
-                    resolve(results)
-                }
-                reject('An unexpected error occured');
-            }
-        )
-    })
+    return queryToPromise(
+        'SELECT ThemeId, LineThrough, Opacity FROM users WHERE Id = ?',
+        [userId]
+    )
 }
 
+// takes in a userId + an object representing their accountConfig settings, and sets the field in table
+// equal to given settings
 async function updateAccountConfig(userId, {themeId, lineThrough, opacity}){
-    return new Promise((resolve, reject) => {
-        connection.query(
-            'UPDATE users SET ThemeId = ?, LineThrough = ?, Opacity = ? WHERE Id = ?',
-            [themeId, lineThrough, opacity, userId],
-            (err, results, fields) => {
-                if(err){
-                    reject(err);
-                }
-                if(results){
-                    resolve('Account config is updated');
-                }
-                reject('An unexpected error occured')
-            }
-        )
-    })
+    return queryToPromise(
+        'UPDATE users SET ThemeId = ?, LineThrough = ?, Opacity = ? WHERE Id = ?',
+        [themeId, lineThrough, opacity, userId]
+    )
 }
 
 module.exports = {

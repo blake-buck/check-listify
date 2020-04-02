@@ -2,7 +2,7 @@ require('dotenv').config();
 const aws = require('aws-sdk');
 const crypto = require('crypto');
 
-const authModel = require('../models/authentication');
+const {authModel} = require('../models/models');
 
 // Environment Variables
 const {
