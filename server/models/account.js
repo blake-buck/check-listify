@@ -28,6 +28,25 @@ async function getAccountConfig(userId){
     })
 }
 
+async function updateAccountConfig(userId, {themeId, lineThrough, opacity}){
+    return new Promise((resolve, reject) => {
+        connection.query(
+            'UPDATE users SET ThemeId = ?, LineThrough = ?, Opacity = ? WHERE Id = ?',
+            [themeId, lineThrough, opacity, userId],
+            (err, results, fields) => {
+                if(err){
+                    reject(err);
+                }
+                if(results){
+                    resolve('Account config is updated');
+                }
+                reject('An unexpected error occured')
+            }
+        )
+    })
+}
+
 module.exports = {
-    getAccountConfig
+    getAccountConfig,
+    updateAccountConfig
 }
