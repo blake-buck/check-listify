@@ -2,6 +2,8 @@ require('dotenv').config();
 const aws = require('aws-sdk');
 const crypto = require('crypto');
 
+const authModel = require('../models/authentication');
+
 // Environment Variables
 const {
     AWS_SECRET_ACCESS_KEY,
@@ -32,7 +34,25 @@ async function register(req, res){
         SecretHash: createSecrectHash(username)
     }
 
-    cognito.signUp(params, callback('Check your email for a registration message', res));
+    const successHandler = async (data) => {
+        try{
+            // Add the user to User Table, tell them to check their email for a registration message
+            await authModel.addUserToTable(data.UserSub)
+            res.status(200).send('Check your email for a registration message')
+        }
+        catch(e){
+            // If error occurs while adding user to table, delete the user from the user pool and tell them to try again
+            console.log(e);
+            cognito.adminDeleteUser({
+                UserPoolId:AWS_USER_POOL_ID,
+                Username:data.UserSub
+            })
+            res.status(500).send('An internal error occured. Please try registering again')
+        }
+        
+    }
+
+    cognito.signUp(params, callback(successHandler, res));
 }
 
 // Log a user in using username and passwsord, returning a JWT
