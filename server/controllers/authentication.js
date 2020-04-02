@@ -1,15 +1,14 @@
 require('dotenv').config();
 const aws = require('aws-sdk');
-const crypto = require('crypto');
 
 const {authModel} = require('../models/models');
+const {createSecrectHash, formatHeaders, cognitoCallback} = require('./util');
 
 // Environment Variables
 const {
     AWS_SECRET_ACCESS_KEY,
     AWS_ACCESS_KEY_ID,
     AWS_REGION,
-    AWS_COGNITO_SECRET_HASH,
     AWS_CLIENT_ID,
     AWS_USER_POOL_ID,
     SERVER_NAME
@@ -51,7 +50,7 @@ async function register(req, res){
         
     }
 
-    cognito.signUp(params, callback(successHandler, res));
+    cognito.signUp(params, cognitoCallback(successHandler, res));
 }
 
 // Log a user in using username and passwsord, returning a JWT
@@ -82,7 +81,7 @@ async function login(req, res){
         res.status(200).send(jwt);
     }
 
-    cognito.adminInitiateAuth(params, callback(successHandler, res));
+    cognito.adminInitiateAuth(params, cognitoCallback(successHandler, res));
 }
 
 // delete the user account
@@ -91,7 +90,7 @@ async function deleteAccount(req, res){
         AccessToken:req.headers.jwt
     }
 
-    cognito.deleteUser(params, callback('Account is deleted.', res));
+    cognito.deleteUser(params, cognitoCallback('Account is deleted.', res));
 }
 
 // if user is signed in, they can change their password
@@ -105,10 +104,10 @@ async function changePassword(req, res){
 
     // If password is successfully changed, invalidate every jwt in circulation
     const successHandler = (data) => {
-        cognito.globalSignOut({AccessToken: req.headers.jwt}, callback('Password is changed.', res))
+        cognito.globalSignOut({AccessToken: req.headers.jwt}, cognitoCallback('Password is changed.', res))
     }
 
-    cognito.changePassword(params, callback(successHandler, res))
+    cognito.changePassword(params, cognitoCallback(successHandler, res))
 }
 
 // send confirmation code to a user's email address
@@ -121,7 +120,7 @@ async function forgotPassword(req, res){
         SecretHash: createSecrectHash(username)
     }
 
-    cognito.forgotPassword(params, callback('Check your email for a code.', res))
+    cognito.forgotPassword(params, cognitoCallback('Check your email for a code.', res))
 }
 
 // use confirmation code from email to change password
@@ -136,7 +135,7 @@ async function confirmForgotPassword(req, res){
         SecretHash: createSecrectHash(username)
     }
 
-    cognito.confirmForgotPassword(params, callback('Your password has been reset.', res))
+    cognito.confirmForgotPassword(params, cognitoCallback('Your password has been reset.', res))
 }
 
 module.exports = {
@@ -146,46 +145,4 @@ module.exports = {
     changePassword,
     forgotPassword,
     confirmForgotPassword
-}
-
-// certain Cognito functions require a "Secret Hash", which is an HMAC consisting of the Secret hash for the App Client,
-// the username of the user, and the Id of the App Client
-function createSecrectHash(username){
-    return crypto.createHmac('sha256', AWS_COGNITO_SECRET_HASH).update(username + AWS_CLIENT_ID).digest('base64')
-}
-
-// Request headers need to be formatted in a specific way for use with certain Cognito functions
-function formatHeaders(headers){
-    let newHeaders = [];
-
-    // for every key in headers object, split them into an object consisting of headerName and headerValue, then push them
-    // into a new array
-    for(const headerName in headers){
-        newHeaders.push({
-            headerName,
-            headerValue: headers[headerName]
-        });
-    }
-
-    return newHeaders;
-}
-
-// Standardized callback function pattern
-// successHandler can be a string or a function, if a string then it is used as a message. If it is a function the function
-// is executed
-function callback(successHandler, res){
-    return function(err, data){
-        if(err){
-            res.status(400).send(err.message);
-        }
-        if(data){
-            if(typeof successHandler === 'function'){
-                successHandler(data);
-            }
-            else{
-                res.status(200).send(successHandler);
-            }
-            
-        }
-    }
 }
