@@ -42,7 +42,6 @@ async function register(req, res){
         }
         catch(e){
             // If error occurs while adding user to table, delete the user from the user pool and tell them to try again
-            console.log(e);
             cognito.adminDeleteUser({
                 UserPoolId:AWS_USER_POOL_ID,
                 Username:data.UserSub

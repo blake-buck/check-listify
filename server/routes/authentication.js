@@ -1,4 +1,4 @@
-const authController = require('../controllers/authentication');
+const {authController} = require('../controllers/controllers');
 
 function useAuthenticationRoutes(app){
     // username, password  --> fields on req.body

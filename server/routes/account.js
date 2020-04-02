@@ -1,4 +1,4 @@
-const accountController = require('../controllers/account')
+const {accountController} = require('../controllers/controllers')
 const {hasValidJwt} = require('./middleware/hasValidJwt')
 
 

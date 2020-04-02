@@ -7,11 +7,9 @@ function verifyJWT(token){
     return new Promise((resolve, reject) => {
         jsonwebtoken.verify(token, pem, { algorithms: ['RS256'] }, function(err, decodedToken) {
             if(err){
-                console.log(err)
                 reject(err);
             }
             if(decodedToken){
-                console.log(decodedToken)
                 resolve(decodedToken)
             }
         })
@@ -30,7 +28,6 @@ async function hasValidJwt(req, res, next){
         next();
     }
     catch(e){
-        console.log(e);
         res.status(400).send('JSON Web Token is not valid.')
     }
     
