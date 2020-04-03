@@ -7,7 +7,7 @@ const { AWS_COGNITO_SECRET_HASH, AWS_CLIENT_ID } = process.env;
 // hasValidJwt middleware
 function decodeToken(jwt){
     const decodedToken = jsonwebtoken.decode(jwt);
-    return decodedToken.jwt
+    return decodedToken
 }
 
 // certain Cognito functions require a "Secret Hash", which is an HMAC consisting of the Secret hash for the App Client,
