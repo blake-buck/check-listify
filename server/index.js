@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const {useAuthenticationRoutes} = require('./routes/authentication');
 const {useAccountRoutes} = require('./routes/account');
 const {useChecklistRoutes} = require('./routes/checklist');
@@ -11,6 +12,10 @@ const {rateLimiter} = require('./routes/middleware/rateLimiter');
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(cors({
+    origin:'http://localhost:8080'
+}))
 
 // global slowdown
 app.use(
