@@ -30,7 +30,7 @@ export default {
     
                 // you're not supposed to store JWTs in local storage, this should be temporary
                 localStorage.setItem('jwt', response.jwt);
-                window.location.pathname = '/user/:user-id';
+                window.location.pathname = '/user';
             }
 
             if(type === this.REGISTER){

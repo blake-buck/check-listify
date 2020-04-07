@@ -16,15 +16,23 @@ export default {
         toggleChecklistTemplate(){
             this.displayChecklistTemplate = !this.displayChecklistTemplate;
         },
-        addChecklist(e){
-            // if the user hasn't typed anything in the input field prevent the input from blurring
+        blurChecklist(e){
+             // if the user hasn't typed anything in the input field prevent the input from blurring
             if(e.target.value === ''){
                 e.preventDefault();
             }
             else{
-                this.$store.dispatch(ADD_CHECKLIST, e.target.value);
-                this.toggleChecklistTemplate();
+                this.addChecklist(e.target.value)
             }
+        },
+        keyupChecklist(e){
+            if(e.key === 'Enter' && e.target.value !== ''){
+                this.blurChecklist(e);
+            }
+        },
+        addChecklist(title){
+            this.$store.dispatch(ADD_CHECKLIST, title);
+            this.toggleChecklistTemplate();
         }
     },
 
