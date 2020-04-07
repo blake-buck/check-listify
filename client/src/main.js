@@ -15,7 +15,7 @@ new Vue({
   computed:{
     viewComponent(){
       const matchingRoute = routes[this.currentRoute]
-      return matchingRoute ? require(`./components/${matchingRoute}.vue`) : require('./components/NotFound.vue')
+      return matchingRoute ? require(`./components/${matchingRoute}/${matchingRoute}.vue`) : require('./components/NotFound/NotFound.vue')
     }
   },
 
