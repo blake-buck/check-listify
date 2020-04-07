@@ -1,6 +1,7 @@
 
 const {getBaseUrl} = require('../../utils/getBaseUrl');
 const request = require('../../utils/request');
+const appService = require('../../store/service');
 
 export default {
     name:'Home',
@@ -20,14 +21,8 @@ export default {
         async submitForm(e, type){
             e.preventDefault();
             if(type === this.LOGIN){
-                let response = await request.post(
-                    `${getBaseUrl()}/api/login`,
-                    {
-                        username:this.form[this.USERNAME],
-                        password:this.form[this.PASSWORD]
-                    }
-                )
-    
+                const response = await appService.login(this.form[this.USERNAME], this.form[this.PASSWORD]);
+                
                 // you're not supposed to store JWTs in local storage, this should be temporary
                 localStorage.setItem('jwt', response.jwt);
                 window.location.pathname = '/user';

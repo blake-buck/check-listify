@@ -1,6 +1,6 @@
-import request from '../utils/request';
-import {getBaseUrl} from '../utils/getBaseUrl';
 import {M_ADD_CHECKLIST, SET_CHECKLISTS} from './mutations';
+
+import appService from './service';
 
 export const constants = {
     RETRIEVE_CHECKLISTS:'retrieveChecklists',
@@ -10,14 +10,16 @@ export default {
     
     
     async retrieveChecklists(context){
-        const response = await request.get(`${getBaseUrl()}/api/user/checklist`, true);
+        const response = await appService.retrieveChecklists();
         context.commit(SET_CHECKLISTS, response);
     },
     async addChecklist(context, title){
-        const response = await request.post(`${getBaseUrl()}/api/user/checklist`, {title}, true);
+        const response = await appService.addChecklist(title);
         
         // if checklist is successfully added to database, push the added item to checklists in store
         if(response.status === 200){
+            // message returns an array of responses, the first from inserting the checklist, the second an array of checklists from SELECT
+            // response.message[1][0] takes the first element out of the second array
             context.commit(M_ADD_CHECKLIST, response.message[1][0]);
         }
         
