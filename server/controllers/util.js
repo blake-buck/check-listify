@@ -45,7 +45,7 @@ function cognitoCallback(successHandler, res){
                 successHandler(data);
             }
             else{
-                res.status(200).send(successHandler);
+                res.status(200).send({message:successHandler});
             }
             
         }

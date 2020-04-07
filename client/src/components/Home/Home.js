@@ -27,10 +27,9 @@ export default {
                         password:this.form[this.PASSWORD]
                     }
                 )
-                response = await response.text();
     
                 // you're not supposed to store JWTs in local storage, this should be temporary
-                localStorage.setItem('jwt', response);
+                localStorage.setItem('jwt', response.jwt);
                 window.location.pathname = '/user/:user-id';
             }
 

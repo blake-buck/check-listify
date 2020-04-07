@@ -16,7 +16,7 @@ async function getAccountConfig(req, res){
         res.status(200).send(accountConfig);
     }
     catch(e){
-        res.status(400).send(JSON.stringify(e));
+        res.status(400).send(e);
     }
     
 }
@@ -37,7 +37,7 @@ async function updateAccountConfig(req, res){
         res.status(200).send(message);
     }
     catch(e){
-        res.status(400).send(JSON.stringify(e));
+        res.status(400).send(e);
     }
 
 }

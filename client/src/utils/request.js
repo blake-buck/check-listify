@@ -3,7 +3,7 @@ function get(url, useJwt){
     if(useJwt){
         headers.jwt = localStorage.getItem('jwt');
     }
-    return fetch(url, {method:'GET', headers});
+    return fetch(url, {method:'GET', headers}).then(res => res.json());
 }
 
 function post(url, body, useJwt){
@@ -20,7 +20,7 @@ function post(url, body, useJwt){
             body:JSON.stringify(body),
             headers
         }
-    ).then(response => response);
+    ).then(response => response.json());
 }
 
 function put(url, body, useJwt){
@@ -37,7 +37,7 @@ function put(url, body, useJwt){
             body:JSON.stringify(body),
             headers
         }
-    ).then(response => response)
+    ).then(response => response.json())
 }
 
 function del(url, useJwt){
@@ -51,7 +51,7 @@ function del(url, useJwt){
             method:'DELETE',
             headers
         }
-    ).then(response => response)
+    ).then(response => response.json())
 }
 
 module.exports = {

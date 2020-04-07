@@ -37,7 +37,7 @@ async function register(req, res){
         try{
             // Add the user to User Table, tell them to check their email for a registration message
             await authModel.addUserToTable(data.UserSub)
-            res.status(200).send('Check your email for a registration message')
+            res.status(200).send({message:'Check your email for a registration message'})
         }
         catch(e){
             // If error occurs while adding user to table, delete the user from the user pool and tell them to try again
@@ -45,7 +45,7 @@ async function register(req, res){
                 UserPoolId:AWS_USER_POOL_ID,
                 Username:data.UserSub
             })
-            res.status(500).send('An internal error occured. Please try registering again')
+            res.status(500).send({message:'An internal error occured. Please try registering again'})
         }
         
     }
@@ -78,7 +78,7 @@ async function login(req, res){
 
     let successHandler = (data) => {
         let jwt = data.AuthenticationResult.AccessToken;
-        res.status(200).send(jwt);
+        res.status(200).send({jwt});
     }
 
     cognito.adminInitiateAuth(params, cognitoCallback(successHandler, res));
