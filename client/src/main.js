@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import routes from './routes';
+import store from './store/index';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   el:'#app',
+
+  store,
   data:{
     currentRoute:window.location.pathname
   },

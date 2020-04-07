@@ -3,7 +3,7 @@ function get(url, useJwt){
     if(useJwt){
         headers.jwt = localStorage.getItem('jwt');
     }
-    return fetch(url, {method:'GET', headers}).then(response => response.json());
+    return fetch(url, {method:'GET', headers});
 }
 
 function post(url, body, useJwt){
