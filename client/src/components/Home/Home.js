@@ -1,6 +1,3 @@
-
-const {getBaseUrl} = require('../../utils/getBaseUrl');
-const request = require('../../utils/request');
 const appService = require('../../store/service');
 
 export default {

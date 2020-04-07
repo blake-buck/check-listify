@@ -19,7 +19,7 @@ async function addChecklist(title){
     return request.post(`${getBaseUrl()}/api/user/checklist`, {title}, true);
 }
 
-module.exports = {
+export default{
     login,
     retrieveChecklists,
     addChecklist
