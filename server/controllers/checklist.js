@@ -8,10 +8,10 @@ async function getUserChecklists(req, res){
 
     try{
         const results = await checklistModel.getUserChecklists(userId);
-        res.status(200).send(results);
+        res.status(200).send({results, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

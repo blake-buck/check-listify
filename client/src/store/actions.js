@@ -1,19 +1,27 @@
-import {M_ADD_CHECKLIST, SET_CHECKLISTS} from './mutations';
+import {M_ADD_CHECKLIST, SET_CHECKLISTS, M_DELETE_CHECKLIST} from './mutations';
 
-import appService from './service';
+const appService = require('./service');
 
 export const constants = {
     RETRIEVE_CHECKLISTS:'retrieveChecklists',
     ADD_CHECKLIST:'addChecklist',
+    DELETE_CHECKLIST:'deleteChecklist'
 }
 export default {
     
     
-    async retrieveChecklists(context){
+    async [constants.RETRIEVE_CHECKLISTS](context){
         const response = await appService.retrieveChecklists();
-        context.commit(SET_CHECKLISTS, response);
+        if(response.status === 200){
+            context.commit(SET_CHECKLISTS, response.results);
+        }
+
+        if(response.status === 400){
+            console.log('ERROR');
+        }
+        
     },
-    async addChecklist(context, title){
+    async [constants.ADD_CHECKLIST](context, title){
         const response = await appService.addChecklist(title);
         
         // if checklist is successfully added to database, push the added item to checklists in store
@@ -31,5 +39,16 @@ export default {
             // push checklist to store
         }
 
+    },
+    async [constants.DELETE_CHECKLIST](context, id){
+        const response = await appService.deleteChecklist(id);
+        
+        // if checklist isn't successfully deleted e.g. user is offline
+        if(response.status === 400){
+            // push checklist id into a localStorage array that will by synced with database once user is back online
+        }
+
+        // remove checklist form store
+        context.commit(M_DELETE_CHECKLIST, id);
     }
 }

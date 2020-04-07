@@ -1,5 +1,5 @@
 const {constants} = require('../../store/actions');
-const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST} = constants;
+const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST, DELETE_CHECKLIST} = constants;
 export default {
     name:'UserChecklists',
     computed:{
@@ -33,6 +33,9 @@ export default {
         addChecklist(title){
             this.$store.dispatch(ADD_CHECKLIST, title);
             this.toggleChecklistTemplate();
+        },
+        deleteChecklist(id){
+            this.$store.dispatch(DELETE_CHECKLIST, id)
         }
     },
 

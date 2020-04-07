@@ -17,6 +17,7 @@ export default {
     methods:{   
         async submitForm(e, type){
             e.preventDefault();
+
             if(type === this.LOGIN){
                 const response = await appService.login(this.form[this.USERNAME], this.form[this.PASSWORD]);
                 
