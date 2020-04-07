@@ -1,8 +1,7 @@
 module.exports = {
+    SET_CHECKLISTS:'setChecklists',
+    M_ADD_CHECKLIST:'addChecklist',
     mutations:{
-        SET_CHECKLISTS:'SET_CHECKLISTS',
-        M_ADD_CHECKLIST:'M_ADD_CHECKLIST',
-        
         setChecklists(state, checklists){
             state.checklists = [...checklists];
         },

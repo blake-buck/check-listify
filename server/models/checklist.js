@@ -8,9 +8,10 @@ async function getUserChecklists(userId){
 }
 
 async function createChecklistForUser(userId, title){
+    // Create new checklist item and then immediately return it
     return queryToPromise(
-        'INSERT INTO checklists(UserId, Title, Pinned) VALUES (?, ?, 0)',
-        [userId, title]
+        'INSERT INTO checklists(UserId, Title, Pinned) VALUES (?, ?, 0); SELECT * FROM checklists WHERE UserId = ? ORDER BY ID DESC LIMIT 1; ',
+        [userId, title, userId]
     )
 }
 

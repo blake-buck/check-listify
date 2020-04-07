@@ -10,7 +10,8 @@ const connection = mysql.createConnection({
     user:AWS_RDS_USER,  
     password:AWS_RDS_PASSWORD,
     database:AWS_RDS_DATABASE,
-    timeout:15000
+    timeout:15000,
+    multipleStatements:true
 });
 
 

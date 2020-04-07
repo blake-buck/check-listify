@@ -23,10 +23,10 @@ async function createChecklistForUser(req, res){
 
     try{
         const message = await checklistModel.createChecklistForUser(userId, title)
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

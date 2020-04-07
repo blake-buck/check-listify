@@ -9,7 +9,7 @@ function useAuthenticationRoutes(app){
 
     // username, password  --> fields on req.body
     app.post('/api/register', limitThreeAttempts, authController.register);
-    app.post('/api/login', rateLimiter(10, 60), slowdown(3, 6000, 1),  authController.login);
+    app.post('/api/login', rateLimiter(10, 60), slowdown(3, 60, 1),  authController.login);
 
     // previousPassword, proposedPassword --> fields on req.body
     app.post('/api/change-password', limitThreeAttempts, authController.changePassword)
