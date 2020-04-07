@@ -1,3 +1,4 @@
+const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST} = require('../../store/actions');
 export default {
     name:'UserChecklists',
     computed:{
@@ -7,25 +8,28 @@ export default {
     },
     data(){
         return {
-            isCreatingChecklist:false
+            displayChecklistTemplate:false
         }
     },
     methods:{
         toggleChecklistTemplate(){
-            this.isCreatingChecklist = !this.isCreatingChecklist;
+            this.displayChecklistTemplate = !this.displayChecklistTemplate;
         },
         addChecklist(e){
+            // if the user hasn't typed anything in the input field prevent the input from blurring
             if(e.target.value === ''){
                 e.preventDefault();
             }
             else{
-                this.$store.dispatch('addChecklist', {Id:-1, Title:e.target.value, Pinned:false})
+                this.$store.dispatch(ADD_CHECKLIST, {Id:-1, Title:e.target.value, Pinned:false});
                 this.toggleChecklistTemplate();
             }
         }
     },
+
+    // when component is created retrieveChecklists from store
     created(){
         // todo: move to route guard
-        this.$store.dispatch('retrieveChecklists');
+        this.$store.dispatch(RETRIEVE_CHECKLISTS);
     }
 }
