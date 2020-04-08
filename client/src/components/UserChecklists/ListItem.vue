@@ -1,8 +1,10 @@
 <template>
     <div>
+        <span v-if='checklist.Pinned'>---->  </span>
         <span v-if='!editingTitle'>{{checklist.Title}}</span>
         <input v-if='editingTitle' v-on:blur='blurInput' v-on:keyup='keyupInput' :value='checklist.Title'/>
         <button v-on:click='toggleEditingTitle'>Update</button>
+        <button v-on:click='toggleListIsPinned'>Pin List</button>
         <button v-on:click='deleteChecklist(checklist.Id)'>Delete</button>
     </div>
 </template>
@@ -36,6 +38,10 @@ export default {
                 this.toggleEditingTitle();
                 this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Title:e.target.value});
             }
+        },
+
+        toggleListIsPinned(){
+            this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Pinned:!this.checklist.Pinned})
         },
 
         deleteChecklist(id){

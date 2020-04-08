@@ -8,7 +8,10 @@ export default {
     },
     computed:{
         checklists(){
-            return this.$store.getters.getChecklists;
+            return this.$store.getters.getChecklists.filter(list => !list.Pinned)
+        },
+        pinnedChecklists(){
+            return this.$store.getters.getChecklists.filter(list => list.Pinned)
         }
     },
     data(){
