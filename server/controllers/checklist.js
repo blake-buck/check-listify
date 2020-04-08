@@ -39,10 +39,10 @@ async function updateChecklistForUser(req, res){
 
     try{
         const message = await checklistModel.updateChecklistForUser(userId, checklistId, title, pinned);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status: 400});
     }
 }
 
@@ -54,10 +54,10 @@ async function deleteChecklistForUser(req, res){
 
     try{
         const message = await checklistModel.deleteChecklistForUser(userId, checklistId);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

@@ -1,7 +1,11 @@
 const {constants} = require('../../store/actions');
-const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST, DELETE_CHECKLIST} = constants;
+const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST} = constants;
+import ListItem  from './ListItem.vue';
 export default {
     name:'UserChecklists',
+    components:{
+        ListItem
+    },
     computed:{
         checklists(){
             return this.$store.getters.getChecklists;
@@ -33,9 +37,6 @@ export default {
         addChecklist(title){
             this.$store.dispatch(ADD_CHECKLIST, title);
             this.toggleChecklistTemplate();
-        },
-        deleteChecklist(id){
-            this.$store.dispatch(DELETE_CHECKLIST, id)
         }
     },
 

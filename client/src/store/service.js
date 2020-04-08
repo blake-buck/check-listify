@@ -19,6 +19,11 @@ async function addChecklist(title){
     return request.post(`${getBaseUrl()}/api/user/checklist`, {title}, true);
 }
 
+async function updateChecklist(item){
+    const {Id, Pinned, Title} = item;
+    return request.put(`${getBaseUrl()}/api/user/checklist/${Id}`, {pinned:Pinned, title:Title}, true);
+}
+
 async function deleteChecklist(id){
     return request.delete(`${getBaseUrl()}/api/user/checklist/${id}`, true);
 }
@@ -27,5 +32,6 @@ export {
     login,
     retrieveChecklists,
     addChecklist,
+    updateChecklist,
     deleteChecklist
 }

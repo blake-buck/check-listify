@@ -1,11 +1,12 @@
-import {M_ADD_CHECKLIST, SET_CHECKLISTS, M_DELETE_CHECKLIST} from './mutations';
+import {M_ADD_CHECKLIST, SET_CHECKLISTS, M_UPDATE_CHECKLIST, M_DELETE_CHECKLIST} from './mutations';
 
 const appService = require('./service');
 
 export const constants = {
     RETRIEVE_CHECKLISTS:'retrieveChecklists',
     ADD_CHECKLIST:'addChecklist',
-    DELETE_CHECKLIST:'deleteChecklist'
+    UPDATE_CHECKLIST:'UPDATE_CHECKLIST',
+    DELETE_CHECKLIST:'deleteChecklist',
 }
 export default {
     
@@ -40,6 +41,19 @@ export default {
         }
 
     },
+
+    async [constants.UPDATE_CHECKLIST](context, item){
+        const response = await appService.updateChecklist(item);
+
+        if(response.status === 400){
+            // get userId from stored JWT
+            // push checklist to localStorage array that will be synced with database once they go back online
+            // push checklist to store
+        }
+
+        context.commit(M_UPDATE_CHECKLIST, item);
+    },
+
     async [constants.DELETE_CHECKLIST](context, id){
         const response = await appService.deleteChecklist(id);
         
