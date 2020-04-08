@@ -14,7 +14,13 @@ new Vue({
 
   computed:{
     viewComponent(){
-      const matchingRoute = routes[this.currentRoute]
+      const userRegex = /\/user\/checklist\/\d+/.exec(this.currentRoute);
+      let matchingRoute = routes[this.currentRoute];
+      if(userRegex && userRegex.length > 0){
+        matchingRoute = 'Checklist';
+      }
+    
+
       return matchingRoute ? require(`./components/${matchingRoute}/${matchingRoute}.vue`) : require('./components/NotFound/NotFound.vue')
     }
   },

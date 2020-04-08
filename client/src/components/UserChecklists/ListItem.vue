@@ -1,7 +1,7 @@
 <template>
     <div>
         <span v-if='checklist.Pinned'>---->  </span>
-        <span v-if='!editingTitle'>{{checklist.Title}}</span>
+        <span v-if='!editingTitle' v-on:click='navigateToChecklist(checklist.Id)'>{{checklist.Title}}</span>
         <input v-if='editingTitle' v-on:blur='blurInput' v-on:keyup='keyupInput' :value='checklist.Title'/>
         <button v-on:click='toggleEditingTitle'>Update</button>
         <button v-on:click='toggleListIsPinned'>Pin List</button>
@@ -12,6 +12,7 @@
 <script>
 const {constants} = require('../../store/actions');
 const {UPDATE_CHECKLIST, DELETE_CHECKLIST} = constants;
+const {navigateTo} = require('../../utils/navigateTo');
 export default {
     name:'ListItem',
     props:[
@@ -25,6 +26,10 @@ export default {
     methods:{
         toggleEditingTitle(){
             this.editingTitle = !this.editingTitle;
+        },
+
+        navigateToChecklist(id){
+            navigateTo(`/user/checklist/${id}`);
         },
 
         keyupInput(e){
@@ -41,11 +46,11 @@ export default {
         },
 
         toggleListIsPinned(){
-            this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Pinned:!this.checklist.Pinned})
+            this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Pinned:!this.checklist.Pinned});
         },
 
         deleteChecklist(id){
-            this.$store.dispatch(DELETE_CHECKLIST, id)
+            this.$store.dispatch(DELETE_CHECKLIST, id);
         }
     }
 }

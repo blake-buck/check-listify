@@ -1,4 +1,5 @@
 const appService = require('../../store/service');
+const {navigateTo} = require('../../utils/navigateTo');
 
 export default {
     name:'Home',
@@ -23,7 +24,7 @@ export default {
                 
                 // you're not supposed to store JWTs in local storage, this should be temporary
                 localStorage.setItem('jwt', response.jwt);
-                window.location.pathname = '/user';
+                navigateTo('/user');
             }
 
             if(type === this.REGISTER){
