@@ -12,7 +12,7 @@
 <script>
 const {constants} = require('../../store/actions');
 const {UPDATE_CHECKLIST, DELETE_CHECKLIST} = constants;
-const {navigateTo} = require('../../utils/navigateTo');
+const {navigateTo} = require('../../utils/router');
 export default {
     name:'ListItem',
     props:[
@@ -29,7 +29,7 @@ export default {
         },
 
         navigateToChecklist(id){
-            navigateTo(`/user/checklist/${id}`);
+            navigateTo(`/user/checklist/${id}`, this.$emit);
         },
 
         keyupInput(e){

@@ -18,7 +18,8 @@ export default {
         }
 
         if(response.status === 400){
-            console.log('ERROR');
+            
+            console.log('ERROR', response);
         }
         
     },

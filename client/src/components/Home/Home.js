@@ -1,5 +1,5 @@
 const appService = require('../../store/service');
-const {navigateTo} = require('../../utils/navigateTo');
+const {navigateTo} = require('../../utils/router');
 
 export default {
     name:'Home',

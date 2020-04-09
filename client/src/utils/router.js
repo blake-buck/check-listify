@@ -1,0 +1,27 @@
+function navigateTo(route){
+    window.history.pushState(null, '', route);
+    window.dispatchEvent(new CustomEvent('customnav', {detail:{route}}))
+}
+
+const routes = {
+    '/': 'Home',
+    '/demo': 'Demo',
+    '/user': 'UserChecklists',
+    '/user/account' : 'Account'
+}
+
+function router(pathname){
+    let matchingRoute = routes[pathname];
+    const userRegex = /\/user\/checklist\/\d+/.exec(pathname);
+      
+    if(userRegex && userRegex.length > 0){
+      matchingRoute = 'Checklist';
+    }
+    
+    return matchingRoute ? require(`../components/${matchingRoute}/${matchingRoute}.vue`) : require('../components/NotFound/NotFound.vue')
+}
+
+module.exports = {
+    navigateTo,
+    router
+}
