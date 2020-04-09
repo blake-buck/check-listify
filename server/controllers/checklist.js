@@ -85,10 +85,10 @@ async function createChecklistItem(req, res){
 
     try{
         const message = await checklistModel.createChecklistItem(userId, checklistId, name);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

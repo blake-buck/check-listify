@@ -28,8 +28,14 @@ async function deleteChecklist(id){
     return request.delete(`${getBaseUrl()}/api/user/checklist/${id}`, true);
 }
 
+
+
 async function retrieveChecklistItems(){
     return request.get(`${getBaseUrl()}/api/user/checklist/item`, true);
+}
+
+async function addChecklistItem(name, checklistId){
+    return request.post(`${getBaseUrl()}/api/user/checklist/${checklistId}/item`, {name}, true);
 }
 
 export {
@@ -40,5 +46,6 @@ export {
     updateChecklist,
     deleteChecklist,
 
-    retrieveChecklistItems
+    retrieveChecklistItems,
+    addChecklistItem
 }

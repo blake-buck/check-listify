@@ -40,8 +40,8 @@ async function getUserChecklistItems(userId){
 
 async function createChecklistItem(userId, checklistId, name){
     return queryToPromise(
-        'INSERT INTO checklist_items(UserId, ChecklistId, Name, Checked) VALUES (?, ?, ?, 0)',
-        [userId, checklistId, name]
+        'INSERT INTO checklist_items(UserId, ChecklistId, Name, Checked) VALUES (?, ?, ?, 0); SELECT * FROM checklist_items WHERE UserId = ? AND ChecklistId = ? ORDER BY ID DESC LIMIT 1;',
+        [userId, checklistId, name, userId, checklistId]
     )
 }
 
