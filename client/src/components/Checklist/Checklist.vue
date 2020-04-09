@@ -1,8 +1,7 @@
 <template>
     <div v-if='checklist'>
         <h1>{{checklist.Title}}</h1>
-        <h3>Checklist {{checklist.Id}}</h3>
-        <p v-for='item in items' :key='item.Id'>{{item.Name}}</p>
+        <ChecklistItem v-for='item in items' :key='item.Id' v-bind:item='item'></ChecklistItem>
         <input v-if='addingNewItem' v-on:blur='blurInput' v-on:keyup='keyupInput' placeholder='New Checklist Item' />
         <button v-if='!addingNewItem' v-on:click='toggleAddingNewItem()'>Add Item</button>
     </div>
@@ -10,7 +9,7 @@
 
 <script>
 const {constants} = require('../../store/actions');
-const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, ADD_CHECKLIST_ITEM} = constants;
+const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, ADD_CHECKLIST_ITEM, DELETE_CHECKLIST_ITEM} = constants;
 
 export default {
     name:'Checklist',
@@ -55,10 +54,12 @@ export default {
                 this.blurInput(e);
             }
         },
+
         addItem(name){
             this.$store.dispatch(ADD_CHECKLIST_ITEM, {name, checklistId: this.checklistId});
             this.toggleAddingNewItem();
-        }
+        },
+        
     },
 
     created(){
