@@ -101,10 +101,10 @@ async function updateChecklistItem(req, res){
 
     try{
         const message = await checklistModel.updateChecklistItem(userId, itemId, name, checked);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 
@@ -116,10 +116,10 @@ async function deleteChecklistItem(req, res){
 
     try{
         const message = await checklistModel.deleteChecklistItem(userId, itemId);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

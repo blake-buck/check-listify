@@ -36,16 +36,16 @@ function formatHeaders(headers){
 // successHandler can be a string or a function, if a string then it is used as a message. If it is a function the function
 // is executed
 function cognitoCallback(successHandler, res){
-    return function(err, data){
-        if(err){
-            res.status(400).send(err.message);
+    return function(error, data){
+        if(error){
+            res.status(400).send({error, status:400});
         }
         if(data){
             if(typeof successHandler === 'function'){
                 successHandler(data);
             }
             else{
-                res.status(200).send({message:successHandler});
+                res.status(200).send({message:successHandler, status:200});
             }
             
         }

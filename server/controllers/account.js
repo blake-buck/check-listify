@@ -13,10 +13,10 @@ async function getAccountConfig(req, res){
         const accountConfig = await accountModel.getAccountConfig(userId)
 
         // send results to user
-        res.status(200).send(accountConfig);
+        res.status(200).send({accountConfig, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
     
 }
@@ -34,10 +34,10 @@ async function updateAccountConfig(req, res){
 
         // replace existing accountConfig with new accountConfig
         const message = await accountModel.updateAccountConfig(userId, accountConfig);
-        res.status(200).send(message);
+        res.status(200).send({message, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 
 }

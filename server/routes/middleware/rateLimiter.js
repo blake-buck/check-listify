@@ -6,7 +6,7 @@ function rateLimiter(requestLimit, requestWindow){
     return _rateLimiter({
         windowMs: 1000 * 1000 * requestWindow,
         max:      requestLimit,
-        message: {message:'Too many requests from this IP. Please try again later.'}
+        message: {message:'Too many requests from this IP. Please try again later.', status:429}
     })
 }
 
