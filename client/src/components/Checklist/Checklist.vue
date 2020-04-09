@@ -10,9 +10,13 @@
 <script>
 const {constants} = require('../../store/actions');
 const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, ADD_CHECKLIST_ITEM, DELETE_CHECKLIST_ITEM} = constants;
-
+import ChecklistItem from './ChecklistItem';
 export default {
     name:'Checklist',
+    
+    components:{
+        ChecklistItem
+    },
 
     data(){
         return {

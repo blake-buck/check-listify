@@ -1,6 +1,6 @@
 import {
     M_ADD_CHECKLIST, SET_CHECKLISTS, M_UPDATE_CHECKLIST, M_DELETE_CHECKLIST, SET_CHECKLIST_ITEMS, 
-    M_ADD_CHECKLIST_ITEM, M_DELETE_CHECKLIST_ITEM
+    M_ADD_CHECKLIST_ITEM, M_UPDATE_CHECKLIST_ITEM, M_DELETE_CHECKLIST_ITEM
 } from './mutations';
 
 const appService = require('./service');
@@ -13,6 +13,7 @@ export const constants = {
     
     RETRIEVE_CHECKLIST_ITEMS:'RETRIEVE_CHECKLIST_ITEMS',
     ADD_CHECKLIST_ITEM:'ADD_CHECKLIST_ITEM',
+    UPDATE_CHECKLIST_ITEM:'UPDATE_CHECKLIST_ITEM',
     DELETE_CHECKLIST_ITEM:'DELETE_CHECKLIST_ITEM',
 }
 export default {
@@ -92,6 +93,17 @@ export default {
         if(response.status === 400){
             console.log(response);
         }
+    },
+
+    async [constants.UPDATE_CHECKLIST_ITEM](context, item){
+        const response = await appService.updateChecklistItem(item.Id, {name:item.Name, checked:item.Checked});
+
+        if(response.status !== 200){
+            console.log(response);
+        }
+
+        context.commit(M_UPDATE_CHECKLIST_ITEM, item);
+
     },
 
     async [constants.DELETE_CHECKLIST_ITEM](context, itemId){
