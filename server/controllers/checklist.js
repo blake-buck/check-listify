@@ -68,11 +68,11 @@ async function getUserChecklistItems(req, res){
     const userId = decodeToken(jwt)['username']
 
     try{
-        const results = await checklistModel.getUserChecklistItems(userId);
-        res.status(200).send(results);
+        const items = await checklistModel.getUserChecklistItems(userId);
+        res.status(200).send({items, status:200});
     }
-    catch(e){
-        res.status(400).send(e);
+    catch(error){
+        res.status(400).send({error, status:400});
     }
 }
 

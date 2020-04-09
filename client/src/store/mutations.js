@@ -3,11 +3,15 @@ const M_ADD_CHECKLIST = 'M_ADD_CHECKLIST';
 const M_UPDATE_CHECKLIST = 'M_UPDATE_CHECKLIST';
 const M_DELETE_CHECKLIST = 'M_DELETE_CHECKLIST';
 
+const SET_CHECKLIST_ITEMS = 'SET_CHECKLIST_ITEMS';
+
 module.exports = {
     SET_CHECKLISTS,
     M_ADD_CHECKLIST,
     M_UPDATE_CHECKLIST,
     M_DELETE_CHECKLIST,
+
+    SET_CHECKLIST_ITEMS,
 
     mutations:{
         [SET_CHECKLISTS](state, checklists){
@@ -26,6 +30,10 @@ module.exports = {
         },
         [M_DELETE_CHECKLIST](state, id){
             state.checklists = [...state.checklists.filter(checklist => checklist.Id !== id)];
+        },
+
+        [SET_CHECKLIST_ITEMS](state, items){
+            
         }
     }
 }

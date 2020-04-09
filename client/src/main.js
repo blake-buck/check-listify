@@ -33,7 +33,5 @@ window.addEventListener('customnav', (e) => {
 })
 window.addEventListener('popstate', (e) => {
   e.preventDefault();
-  console.log(window.location.pathname);
-  console.log(e.target, e.target.location.pathname);
   vm.dataPathname = `${e.target.location.pathname}`;
 })

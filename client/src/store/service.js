@@ -28,10 +28,17 @@ async function deleteChecklist(id){
     return request.delete(`${getBaseUrl()}/api/user/checklist/${id}`, true);
 }
 
+async function retrieveChecklistItems(){
+    return request.get(`${getBaseUrl()}/api/user/checklist/item`, true);
+}
+
 export {
     login,
+
     retrieveChecklists,
     addChecklist,
     updateChecklist,
-    deleteChecklist
+    deleteChecklist,
+
+    retrieveChecklistItems
 }
