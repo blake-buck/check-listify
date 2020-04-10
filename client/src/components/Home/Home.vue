@@ -2,15 +2,15 @@
     <div>
         <h1>Home</h1>
         <form v-on:submit="submitForm($event, LOGIN)">
-            <input v-on:keyup="changeFormValue($event, USERNAME);" placeholder='Username' />
-            <input v-on:keyup="changeFormValue($event, PASSWORD);" placeholder='Password' type='password'  />
-            <button type='submit'>Login</button>
+            <block-input :keyupHandler="($event) => changeFormValue($event, USERNAME)" placeholder='Username'></block-input>
+            <block-input :keyupHandler="($event) => changeFormValue($event, PASSWORD)" placeholder='Password' type='password'></block-input>
+            <block-button displayText='Login'></block-button>
         </form>
 
         <form v-on:submit="submitForm($event, REGISTER)">
-            <input v-on:keyup="changeFormValue($event, USERNAME);" placeholder='Username' />
-            <input v-on:keyup="changeFormValue($event, PASSWORD);" placeholder='Password' type='password'  />
-            <button type='submit'>Register</button>
+            <block-input :keyupHandler="($event) => changeFormValue($event, USERNAME)" placeholder='Username'></block-input>
+            <block-input :keyupHandler="($event) => changeFormValue($event, PASSWORD)" placeholder='Password' type='password'></block-input>
+            <block-button displayText='Register'></block-button>
         </form>
             
     </div>

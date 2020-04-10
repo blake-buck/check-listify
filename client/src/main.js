@@ -6,7 +6,17 @@ const {router} = require('./utils/router');
 const {constants} = require('./store/actions');
 const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, RETRIEVE_ACCOUNT_CONFIG} = constants;
 
+const BlockButton = require('./blocks/block-button');
+const BlockFab    = require('./blocks/block-fab');
+const BlockInput  = require('./blocks/block-input');
+
+Vue.component('block-button', BlockButton.default);
+Vue.component('block-fab',    BlockFab.default);
+Vue.component('block-input',  BlockInput.default);
+
 Vue.config.productionTip = false;
+
+
 
 let vm = new Vue({
   el:'#app',

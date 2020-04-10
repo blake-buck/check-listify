@@ -1,9 +1,9 @@
 <template>
     <div>
         <span v-if='!displayInput'>{{item.Name}}</span>
-        <input v-if='displayInput' :value='item.Name' v-on:blur='blurInput' v-on:keyup='keyupInput' placeholder='Checklist title' />
-        <button v-if='!displayInput' v-on:click='toggleInput'>Edit Checklist</button>
-        <button v-on:click='deleteItem(item.Id)'>Delete</button>
+        <block-input v-if='displayInput' :value='item.Name' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='Checklist Item'></block-input>
+        <block-button v-if='!displayInput' :clickHandler='toggleInput' displayText='Edit Checklist'></block-button>
+        <block-button :clickHandler='() => deleteItem(item.Id)' displayText='Delete'></block-button>
     </div>
 </template>
 

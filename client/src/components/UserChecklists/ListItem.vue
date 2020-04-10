@@ -2,10 +2,10 @@
     <div>
         <span v-if='checklist.Pinned'>---->  </span>
         <span v-if='!editingTitle' v-on:click='navigateToChecklist(checklist.Id)'>{{checklist.Title}}</span>
-        <input v-if='editingTitle' v-on:blur='blurInput' v-on:keyup='keyupInput' :value='checklist.Title'/>
-        <button v-on:click='toggleEditingTitle'>Update</button>
-        <button v-on:click='toggleListIsPinned'>Pin List</button>
-        <button v-on:click='deleteChecklist(checklist.Id)'>Delete</button>
+        <block-input v-if='editingTitle' :blurHandler='blurInput' :keyupHandler='keyupInput' :value='checklist.Title'></block-input>
+        <block-button :clickHandler='toggleEditingTitle' displayText='Update'></block-button>
+        <block-button :clickHandler='toggleListIsPinned' displayText='Pin List'></block-button>
+        <block-button :clickHandler='() => deleteChecklist(checklist.Id)' displayText='Delete'></block-button>
     </div>
 </template>
 

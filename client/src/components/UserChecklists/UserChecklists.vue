@@ -5,9 +5,9 @@
         <div>
             <ListItem v-for='checklist in pinnedChecklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
             <ListItem v-for='checklist in checklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
-            <input v-if='displayChecklistTemplate' v-on:blur='blurChecklist' v-on:keyup='keyupChecklist' placeholder='Checklist title' />
+            <block-input v-if='displayChecklistTemplate' :blurHandler='blurChecklist' :keyupHandler='keyupChecklist' placeholder='Checklist title'></block-input>
         </div>
-        <button v-on:click='toggleChecklistTemplate'>Add Checklist</button>
+        <block-fab :clickHandler='toggleChecklistTemplate' displayText='Add Checklist'></block-fab>
     </div>
 </template>
 

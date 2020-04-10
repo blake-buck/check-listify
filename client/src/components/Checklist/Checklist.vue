@@ -2,8 +2,8 @@
     <div v-if='checklist'>
         <h1>{{checklist.Title}}</h1>
         <ChecklistItem v-for='item in items' :key='item.Id' v-bind:item='item'></ChecklistItem>
-        <input v-if='addingNewItem' v-on:blur='blurInput' v-on:keyup='keyupInput' placeholder='New Checklist Item' />
-        <button v-if='!addingNewItem' v-on:click='toggleAddingNewItem()'>Add Item</button>
+        <block-input v-if='addingNewItem' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='New Checklist Item'></block-input>
+        <block-fab v-if='!addingNewItem' :clickHandler='toggleAddingNewItem' displayText='Add Item'></block-fab>
     </div>
 </template>
 
