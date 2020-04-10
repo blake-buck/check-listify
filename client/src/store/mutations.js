@@ -28,6 +28,7 @@ module.exports = {
     mutations:{
         [SET_CHECKLISTS](state, checklists){
             state.checklists = [...checklists];
+            state.checklistsLoaded = true;
         },
         [M_ADD_CHECKLIST](state, checklist){
             state.checklists = [...state.checklists, checklist];
@@ -48,6 +49,7 @@ module.exports = {
 
         [SET_CHECKLIST_ITEMS](state, items){
             state.items = [...items];
+            state.itemsLoaded = true;
         },
         [M_ADD_CHECKLIST_ITEM](state, item){
             state.items = [...state.items, item];
@@ -66,6 +68,7 @@ module.exports = {
 
         [SET_ACCOUNT_CONFIG](state, config){
             state.accountConfig = accountConfigToBoolean(config);
+            state.accountConfigLoaded = true;
         },
 
         [M_UPDATE_ACCOUNT_CONFIG](state, config){

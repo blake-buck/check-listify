@@ -51,7 +51,5 @@ export default {
 
     // when component is created retrieveChecklists from store
     created(){
-        // todo: move to route guard
-        this.$store.dispatch(RETRIEVE_CHECKLISTS);
     }
 }

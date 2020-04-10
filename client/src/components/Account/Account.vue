@@ -22,11 +22,6 @@ export default {
         editItem(config, key, value){
             this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value})
         }
-    },
-
-    created(){
-        // todo: move to route guard
-        this.$store.dispatch(RETRIEVE_ACCOUNT_CONFIG);
     }
 
 }

@@ -1,7 +1,12 @@
 module.exports = {
     state: {
         checklists:[],
+        checklistsLoaded:false,
+
         items:[],
-        accountConfig:{}
+        itemsLoaded:false,
+
+        accountConfig:{},
+        accountConfigLoaded:false
     }
 }

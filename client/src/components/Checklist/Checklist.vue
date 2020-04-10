@@ -28,15 +28,11 @@ export default {
         checklistId(){
             return +window.location.pathname.split('/').pop();
         },
-        checklist(){
-            if(this.$store.getters.getChecklists){
-                return this.$store.getters.getChecklistById(this.checklistId);
-            } 
+        checklist(){ 
+            return this.$store.getters.getChecklistById(this.checklistId); 
         },
         items(){
-            if(this.$store.getters.getItemsForChecklist(this.checklistId)){
-                return this.$store.getters.getItemsForChecklist(this.checklistId);
-            }
+            return this.$store.getters.getItemsForChecklist(this.checklistId);     
         }
     },
 
@@ -64,12 +60,6 @@ export default {
             this.toggleAddingNewItem();
         },
         
-    },
-
-    created(){
-        // todo: move to route guard
-        this.$store.dispatch(RETRIEVE_CHECKLISTS);
-        this.$store.dispatch(RETRIEVE_CHECKLIST_ITEMS);
     }
 }
 </script>
