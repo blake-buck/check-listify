@@ -50,6 +50,10 @@ async function retrieveAccountConfig(){
     return request.get(`${getBaseUrl()}/api/user/account`, true);
 }
 
+async function updateAccountConfig(config){
+    return request.put(`${getBaseUrl()}/api/user/account`, config, true);
+}
+
 export {
     login,
 
@@ -63,5 +67,6 @@ export {
     updateChecklistItem,
     deleteChecklistItem,
 
-    retrieveAccountConfig
+    retrieveAccountConfig,
+    updateAccountConfig
 }

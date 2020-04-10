@@ -9,6 +9,7 @@ const M_UPDATE_CHECKLIST_ITEM = 'M_UPDATE_CHECKLIST_ITEM';
 const M_DELETE_CHECKLIST_ITEM = 'M_DELETE_CHECKLIST_ITEM';
 
 const SET_ACCOUNT_CONFIG = 'SET_ACCOUNT_CONFIG';
+const M_UPDATE_ACCOUNT_CONFIG = 'M_UPDATE_ACCOUNT_CONFIG';
 
 module.exports = {
     SET_CHECKLISTS,
@@ -22,6 +23,7 @@ module.exports = {
     M_DELETE_CHECKLIST_ITEM,
 
     SET_ACCOUNT_CONFIG,
+    M_UPDATE_ACCOUNT_CONFIG,
 
     mutations:{
         [SET_CHECKLISTS](state, checklists){
@@ -64,18 +66,19 @@ module.exports = {
 
         [SET_ACCOUNT_CONFIG](state, config){
             state.accountConfig = accountConfigToBoolean(config);
+        },
+
+        [M_UPDATE_ACCOUNT_CONFIG](state, config){
+            state.accountConfig = config;
         }
     }
 }
 
 function accountConfigToBoolean(config){
     for(let key in config){
-        if(config[key]){
-            config[key] = true;
-        }
-        else{
-            config[key] = false;
-        }
+        config[key] = key !=='ColorTheme' && config[key] ? true : false;
     }
     return config;
 }
+
+// this code proves that I need to fix the capitilization of variables sooner rather than later

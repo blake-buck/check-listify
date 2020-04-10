@@ -1,6 +1,7 @@
 import {
     M_ADD_CHECKLIST, SET_CHECKLISTS, M_UPDATE_CHECKLIST, M_DELETE_CHECKLIST, SET_CHECKLIST_ITEMS, 
-    M_ADD_CHECKLIST_ITEM, M_UPDATE_CHECKLIST_ITEM, M_DELETE_CHECKLIST_ITEM, SET_ACCOUNT_CONFIG
+    M_ADD_CHECKLIST_ITEM, M_UPDATE_CHECKLIST_ITEM, M_DELETE_CHECKLIST_ITEM, SET_ACCOUNT_CONFIG, 
+    M_UPDATE_ACCOUNT_CONFIG
 } from './mutations';
 
 const appService = require('./service');
@@ -16,7 +17,8 @@ export const constants = {
     UPDATE_CHECKLIST_ITEM:'UPDATE_CHECKLIST_ITEM',
     DELETE_CHECKLIST_ITEM:'DELETE_CHECKLIST_ITEM',
 
-    RETRIEVE_ACCOUNT_CONFIG:'RETRIEVE_ACCOUNT_CONFIG'
+    RETRIEVE_ACCOUNT_CONFIG:'RETRIEVE_ACCOUNT_CONFIG',
+    UPDATE_ACCOUNT_CONFIG:'UPDATE_ACCOUNT_CONFIG',
 }
 export default {
     
@@ -129,6 +131,19 @@ export default {
         else{
             console.log(response);
         }
+    },
+
+    async [constants.UPDATE_ACCOUNT_CONFIG](context, config){
+        const response = await appService.updateAccountConfig(accountConfigToNumber(config));
+        context.commit(M_UPDATE_ACCOUNT_CONFIG, config);
     }
 
+}
+
+function accountConfigToNumber(config){
+    let newConfig = {};
+    for(let key in config){
+        newConfig[key] = config[key] ? 1 : 0;
+    }
+    return newConfig;
 }
