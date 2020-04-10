@@ -1,5 +1,5 @@
 const {constants} = require('../../store/actions');
-const {RETRIEVE_CHECKLISTS, ADD_CHECKLIST} = constants;
+const {ADD_CHECKLIST} = constants;
 const {navigateTo} = require('../../utils/router');
 
 import ListItem  from './ListItem.vue';
@@ -47,9 +47,6 @@ export default {
         toAccountPage(){
             navigateTo('/user/account')
         }
-    },
-
-    // when component is created retrieveChecklists from store
-    created(){
     }
+
 }

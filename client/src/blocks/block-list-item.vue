@@ -1,0 +1,39 @@
+<template>
+    <div v-on:click='clickHandler'>
+        <span>{{displayText}}</span>
+    </div>
+</template>
+
+<style scoped>
+    div{
+        border-top:1px solid gray;
+        border-bottom:1px solid gray;
+
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+    span{
+        width:90%;
+        font-size:20px;
+        padding:10px;
+        margin:5px;
+    }
+</style>
+
+<script>
+export default {
+    name:'block-list-item',
+    props:{
+        displayText:{
+            type:String,
+            required:false
+        },
+        clickHandler:{
+            type:Function,
+            required:false,
+            default:() => null
+        }
+    }
+}
+</script>
