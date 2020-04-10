@@ -8,6 +8,8 @@ const M_ADD_CHECKLIST_ITEM = 'M_ADD_CHECKLIST_ITEM';
 const M_UPDATE_CHECKLIST_ITEM = 'M_UPDATE_CHECKLIST_ITEM';
 const M_DELETE_CHECKLIST_ITEM = 'M_DELETE_CHECKLIST_ITEM';
 
+const SET_ACCOUNT_CONFIG = 'SET_ACCOUNT_CONFIG';
+
 module.exports = {
     SET_CHECKLISTS,
     M_ADD_CHECKLIST,
@@ -18,6 +20,8 @@ module.exports = {
     M_ADD_CHECKLIST_ITEM,
     M_UPDATE_CHECKLIST_ITEM,
     M_DELETE_CHECKLIST_ITEM,
+
+    SET_ACCOUNT_CONFIG,
 
     mutations:{
         [SET_CHECKLISTS](state, checklists){
@@ -32,7 +36,7 @@ module.exports = {
                     return updatedList;
                 }
                 return checklist;
-            })
+            });
         },
         [M_DELETE_CHECKLIST](state, id){
             state.checklists = [...state.checklists.filter(checklist => checklist.Id !== id)];
@@ -52,10 +56,26 @@ module.exports = {
                     return updatedItem;
                 }
                 return item;
-            })
+            });
         },
         [M_DELETE_CHECKLIST_ITEM](state, id){
             state.items = state.items.filter(item => item.Id !== id);
+        },
+
+        [SET_ACCOUNT_CONFIG](state, config){
+            state.accountConfig = accountConfigToBoolean(config);
         }
     }
+}
+
+function accountConfigToBoolean(config){
+    for(let key in config){
+        if(config[key]){
+            config[key] = true;
+        }
+        else{
+            config[key] = false;
+        }
+    }
+    return config;
 }

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <button v-on:click='toAccountPage'>Account</button>
         <h1>User Checklists</h1>
         <div>
             <ListItem v-for='checklist in pinnedChecklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>

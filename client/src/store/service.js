@@ -46,6 +46,10 @@ async function deleteChecklistItem(itemId){
     return request.delete(`${getBaseUrl()}/api/user/checklist/item/${itemId}`, true);
 }
 
+async function retrieveAccountConfig(){
+    return request.get(`${getBaseUrl()}/api/user/account`, true);
+}
+
 export {
     login,
 
@@ -57,5 +61,7 @@ export {
     retrieveChecklistItems,
     addChecklistItem,
     updateChecklistItem,
-    deleteChecklistItem
+    deleteChecklistItem,
+
+    retrieveAccountConfig
 }
