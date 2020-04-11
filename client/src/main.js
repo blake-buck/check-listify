@@ -11,11 +11,13 @@ const BlockButton = require('./blocks/block-button');
 const BlockFab    = require('./blocks/block-fab');
 const BlockInput  = require('./blocks/block-input');
 const BlockListItem = require('./blocks/block-list-item');
+const BlockIconButton = require('./blocks/block-icon-button');
 
 Vue.component('block-button', BlockButton.default);
 Vue.component('block-fab',    BlockFab.default);
 Vue.component('block-input',  BlockInput.default);
 Vue.component('block-list-item', BlockListItem.default);
+Vue.component('block-icon-button', BlockIconButton.default);
 
 Vue.config.productionTip = false;
 
