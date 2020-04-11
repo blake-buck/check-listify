@@ -73,7 +73,9 @@ export default {
         return{
             editingTitle:false,
 
-            touchStart:0,
+            touchStartX:0,
+            touchStartY:0,
+
             displayActionButtons:false
         }
     },
@@ -129,14 +131,16 @@ export default {
         },
 
         handleTouchStart(e){
-            this.touchStart = e.touches[0].clientX;
+            this.touchStartX = e.touches[0].clientX;
+            this.touchStartY = e.touches[0].clientY;
         },
         handleTouchEnd(e){
-            if(this.touchStart > e.changedTouches[0].clientX){
+            // if the users Y scroll moves more than 50px, they are likely scrolling the page and not trying to show/hide action buttons
+            if(this.touchStartX > e.changedTouches[0].clientX && Math.abs(this.touchStartY - e.changedTouches[0].clientY) <= 50){
                 this.showActionButtons();
             }
 
-            if(this.touchStart < e.changedTouches[0].clientX){
+            if(this.touchStartX < e.changedTouches[0].clientX && Math.abs(this.touchStartY - e.changedTouches[0].clientY) <= 50){
                 this.hideActionButtons();
             }
         }
