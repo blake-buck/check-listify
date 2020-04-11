@@ -42,7 +42,7 @@
         opacity: 0;
     }
     @keyframes fadeIn{
-        from {opacity: 0.1;}
+        from {opacity: 0.4;}
         to   {opacity: 1;}
     }
     .UserChecklists{
