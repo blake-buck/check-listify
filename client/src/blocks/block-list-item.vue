@@ -6,7 +6,6 @@
 
 <style scoped>
     div{
-        border-bottom:1px solid gray;
         width:100%;
         display:flex;
         justify-content:center;
