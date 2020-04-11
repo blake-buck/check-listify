@@ -8,16 +8,31 @@
         <div class='list-items'>
             <ListItem v-for='checklist in pinnedChecklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
             <ListItem v-for='checklist in checklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
-            <block-input :shouldAutofocus='true' v-if='displayChecklistTemplate' :blurHandler='blurChecklist' :keyupHandler='keyupChecklist' placeholder='Checklist title'></block-input>
+            
+            <transition name='fade'>
+                <block-input :shouldAutofocus='true' v-if='displayChecklistTemplate' :blurHandler='blurChecklist' :keyupHandler='keyupChecklist' placeholder='Checklist title'></block-input>
+            </transition>
         </div>
         <block-fab v-if='!displayChecklistTemplate' :clickHandler='showChecklistTemplate' displayText='Add Checklist'></block-fab>
     </div>
 </template>
 
 <style scoped>
+
+    .fade-enter-active{
+        transition: opacity .2s;
+        }
+    .fade-enter{
+        opacity: 0;
+        }
+    @keyframes fadeIn{
+        from {opacity: 0.1;}
+        to   {opacity: 1;}
+    }
     .UserChecklists{
         /* this gives extra breathing room so the fab doesn't obscure list items */
         padding-bottom:80px;
+        animation:fadeIn 0.5s;
     }
     .list-items .ListItem:first-of-type{
         border-top:1px solid gray;
