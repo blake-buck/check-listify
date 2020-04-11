@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='ListItem'>
         
         <div class='display-elements' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
             <span v-if='checklist.Pinned'>---->  </span>
@@ -26,17 +26,18 @@
     }
 
     .action-buttons{
-        border:1px solid black;
         position:absolute;
 
         display:flex;
 
         min-height:50px;
+        height:100%;
         width:200px;
 
         top:0px;
         right:-202px;
         transition:0.25s;
+        
     } 
     .action-buttons.displayActionButtons{
         right:0px;
@@ -44,7 +45,9 @@
     } 
     .action-buttons button{
         min-height:50px;
+        height:100%;
         width:100%;
+        border:1px solid black;
     }
     .action-buttons button:last-of-type{
         background:red;
@@ -52,7 +55,7 @@
     .action-buttons button:first-of-type{
         background:green;
     }
-    .action-buttons button:nth-last-of-type(2){
+    .action-buttons button:nth-of-type(2){
         background:goldenrod;
     }
 </style>

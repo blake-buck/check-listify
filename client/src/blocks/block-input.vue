@@ -15,7 +15,7 @@
     }
     input{
         width:90%;
-        font-size:20px;
+        font-size:18px;
         padding:10px;
         margin:5px;
     }
