@@ -23,8 +23,12 @@ export default {
         }
     },
     methods:{
-        toggleChecklistTemplate(){
-            this.displayChecklistTemplate = !this.displayChecklistTemplate;
+
+        showChecklistTemplate(){
+            this.displayChecklistTemplate = true;
+        },
+        hideChecklistTemplate(){
+            this.displayChecklistTemplate = false;
         },
         blurChecklist(e){
              // if the user hasn't typed anything in the input field prevent the input from blurring
@@ -41,8 +45,12 @@ export default {
             }
         },
         addChecklist(title){
-            this.$store.dispatch(ADD_CHECKLIST, title);
-            this.toggleChecklistTemplate();
+            // for whatever reason when enter is pressed, while chrome is emulating mobile, the event is fired twice
+            //  this check prevents a duplicate action from being fired
+            if(this.displayChecklistTemplate){
+                this.$store.dispatch(ADD_CHECKLIST, title);
+                this.hideChecklistTemplate();
+            }
         },
         toAccountPage(){
             navigateTo('/user/account')

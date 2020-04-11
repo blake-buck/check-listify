@@ -10,7 +10,7 @@
             <ListItem v-for='checklist in checklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
             <block-input :shouldAutofocus='true' v-if='displayChecklistTemplate' :blurHandler='blurChecklist' :keyupHandler='keyupChecklist' placeholder='Checklist title'></block-input>
         </div>
-        <block-fab :clickHandler='toggleChecklistTemplate' displayText='Add Checklist'></block-fab>
+        <block-fab v-if='!displayChecklistTemplate' :clickHandler='showChecklistTemplate' displayText='Add Checklist'></block-fab>
     </div>
 </template>
 
