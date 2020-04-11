@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='UserChecklists'>
         <header class='light'>
             <block-icon-button :clickHandler='toAccountPage' icon='settings'></block-icon-button>
             <h1>Checklists</h1>
@@ -15,6 +15,10 @@
 </template>
 
 <style scoped>
+    .UserChecklists{
+        /* this gives extra breathing room so the fab doesn't obscure list items */
+        padding-bottom:80px;
+    }
     .list-items .ListItem:first-of-type{
         border-top:1px solid gray;
     }

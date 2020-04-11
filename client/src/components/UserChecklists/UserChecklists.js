@@ -46,7 +46,7 @@ export default {
         },
         addChecklist(title){
             // for whatever reason when enter is pressed, while chrome is emulating mobile, the event is fired twice
-            //  this check prevents a duplicate action from being fired
+            // this check prevents a duplicate action from being fired
             if(this.displayChecklistTemplate){
                 this.$store.dispatch(ADD_CHECKLIST, title);
                 this.hideChecklistTemplate();
