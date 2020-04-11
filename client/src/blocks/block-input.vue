@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input :placeholder='placeholder' :value='value' v-on:blur='blurHandler' v-on:keyup='keyupHandler' :type='type' />
+        <input ref='inputToAutofocus' :placeholder='placeholder' :value='value' v-on:blur='blurHandler' v-on:keyup='keyupHandler' :type='type' />
     </div>
 </template>
 
@@ -49,6 +49,16 @@ export default {
             type:String,
             required:false,
             default:''
+        },
+        shouldAutofocus:{
+            type:Boolean,
+            required:false,
+            default:false
+        }
+    },
+    mounted(){
+        if(this.shouldAutofocus){
+            this.$refs.inputToAutofocus.focus();
         }
     }
 }

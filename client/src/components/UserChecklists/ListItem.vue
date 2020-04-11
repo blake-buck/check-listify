@@ -4,11 +4,11 @@
         <div class='display-elements' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
             <span v-if='checklist.Pinned'>---->  </span>
             <block-list-item v-if='!editingTitle' :clickHandler='() => navigateToChecklist(checklist.Id)' :displayText='checklist.Title'></block-list-item>
-            <block-input v-if='editingTitle' :blurHandler='blurInput' :keyupHandler='keyupInput' :value='checklist.Title'></block-input>
+            <block-input :shouldAutofocus='true' v-if='editingTitle' :blurHandler='blurInput' :keyupHandler='keyupInput' :value='checklist.Title'></block-input>
             
             <div class='action-buttons' v-bind:class='{displayActionButtons}'>
                 <block-button :clickHandler='toggleListIsPinned' displayText='Pin'></block-button>
-                <block-button :clickHandler='toggleEditingTitle' displayText='Update'></block-button>
+                <block-button :clickHandler='update' displayText='Update'></block-button>
                 <block-button :clickHandler='() => deleteChecklist(checklist.Id)' displayText='Delete'></block-button>
             </div>
         </div>
@@ -75,8 +75,28 @@ export default {
         }
     },
     methods:{
-        toggleEditingTitle(){
-            this.editingTitle = !this.editingTitle;
+        update(){
+            this.editTitle();
+            this.hideActionButtons();
+        },
+
+        // These functions are used instead of a toggleFunction -> for whatever reason when enter is pressed
+        // while chrome is emulating mobile, the event is fired twice, making a toggle go from true => false => true
+
+        // set editing title to true
+        editTitle(){
+            this.editingTitle = true;
+        },
+        
+        // set editing title to false
+        finishEditingTitle(){
+            this.editingTitle = false;
+        },
+
+        showActionButtons(){
+            this.displayActionButtons = true;
+        },
+        hideActionButtons(){
             this.displayActionButtons = false;
         },
 
@@ -92,8 +112,8 @@ export default {
 
         blurInput(e){
             if(e.target.value !== ''){
-                this.toggleEditingTitle();
                 this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Title:e.target.value});
+                this.finishEditingTitle();
             }
         },
 
@@ -110,11 +130,11 @@ export default {
         },
         handleTouchEnd(e){
             if(this.touchStart > e.changedTouches[0].clientX){
-                this.displayActionButtons = true;
+                this.showActionButtons();
             }
 
             if(this.touchStart < e.changedTouches[0].clientX){
-                this.displayActionButtons = false;
+                this.hideActionButtons();
             }
         }
     }
