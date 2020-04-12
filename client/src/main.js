@@ -14,6 +14,7 @@ const BlockListItem = require('./blocks/block-list-item');
 const BlockIconButton = require('./blocks/block-icon-button');
 const BlockSelect = require('./blocks/block-select');
 const BlockSelectItem = require('./blocks/block-select-item');
+const BlockToggle = require('./blocks/block-toggle');
 
 Vue.component('block-button', BlockButton.default);
 Vue.component('block-fab',    BlockFab.default);
@@ -22,11 +23,10 @@ Vue.component('block-list-item', BlockListItem.default);
 Vue.component('block-icon-button', BlockIconButton.default);
 Vue.component('block-select', BlockSelect.default);
 Vue.component('block-select-item', BlockSelectItem.default);
+Vue.component('block-toggle', BlockToggle.default);
 
 
 Vue.config.productionTip = false;
-
-
 
 let vm = new Vue({
   el:'#app',
