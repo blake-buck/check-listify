@@ -1,25 +1,3 @@
-.list-enter-active {
-    transition: opacity 0.5s;
-}
-.list-leave-active{
-    transition:all 0.5s;
-    transform:translateX(60px);
-}
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
-    opacity: 0;
-}
-
-.fade-enter-active{
-    transition: opacity .2s;
-}
-.fade-enter{
-    opacity: 0;
-}
-
-@keyframes fadeIn{
-    from {opacity: 0.4;}
-    to   {opacity: 1;}
-}
 .Checklist{
     /* this gives extra breathing room so the fab doesn't obscure list items */
     padding-bottom:80px;
@@ -44,4 +22,30 @@ header h1{
 
 header.light{
     background:lightgray;
+}
+
+
+/* ANIMATIONS */
+
+.list-enter-active {
+    transition: opacity 0.5s;
+}
+.list-leave-active{
+    transition:all 0.5s;
+    transform:translateX(60px);
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+.fade-enter-active{
+    transition: opacity .2s;
+}
+.fade-enter{
+    opacity: 0;
+}
+
+@keyframes fadeIn{
+    from {opacity: 0.4;}
+    to   {opacity: 1;}
 }

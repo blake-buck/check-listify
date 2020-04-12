@@ -55,8 +55,8 @@ export default {
         blurInput(e){
             if(e.target.value !== ''){
                 this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Title:e.target.value});
-                this.finishEditingTitle();
             }
+            this.finishEditingTitle();
         },
 
         toggleListIsPinned(){

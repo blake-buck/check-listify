@@ -2,8 +2,8 @@
     <div class='UserChecklists'>
 
         <header class='light'>
-            <block-icon-button :clickHandler='toAccountPage' icon='settings'></block-icon-button>
             <h1>Checklists</h1>
+            <block-icon-button :clickHandler='toAccountPage' icon='settings'></block-icon-button>
         </header>
         
         <div class='list-items'>

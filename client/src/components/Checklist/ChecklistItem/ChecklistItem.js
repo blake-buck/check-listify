@@ -27,34 +27,35 @@ export default {
             this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, Checked:!this.item.Checked});
         },
 
+        showInput(){
+            this.displayInput = true;
+            this.hideActionButtons();
+        },
+        hideInput(){
+            this.displayInput = false;
+            this.hideActionButtons();
+        },
+
         deleteItem(id){
             this.$store.dispatch(DELETE_CHECKLIST_ITEM, id);
-            this.hideActionButtons();
         },
 
         editItem(updatedItem){
             if(this.displayInput){
                 this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, ...updatedItem});
-                this.toggleInput();
             }
         },
 
-        toggleInput(){
-            this.displayInput = !this.displayInput;
-            this.hideActionButtons();
-        },
         blurInput(e){
-             // if the user hasn't typed anything in the input field prevent the input from blurring
-            if(e.target.value === ''){
-                e.preventDefault();
-            }
-            else{
+             // if the user hasn't typed anything in the input field prevent the item from updating
+            if(e.target.value !== ''){
                 this.editItem({Name:e.target.value});
-                
             }
+
+            this.hideInput();
         },
         keyupInput(e){
-            if(e.key === 'Enter' && e.target.value !== ''){
+            if(e.key === 'Enter'){
                 this.blurInput(e);
             }
         },

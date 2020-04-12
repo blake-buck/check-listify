@@ -28,20 +28,24 @@ export default {
     },
 
     methods:{
-        toggleAddingNewItem(){
-            this.addingNewItem = !this.addingNewItem;
+        displayInput(){
+            this.addingNewItem = true;
         },
+        hideInput(){
+            this.addingNewItem = false;
+        },
+
         blurInput(e){
              // if the user hasn't typed anything in the input field prevent the input from blurring
-            if(e.target.value === ''){
-                e.preventDefault();
-            }
-            else{
+            if(e.target.value !== ''){
                 this.addItem(e.target.value)
             }
+
+            this.hideInput();
+
         },
         keyupInput(e){
-            if(e.key === 'Enter' && e.target.value !== ''){
+            if(e.key === 'Enter'){
                 this.blurInput(e);
             }
         },
@@ -49,7 +53,6 @@ export default {
         addItem(name){
             if(this.addingNewItem){
                 this.$store.dispatch(ADD_CHECKLIST_ITEM, {name, checklistId: this.checklistId});
-                this.toggleAddingNewItem();
             }
         },
 

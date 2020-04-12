@@ -32,15 +32,13 @@ export default {
         },
         blurChecklist(e){
              // if the user hasn't typed anything in the input field prevent the input from blurring
-            if(e.target.value === ''){
-                e.preventDefault();
-            }
-            else{
+            if(e.target.value !== ''){
                 this.addChecklist(e.target.value)
             }
+            this.hideChecklistTemplate();
         },
         keyupChecklist(e){
-            if(e.key === 'Enter' && e.target.value !== ''){
+            if(e.key === 'Enter'){
                 this.blurChecklist(e);
             }
         },
@@ -49,7 +47,6 @@ export default {
             // this check prevents a duplicate action from being fired
             if(this.displayChecklistTemplate){
                 this.$store.dispatch(ADD_CHECKLIST, title);
-                this.hideChecklistTemplate();
             }
         },
         toAccountPage(){
