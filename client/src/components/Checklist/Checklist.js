@@ -1,7 +1,9 @@
 const {constants} = require('../../store/actions');
 const {ADD_CHECKLIST_ITEM} = constants;
 const {navigateTo} = require('../../utils/router');
-import ChecklistItem from './ChecklistItem/ChecklistItem';
+
+import ChecklistItem from './ChecklistItem/ChecklistItem.vue';
+
 export default {
     name:'Checklist',
     
