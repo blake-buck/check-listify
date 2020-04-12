@@ -1,72 +1,4 @@
-<template>
-    <div class='ChecklistItem' v-on:click='toggleComplete' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
-
-        <div class='display-elements' v-bind:class='{complete:item.Checked}'>
-
-            <block-list-item v-if='!displayInput' :displayText='item.Name'></block-list-item>
-            <block-input v-if='displayInput' :value='item.Name' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='Checklist Item'></block-input>
-            
-            <div class='action-buttons'  v-bind:class='{displayActionButtons}'>
-                <block-button v-if='!displayInput' :clickHandler='toggleInput' displayText='Edit'></block-button>
-                <block-button :clickHandler='() => deleteItem(item.Id)' displayText='Delete'></block-button>
-            </div>
-        </div>
-        
-    </div>
-</template>
-
-<style scoped>
-    .ChecklistItem{
-        border-bottom:1px solid gray;
-    }
-    .display-elements{
-        position:relative;
-        display:flex;
-        align-items:center;
-        min-height:50px;
-
-        overflow:hidden;
-    }
-
-    .display-elements.complete{
-        text-decoration: line-through;
-        opacity:0.8;
-    }
-
-    .action-buttons{
-        position:absolute;
-
-        display:flex;
-
-        min-height:50px;
-        height:100%;
-        width:200px;
-
-        top:0px;
-        right:-202px;
-        transition:0.25s;
-        
-    } 
-    .action-buttons.displayActionButtons{
-        right:0px;
-        transition:0.25s;
-    } 
-    .action-buttons button{
-        min-height:50px;
-        height:100%;
-        width:100%;
-        border:1px solid black;
-    }
-    .action-buttons button:first-of-type{
-        background:goldenrod;
-    }
-    .action-buttons button:last-of-type{
-        background:red;
-    }
-</style>
-
-<script>
-const {constants} = require('../../store/actions');
+const {constants} = require('../../../store/actions');
 const {DELETE_CHECKLIST_ITEM, UPDATE_CHECKLIST_ITEM} = constants;
 export default {
     name:'ChecklistItem',
@@ -144,4 +76,3 @@ export default {
         }
     }
 }
-</script>

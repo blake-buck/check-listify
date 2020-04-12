@@ -7,22 +7,4 @@
     </div>
 </template>
 
-<script>
-const {constants} = require('../../store/actions');
-const {RETRIEVE_ACCOUNT_CONFIG, UPDATE_ACCOUNT_CONFIG} = constants
-export default {
-    name:'Account',
-    computed:{
-        accountConfig(){
-            return this.$store.getters.getAccountConfig;
-        }
-    },
-
-    methods:{
-        editItem(config, key, value){
-            this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value})
-        }
-    }
-
-}
-</script>
+<script src='./Account.js'></script>
