@@ -20,7 +20,7 @@
         </div>
 
         <transition name='fade'>
-            <block-fab v-if='!displayChecklistTemplate' :clickHandler='showChecklistTemplate' displayText='Add Checklist'></block-fab>
+            <block-fab v-if='!displayChecklistTemplate' displayType='primary' :clickHandler='showChecklistTemplate' displayText='Add Checklist'></block-fab>
         </transition>
         
     </div>

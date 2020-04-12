@@ -39,9 +39,3 @@
     width:100%;
     border:1px solid black;
 }
-.action-buttons button:first-of-type{
-    background:goldenrod;
-}
-.action-buttons button:last-of-type{
-    background:red;
-}

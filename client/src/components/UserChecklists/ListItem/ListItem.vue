@@ -7,9 +7,9 @@
             <block-input :shouldAutofocus='true' v-if='editingTitle' :blurHandler='blurInput' :keyupHandler='keyupInput' :value='checklist.Title'></block-input>
             
             <div class='action-buttons' v-bind:class='{displayActionButtons}'>
-                <block-button :clickHandler='toggleListIsPinned' :displayText='checklist.Pinned ? "Unpin" : "Pin"'></block-button>
-                <block-button :clickHandler='update' displayText='Update'></block-button>
-                <block-button :clickHandler='() => deleteChecklist(checklist.Id)' displayText='Delete'></block-button>
+                <block-button displayType='secondary' :clickHandler='toggleListIsPinned' :displayText='checklist.Pinned ? "Unpin" : "Pin"'></block-button>
+                <block-button displayType='warn' :clickHandler='update' displayText='Update'></block-button>
+                <block-button displayType='attention' :clickHandler='() => deleteChecklist(checklist.Id)' displayText='Delete'></block-button>
             </div>
         </div>
            

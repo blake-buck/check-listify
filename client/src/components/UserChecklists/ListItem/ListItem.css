@@ -34,12 +34,3 @@
     width:100%;
     border:1px solid black;
 }
-.action-buttons button:last-of-type{
-    background:red;
-}
-.action-buttons button:first-of-type{
-    background:green;
-}
-.action-buttons button:nth-of-type(2){
-    background:goldenrod;
-}

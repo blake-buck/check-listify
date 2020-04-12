@@ -14,7 +14,7 @@
         </transition>
 
         <transition name='fade'>
-            <block-fab v-if='!addingNewItem' :clickHandler='displayInput' displayText='Add Item'></block-fab>
+            <block-fab displayType='primary' v-if='!addingNewItem' :clickHandler='displayInput' displayText='Add Item'></block-fab>
         </transition>
         
     </div>
