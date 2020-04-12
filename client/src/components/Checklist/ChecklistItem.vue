@@ -1,7 +1,7 @@
 <template>
-    <div class='ChecklistItem' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
+    <div class='ChecklistItem' v-on:click='toggleComplete' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
 
-        <div class='display-elements'>
+        <div class='display-elements' v-bind:class='{complete:item.Checked}'>
 
             <block-list-item v-if='!displayInput' :displayText='item.Name'></block-list-item>
             <block-input v-if='displayInput' :value='item.Name' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='Checklist Item'></block-input>
@@ -26,6 +26,11 @@
         min-height:50px;
 
         overflow:hidden;
+    }
+
+    .display-elements.complete{
+        text-decoration: line-through;
+        opacity:0.8;
     }
 
     .action-buttons{
@@ -84,6 +89,10 @@ export default {
         },
         hideActionButtons(){
             this.displayActionButtons = false;
+        },
+
+        toggleComplete(){
+            this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, Checked:!this.item.Checked});
         },
 
         deleteItem(id){
