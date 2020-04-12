@@ -124,7 +124,6 @@ export default {
 
     async [constants.RETRIEVE_ACCOUNT_CONFIG](context){
         const response = await appService.retrieveAccountConfig();
-
         if(response.status === 200){
             context.commit(SET_ACCOUNT_CONFIG, response.accountConfig[0])
         }
@@ -143,7 +142,11 @@ export default {
 function accountConfigToNumber(config){
     let newConfig = {};
     for(let key in config){
-        newConfig[key] = config[key] ? 1 : 0;
+        newConfig[key] = config[key];
+        if(key !== 'ThemeId'){
+            newConfig[key] = config[key] ? 1 : 0;
+        }
+        
     }
     return newConfig;
 }

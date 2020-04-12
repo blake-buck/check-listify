@@ -79,8 +79,11 @@ module.exports = {
 
 function accountConfigToBoolean(config){
     for(let key in config){
-        config[key] = key !=='ColorTheme' && config[key] ? true : false;
+        if(key !== 'ThemeId'){
+            config[key] = config[key] ? true : false;
+        }
     }
+
     return config;
 }
 

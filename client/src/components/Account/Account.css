@@ -1,0 +1,26 @@
+.Account{
+    position:relative;
+    overflow:hidden;
+    animation:fadeIn .3s;
+}
+
+header{
+    display:flex; 
+    align-items: center;
+}
+
+header h1{
+    font-size:1.5em;
+    padding:5px;
+    margin:5px;
+}
+
+header.light{
+    background:lightgray;
+}
+
+
+@keyframes fadeIn{
+    from {opacity: 0.4;}
+    to   {opacity: 1;}
+}

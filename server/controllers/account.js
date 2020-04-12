@@ -26,7 +26,7 @@ async function updateAccountConfig(req, res){
     const {jwt} = req.headers;
 
     // get accountConfig off request body
-    const {accountConfig} = req.body;
+    const accountConfig = req.body;
 
     try{
         // get userId from JWT
@@ -37,6 +37,7 @@ async function updateAccountConfig(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        console.log(error);
         res.status(400).send({error, status:400});
     }
 
