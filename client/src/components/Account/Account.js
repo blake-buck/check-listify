@@ -4,8 +4,14 @@ const {UPDATE_ACCOUNT_CONFIG} = constants
 const {navigateTo} = require('../../utils/router');
 const appService = require('../../store/service');
 
+import ConfirmDialog from './ConfirmDialog';
+
 export default {
     name:'Account',
+
+    components:{
+        ConfirmDialog
+    },
 
     data(){
         return {
@@ -19,8 +25,9 @@ export default {
                 oldPassword:'',
                 newPassword:'',
                 confirmNewPassword:''
-            }
+            },
             
+            deleteDialogOpen:false
         }
     },
 
@@ -77,6 +84,21 @@ export default {
 
         toChecklists(){
             navigateTo('/user');
+        },
+
+        toggleDeleteDialog(){
+            this.deleteDialogOpen = !this.deleteDialogOpen;
+        },
+        async deleteAccount(){
+            const response = await appService.deleteAccount();
+            if(response.status === 200){
+                localStorage.clear('jwt')
+                navigateTo('/');
+            }
+            else{
+                console.log(response);
+                this.toggleDeleteDialog();
+            }
         },
 
         logout(){
