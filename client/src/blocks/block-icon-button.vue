@@ -26,6 +26,26 @@
     .light .attention{
         background:#E50000;
     }
+
+    .dark i{
+        color:white;
+    }
+
+    .dark .primary{
+        background:#62DE8D;
+    }
+
+    .dark .secondary{
+        background: #9CD0E8;
+    }
+
+    .dark .warn{
+        background: #FFE066;
+    }
+
+    .dark .attention{
+        background:#FF3333;
+    }
 </style>
 
 <script>

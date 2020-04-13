@@ -8,12 +8,12 @@
         font-size:16px;
         font-weight:bold;
         height:100%;
+        border:none;
     }
 
     .light button{
         color:white;
         background:rgba(0,0,0, 1);
-        border:none;
     }
 
     .light .primary{
@@ -30,6 +30,27 @@
 
     .light .attention{
         background:#E50000;
+    }
+
+
+    .dark i{
+        color:white;
+    }
+
+    .dark .primary{
+        background:#62DE8D;
+    }
+
+    .dark .secondary{
+        background: #9CD0E8;
+    }
+
+    .dark .warn{
+        background: #FFE066;
+    }
+
+    .dark .attention{
+        background:#FF3333;
     }
 
 </style>

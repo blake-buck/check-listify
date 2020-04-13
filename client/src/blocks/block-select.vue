@@ -33,14 +33,20 @@
         margin-bottom: 5px;
     }
     .select-box{
-        border:1px solid rgba(0,0,0, 0.8);
-        color: rgba(0,0,0, 0.7);
         font-size:1.5em;
         padding:5px;
         display:flex;
         justify-content: space-between;
         align-items: center;
         position:relative;
+    }
+    .light .select-box{
+        border:1px solid rgba(0,0,0, 0.8);
+        color: rgba(0,0,0, 0.7);
+    }
+    .dark .select-box{
+        border:1px solid white;
+        color: white;
     }
     .select-box i{
         font-size:1.4em;
@@ -56,6 +62,7 @@
     }
     .select-items{
         background:white;
+        color:black;
         width:100%;
         border:1px solid gray;
 
@@ -63,6 +70,8 @@
         top:-1px;
         left:-1px;
     }
+
+
 
 
     .fade-enter-active, .fade-leave-active{

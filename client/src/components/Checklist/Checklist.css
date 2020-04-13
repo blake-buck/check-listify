@@ -2,6 +2,12 @@
     /* this gives extra breathing room so the fab doesn't obscure list items */
     padding-bottom:80px;
     animation:fadeIn 0.5s;
+    height:100vh;
+}
+
+.Checklist.dark{
+    background:#2c2c2c;
+    color:white;
 }
 
 .ChecklistItem:first-of-type{
@@ -21,6 +27,11 @@ header h1{
 
 .Checklist.light header{
     background:lightgray;
+}
+
+.Checklist.dark header{
+    background:#5c5c5c;
+    color:white;
 }
 
 

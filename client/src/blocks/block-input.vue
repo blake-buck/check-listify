@@ -19,6 +19,13 @@
         padding:10px;
         margin:5px;
     }
+
+    .dark input{
+        background:#2c2c2c;
+        color:white;
+    }
+
+    
 </style>
 
 <script>

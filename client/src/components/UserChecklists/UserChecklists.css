@@ -1,5 +1,18 @@
 /* COMPONENT STRUCTURE AND STYLE */
 
+.UserChecklists{
+    min-height:100vh;
+}
+
+.UserChecklists.dark{
+    background:#2c2c2c;
+    color:white;
+}
+
+.UserChecklists.light{
+    background:white;
+}
+
 header{
     display:flex;
     align-items: center;
@@ -16,13 +29,15 @@ header h1{
     background:lightgray;
 }
 
+.UserChecklists.dark header{
+    background:#5c5c5c;
+}
+
 .list-items .ListItem:first-of-type{
     border-top:1px solid gray;
 }
 
-.UserChecklists.light{
-    background:white;
-}
+
 
 
 /* ANIMATIONS */

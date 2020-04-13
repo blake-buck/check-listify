@@ -36,6 +36,7 @@ let vm = new Vue({
   data:{
     dataPathname:window.location.pathname
   },
+  
 
   computed:{
     computedPathname(){
