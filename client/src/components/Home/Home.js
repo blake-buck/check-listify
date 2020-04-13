@@ -28,7 +28,8 @@ export default {
             }
 
             if(type === this.REGISTER){
-                // empty for now
+                const response = await appService.register(this.form[this.USERNAME], this.form[this.PASSWORD]);
+                console.log(response);
             }
         },
         changeFormValue(e, key){

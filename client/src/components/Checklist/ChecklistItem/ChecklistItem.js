@@ -11,7 +11,9 @@ export default {
             displayActionButtons:false,
             
             touchStartX:0,
-            touchStartY:0
+            touchStartY:0,
+
+            canToggleComplete:true
         }
     },
 
@@ -31,12 +33,16 @@ export default {
         },
 
         toggleComplete(){
-            this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, Checked:!this.item.Checked});
+            if(this.canToggleComplete){
+                this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, Checked:!this.item.Checked});
+            }
         },
 
         showInput(){
+            this.canToggleComplete = false;
             this.displayInput = true;
             this.hideActionButtons();
+            setTimeout(() => this.canToggleComplete = true, 0);
         },
         hideInput(){
             this.displayInput = false;

@@ -11,6 +11,13 @@ async function login(username, password){
     )
 }
 
+async function register(username, password){
+    return request.post(
+        `${getBaseUrl()}/api/register`,
+        {username, password}
+    )
+}
+
 async function changePassword(previousPassword, proposedPassword){
     return request.post(`${getBaseUrl()}/api/change-password`, {previousPassword, proposedPassword}, true);
 }
@@ -64,6 +71,7 @@ async function updateAccountConfig(config){
 
 export {
     login,
+    register,
     changePassword,
     deleteAccount,
 
