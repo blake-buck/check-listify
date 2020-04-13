@@ -26,8 +26,9 @@
             <block-button displayText='Logout' displayType='warn' :clickHandler='logout'></block-button>
         </div>
 
-        <ConfirmDialog v-if='deleteDialogOpen' :toggleDialog='toggleDeleteDialog' :deleteAccount='deleteAccount'></ConfirmDialog>
-        
+        <transition name='fade'>
+            <ConfirmDialog v-if='deleteDialogOpen' :toggleDialog='toggleDeleteDialog' :deleteAccount='deleteAccount'></ConfirmDialog>
+        </transition>
     </div>
 </template>
 
