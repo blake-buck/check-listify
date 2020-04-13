@@ -77,6 +77,11 @@ export default {
 
         toChecklists(){
             navigateTo('/user');
+        },
+
+        logout(){
+            localStorage.clear('jwt');
+            navigateTo('/');
         }
     }
 

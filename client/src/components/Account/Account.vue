@@ -23,7 +23,7 @@
 
         <div class='buttons'>
             <block-button displayText='Delete Account' displayType='attention'></block-button>
-            <block-button displayText='Logout' displayType='warn'></block-button>
+            <block-button displayText='Logout' displayType='warn' :clickHandler='logout'></block-button>
         </div>
         
     </div>
