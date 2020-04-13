@@ -1,5 +1,5 @@
 <template>
-    <div class='Checklist' v-if='checklist' v-bind:class='accountConfig.ThemeName'>
+    <div class='Checklist' v-if='checklist' v-bind:class='accountConfig.themeName'>
         <header>
             <block-icon-button :clickHandler='toChecklists' icon='keyboard_backspace'></block-icon-button>
             <h1>{{checklist.Title}}</h1>

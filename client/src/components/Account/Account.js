@@ -46,6 +46,7 @@ export default {
         },
         selectItem(id){
             this.editItem(this.accountConfig, 'ThemeId', id);
+            this.editItem(this.accountConfig, 'themeName', this.colorThemes.find(val => val.id === id).name);
         },
 
         changeForm(e, key){

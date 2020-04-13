@@ -143,7 +143,7 @@ function accountConfigToNumber(config){
     let newConfig = {};
     for(let key in config){
         newConfig[key] = config[key];
-        if(key !== 'ThemeId'){
+        if(key !== 'ThemeId' && key !=='themeName'){
             newConfig[key] = config[key] ? 1 : 0;
         }
     }

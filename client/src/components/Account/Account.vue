@@ -1,5 +1,5 @@
 <template>
-    <div class='Account' v-bind:class='accountConfig.ThemeName'>
+    <div class='Account' v-bind:class='accountConfig.themeName'>
         <header class='light'>
             <block-icon-button :clickHandler='toChecklists' icon='keyboard_backspace'></block-icon-button>
             <h1>Account Settings</h1>

@@ -1,5 +1,5 @@
 <template>
-    <div class='UserChecklists' v-bind:class='accountConfig.ThemeName'>
+    <div class='UserChecklists' v-bind:class='accountConfig.themeName'>
 
         <header>
             <h1>Checklists</h1>

@@ -79,22 +79,7 @@ module.exports = {
 
 function accountConfigConversion(config){
     for(let key in config){
-        if(key === 'ThemeId'){
-            switch(config[key]){
-                case 1:
-                    config['ThemeName'] = 'light';
-                    break;
-
-                case 2:
-                    config['ThemeName'] = 'dark';
-                    break;
-                
-                default:
-                    config['ThemeName'] = 'light';
-                    break;
-            }
-        }
-        else{
+        if(key !== 'ThemeId' && key !== 'themeName'){
             config[key] = config[key] ? true : false;
         }
     }

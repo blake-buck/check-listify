@@ -1,5 +1,5 @@
 <template>
-    <div class='ChecklistItem' v-bind:class='accountConfig.ThemeName' v-on:click='toggleComplete' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
+    <div class='ChecklistItem' v-bind:class='accountConfig.themeName' v-on:click='toggleComplete' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
 
         <div class='display-elements' v-bind:class='{complete:item.Checked}'>
 
