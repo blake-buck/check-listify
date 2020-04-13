@@ -34,7 +34,7 @@ async function hasValidJwt(req, res, next){
     }
     catch(e){
         // if json web token is invalid, send a response
-        res.status(400).send({error:{message:'JSON Web Token is not valid.'}, status:400})
+        res.status(401).send({error:{message:'JSON Web Token is not valid.'}, status:401})
     }
     
 
