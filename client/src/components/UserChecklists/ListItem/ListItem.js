@@ -16,6 +16,13 @@ export default {
             displayActionButtons:false
         }
     },
+
+    computed:{
+        accountConfig(){
+            return this.$store.getters.getAccountConfig
+        }
+    },
+
     methods:{
         update(){
             this.editTitle();

@@ -1,5 +1,5 @@
 <template>
-    <i v-on:click='clickHandler' v-bind:class='displayType' class="material-icons light">{{icon}}</i>
+    <i v-on:click='clickHandler' v-bind:class='displayType' class="material-icons">{{icon}}</i>
 </template>
 
 <style scoped>
@@ -7,27 +7,24 @@
         font-size:48px;
         margin:5px;
     }
-    i.light{
+    .light i{
         color:black;
     }
-    i.light:active{
-        color:rgba(0,0,0, 0.6);
+
+    .light .primary{
+        background:#1FD15D;
     }
 
-    i.light.primary{
-        color:#1FD15D;
+    .light .secondary{
+        background: #39A1D1;
     }
 
-    i.light.secondary{
-        color: #39A1D1;
+    .light .warn{
+        background: #FFCC00;
     }
 
-    i.light.warn{
-        color: #FFCC00;
-    }
-
-    i.light.attention{
-        color:#E50000;
+    .light .attention{
+        background:#E50000;
     }
 </style>
 

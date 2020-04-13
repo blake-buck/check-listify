@@ -26,6 +26,10 @@ export default {
         },
         items(){
             return this.$store.getters.getItemsForChecklist(this.checklistId);     
+        },
+
+        accountConfig(){
+            return this.$store.getters.getAccountConfig
         }
     },
 

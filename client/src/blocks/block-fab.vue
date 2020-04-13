@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class='block-fab light' v-bind:class='displayType' v-on:click='clickHandler'>{{displayText}}</button>
+        <button class='block-fab' v-bind:class='displayType' v-on:click='clickHandler'>{{displayText}}</button>
     </div>
 </template>
 
@@ -25,29 +25,25 @@
         text-transform:uppercase;
     }
 
-    .light{
+    .light button{
         color:white;
         background:rgba(0,0,0, 1);
         border:none;
     }
 
-    .light:active{
-        background:rgba(0,0,0, 0.6);
-    }
-
-    .light.primary{
+    .light .primary{
         background:#1FD15D;
     }
 
-    .light.secondary{
+    .light .secondary{
         background: #39A1D1;
     }
 
-    .light.warn{
+    .light .warn{
         background: #FFCC00;
     }
 
-    .light.attention{
+    .light .attention{
         background:#E50000;
     }
 </style>

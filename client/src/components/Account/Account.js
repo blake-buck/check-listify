@@ -20,13 +20,13 @@ export default {
             return this.$store.getters.getAccountConfig;
         },
         selectedItem(){
-            return this.accountConfig.ThemeId
+            return this.accountConfig.ThemeId;
         }
     },
 
     methods:{
         editItem(config, key, value){
-            this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value})
+            this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value});
         },
         selectItem(id){
             this.editItem(this.accountConfig, 'ThemeId', id);

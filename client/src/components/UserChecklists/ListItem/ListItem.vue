@@ -1,5 +1,5 @@
 <template>
-    <div class='ListItem'>
+    <div class='ListItem' v-bind:class='accountConfig.ThemeName'>
         
         <div class='display-elements' v-on:touchstart='handleTouchStart' v-on:touchend='handleTouchEnd'>
             <div class='pinned-icon' v-if='checklist.Pinned'><i class='material-icons'>label</i></div>

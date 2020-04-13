@@ -1,6 +1,6 @@
 <template>
-    <div class='Checklist' v-if='checklist'>
-        <header class='light'>
+    <div class='Checklist' v-if='checklist' v-bind:class='accountConfig.ThemeName'>
+        <header>
             <block-icon-button :clickHandler='toChecklists' icon='keyboard_backspace'></block-icon-button>
             <h1>{{checklist.Title}}</h1>
         </header>

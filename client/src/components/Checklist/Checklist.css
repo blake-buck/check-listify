@@ -19,7 +19,7 @@ header h1{
     margin:5px;
 }
 
-header.light{
+.Checklist.light header{
     background:lightgray;
 }
 

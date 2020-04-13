@@ -15,6 +15,9 @@ export default {
         },
         pinnedChecklists(){
             return this.$store.getters.getChecklists.filter(list => list.Pinned)
+        },
+        accountConfig(){
+            return this.$store.getters.getAccountConfig
         }
     },
     data(){

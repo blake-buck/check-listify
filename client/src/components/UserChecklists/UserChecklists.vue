@@ -1,7 +1,7 @@
 <template>
-    <div class='UserChecklists'>
+    <div class='UserChecklists' v-bind:class='accountConfig.ThemeName'>
 
-        <header class='light'>
+        <header>
             <h1>Checklists</h1>
             <block-icon-button :clickHandler='toAccountPage' icon='settings'></block-icon-button>
         </header>

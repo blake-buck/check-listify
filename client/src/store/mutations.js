@@ -67,7 +67,7 @@ module.exports = {
         },
 
         [SET_ACCOUNT_CONFIG](state, config){
-            state.accountConfig = accountConfigToBoolean(config);
+            state.accountConfig = accountConfigConversion(config);
             state.accountConfigLoaded = true;
         },
 
@@ -77,9 +77,24 @@ module.exports = {
     }
 }
 
-function accountConfigToBoolean(config){
+function accountConfigConversion(config){
     for(let key in config){
-        if(key !== 'ThemeId'){
+        if(key === 'ThemeId'){
+            switch(config[key]){
+                case 1:
+                    config['ThemeName'] = 'light';
+                    break;
+
+                case 2:
+                    config['ThemeName'] = 'dark';
+                    break;
+                
+                default:
+                    config['ThemeName'] = 'light';
+                    break;
+            }
+        }
+        else{
             config[key] = config[key] ? true : false;
         }
     }

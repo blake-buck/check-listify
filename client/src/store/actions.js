@@ -146,7 +146,6 @@ function accountConfigToNumber(config){
         if(key !== 'ThemeId'){
             newConfig[key] = config[key] ? 1 : 0;
         }
-        
     }
     return newConfig;
 }

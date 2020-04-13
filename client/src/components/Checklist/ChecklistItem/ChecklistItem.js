@@ -14,6 +14,13 @@ export default {
             touchStartY:0
         }
     },
+
+    computed:{
+        accountConfig(){
+            return this.$store.getters.getAccountConfig
+        }
+    },
+
     methods:{
 
         showActionButtons(){
