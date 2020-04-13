@@ -45,8 +45,7 @@ export default {
             this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value});
         },
         selectItem(id){
-            this.editItem(this.accountConfig, 'ThemeId', id);
-            this.editItem(this.accountConfig, 'themeName', this.colorThemes.find(val => val.id === id).name);
+            this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...this.accountConfig, ThemeId:id, themeName:this.colorThemes.find(val => val.id === id).name});
         },
 
         changeForm(e, key){
