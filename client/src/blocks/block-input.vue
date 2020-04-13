@@ -60,6 +60,10 @@ export default {
             type:Boolean,
             required:false,
             default:false
+        },
+        name:{
+            type:String,
+            default:''
         }
     },
     mounted(){

@@ -11,6 +11,10 @@ async function login(username, password){
     )
 }
 
+async function changePassword(previousPassword, proposedPassword){
+    return request.post(`${getBaseUrl()}/api/change-password`, {previousPassword, proposedPassword}, true);
+}
+
 async function retrieveChecklists(){
     return request.get(`${getBaseUrl()}/api/user/checklist`, true);
 }
@@ -56,6 +60,7 @@ async function updateAccountConfig(config){
 
 export {
     login,
+    changePassword,
 
     retrieveChecklists,
     addChecklist,

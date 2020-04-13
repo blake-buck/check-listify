@@ -10,6 +10,9 @@
         height:100%;
         border:none;
     }
+    button:active{
+        opacity:0.7;
+    }
 
     .light button{
         color:white;
