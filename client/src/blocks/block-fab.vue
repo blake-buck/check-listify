@@ -15,8 +15,9 @@
         justify-content: center;
     }
     button{
+        cursor:pointer;
         width:80%;
-        max-width:500px;
+        max-width:400px;
         
         font-weight:bold;
         font-size:24px;
@@ -24,6 +25,12 @@
         min-height:50px;
         text-transform:uppercase;
         border:none;
+    }
+    button:active{
+        opacity:0.7;
+    }
+    button:hover{
+        opacity:0.9;
     }
 
     .light button{

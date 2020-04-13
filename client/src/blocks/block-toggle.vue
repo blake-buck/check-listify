@@ -8,6 +8,7 @@
 
 <style scoped>
     .block-toggle{
+        cursor:pointer;
         margin:5px;
         display:flex;
         align-items: center;

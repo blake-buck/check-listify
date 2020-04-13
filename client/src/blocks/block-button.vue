@@ -5,10 +5,14 @@
 <style scoped>
 
     button{
+        cursor:pointer;
         font-size:16px;
         font-weight:bold;
         height:100%;
         border:none;
+    }
+    button:hover{
+        opacity:0.9;
     }
     button:active{
         opacity:0.7;

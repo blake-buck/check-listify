@@ -4,13 +4,20 @@
 
 <style scoped>
     i{
+        cursor:pointer;
         font-size:48px;
         margin:5px;
     }
+    i:active{
+        opacity:0.3;
+    }
+    i:hover{
+        opacity:0.6;
+    }
+
     .light i{
         color:black;
     }
-
     .light .primary{
         background:#1FD15D;
     }

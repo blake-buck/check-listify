@@ -39,3 +39,22 @@
     width:100%;
     border:1px solid black;
 }
+@media screen and (min-width: 760px){
+    .ChecklistItem{
+        width:100%;
+    }
+    .display-elements{
+        overflow:auto;
+        width:100%;
+    }
+    .action-buttons{
+        position: static;
+        display:flex;
+        justify-content: space-between;
+        width:30%;
+    }
+    .action-buttons button{
+        width:100%;
+        text-align:center;
+    }
+}

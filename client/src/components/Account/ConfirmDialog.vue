@@ -32,6 +32,7 @@
 
     .confirm-dialog{
         width:100%;
+        max-width:500px;
         display:flex;
         flex-direction: column;
         justify-content: space-around;

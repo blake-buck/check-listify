@@ -63,6 +63,21 @@ header h1{
     border-top:1px solid gray;
     border-bottom:1px solid gray;
 }
+.style-rules, .change-password, .buttons{
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+@media screen and (min-width: 760px){
+    .style-rules, .change-password{
+        border:1px solid gray;
+    }
+
+    .buttons button{
+        max-width:400px;
+    }
+}
 
 .change-password{
     display:flex;
