@@ -35,6 +35,47 @@ header h1{
 }
 
 
+.Account button{
+    width:90%;
+    font-size:1.5em;
+    
+    padding:10px;
+    margin:10px;
+}
+
+
+.Account.light div.buttons{
+    color:black;
+}
+.Account .buttons{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.style-rules, .change-password{
+    margin-top:10px;
+    margin-bottom:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-top:1px solid gray;
+    border-bottom:1px solid gray;
+}
+
+.change-password{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.style-rules h3, .change-password h3{
+    font-size:1.5em;
+    text-align:center;
+    margin:5px;
+}
+
 @keyframes fadeIn{
     from {opacity: 0.4;}
     to   {opacity: 1;}

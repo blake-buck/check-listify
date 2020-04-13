@@ -1,13 +1,12 @@
 <template>
-    <div>
+    <div class='block-input'>
         <input ref='inputToAutofocus' :placeholder='placeholder' :value='value' v-on:blur='blurHandler' v-on:keyup='keyupHandler' :type='type' />
     </div>
 </template>
 
 <style scoped>
     div{
-        border-top:1px solid gray;
-        border-bottom:1px solid gray;
+        
         
         width:100%;
         display:flex;
