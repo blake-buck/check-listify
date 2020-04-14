@@ -69,6 +69,7 @@ export default {
         },
         keyupInput(e){
             if(e.key === 'Enter'){
+                e.preventDefault();
                 this.blurInput(e);
             }
         },

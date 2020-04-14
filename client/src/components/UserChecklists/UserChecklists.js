@@ -42,6 +42,7 @@ export default {
         },
         keyupChecklist(e){
             if(e.key === 'Enter'){
+                e.preventDefault();
                 this.blurChecklist(e);
             }
         },
