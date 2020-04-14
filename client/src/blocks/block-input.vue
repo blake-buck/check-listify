@@ -5,9 +5,7 @@
 </template>
 
 <style scoped>
-    div{
-        
-        
+    .block-input{
         width:100%;
         display:flex;
         justify-content:center;
@@ -19,7 +17,7 @@
         margin:5px;
     }
 
-    .dark input{
+    .dark .block-input{
         background:#2c2c2c;
         color:white;
     }

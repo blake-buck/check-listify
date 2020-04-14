@@ -1,21 +1,21 @@
 <template>
-    <i v-on:click='clickHandler' v-bind:class='displayType' class="material-icons">{{icon}}</i>
+    <i v-on:click='clickHandler' v-bind:class='displayType' class="material-icons block-icon-button">{{icon}}</i>
 </template>
 
 <style scoped>
-    i{
+    .block-icon-button{
         cursor:pointer;
         font-size:48px;
         margin:5px;
     }
-    i:active{
+    .block-icon-button:active{
         opacity:0.3;
     }
-    i:hover{
+    .block-icon-button:hover{
         opacity:0.6;
     }
 
-    .light i{
+    .light .block-icon-button{
         color:black;
     }
     .light .primary{
@@ -34,7 +34,7 @@
         background:#E50000;
     }
 
-    .dark i{
+    .dark .block-icon-button{
         color:white;
     }
 

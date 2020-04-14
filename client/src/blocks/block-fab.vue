@@ -14,7 +14,7 @@
         display:flex;
         justify-content: center;
     }
-    button{
+    .block-fab{
         cursor:pointer;
         width:80%;
         max-width:400px;
@@ -26,14 +26,14 @@
         text-transform:uppercase;
         border:none;
     }
-    button:active{
+    .block-fab:active{
         opacity:0.7;
     }
-    button:hover{
+    .block-fab:hover{
         opacity:0.9;
     }
 
-    .light button{
+    .light .block-fab{
         color:white;
         background:rgba(0,0,0, 1);
     }
@@ -54,7 +54,7 @@
         background:#E50000;
     }
 
-    .dark i{
+    .dark .block-fab{
         color:white;
     }
 

@@ -4,21 +4,21 @@
 
 <style scoped>
 
-    button{
+    .block-button{
         cursor:pointer;
         font-size:16px;
         font-weight:bold;
         height:100%;
         border:none;
     }
-    button:hover{
+    .block-button:hover{
         opacity:0.9;
     }
-    button:active{
+    .block-button:active{
         opacity:0.7;
     }
 
-    .light button{
+    .light .block-button{
         color:white;
         background:rgba(0,0,0, 1);
     }
@@ -40,7 +40,7 @@
     }
 
 
-    .dark i{
+    .dark .block-button{
         color:white;
     }
 

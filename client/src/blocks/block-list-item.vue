@@ -5,7 +5,7 @@
 </template>
 
 <style scoped>
-    div{
+    .block-list-item{
         width:100%;
         display:flex;
         justify-content:center;
