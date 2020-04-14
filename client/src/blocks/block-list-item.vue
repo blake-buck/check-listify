@@ -1,5 +1,5 @@
 <template>
-    <div v-on:click='clickHandler'>
+    <div class='block-list-item' v-on:click='clickHandler'>
         <span>{{displayText}}</span>
     </div>
 </template>

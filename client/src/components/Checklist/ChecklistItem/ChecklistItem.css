@@ -10,7 +10,7 @@
     overflow:hidden;
 }
 
-.display-elements.complete{
+.display-elements.complete .block-list-item{
     text-decoration: line-through;
     opacity:0.8;
 }
@@ -56,5 +56,6 @@
     .action-buttons button{
         width:100%;
         text-align:center;
+        text-decoration:none;
     }
 }
