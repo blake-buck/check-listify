@@ -1,12 +1,15 @@
 <template>
     <div class='ForgotPassword light'>
+        <transition name='fade'>
         <div class='step 1' v-if='currentStep === 1'>
             <h1>Enter your email</h1>
             <p>If your email is in our system, we will send you an code.</p>
             <block-input :keyupHandler='($event) => changeValue("username", $event)' placeholder='Email'></block-input>
             <block-button :clickHandler='() => submitEmail()' displayText='Submit'></block-button>
         </div>
+        </transition>
 
+        <transition name='fade'>
         <div class='step 2' v-if='currentStep === 2'>
             <h1>Enter the code you recieved and new password</h1>
             <p>{{stepTwoMessage}}</p>
@@ -15,12 +18,15 @@
             <block-input :value='confirmPassword' type='password' :keyupHandler='($event) => changeValue("confirmPassword", $event)' placeholder='New Password'></block-input>
             <block-button :clickHandler='() => submitCodeAndPassword()' displayText='Submit'></block-button>
         </div>
+        </transition>
 
+        <transition name='fade'>
         <div class='step 3' v-if='currentStep === 3'>
             <h1>Password is changed</h1>
             <p>Return to login page to use new password.</p>
             <block-button :clickHandler='() => navigateTo("/login")' displayText='Login' displayType='primary'></block-button>
         </div>
+        </transition>
 
     </div>
 </template>
@@ -52,6 +58,32 @@
         padding:10px 20px;
         width:90%;
         align-self:center;
+    }
+
+    .list-enter-active {
+        transition: opacity 0.5s;
+    }
+    .list-leave-active{
+        transition:all 0.5s;
+        transform:translateX(60px);
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+    }
+
+    .fade-enter-active{
+        transition: opacity .2s;
+    }
+    .fade-enter{
+        opacity: 0;
+    }
+
+    @keyframes fadeIn{
+        from {opacity: 0.4;}
+        to   {opacity: 1;}
+    }
+    .ForgotPassword{
+        animation: fadeIn 0.5s;
     }
 </style>
 

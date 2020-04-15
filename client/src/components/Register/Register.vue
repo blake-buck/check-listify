@@ -89,6 +89,14 @@
     footer p:active{
         opacity:0.5;
     }
+
+    @keyframes fadeIn{
+        from {opacity: 0.4;}
+        to   {opacity: 1;}
+    }
+    .Register{
+        animation: fadeIn 0.5s;
+    }
 </style>
 
 <script>

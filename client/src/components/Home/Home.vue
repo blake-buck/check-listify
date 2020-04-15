@@ -2,11 +2,11 @@
     <div class='Home light'>
         <header class='light'>
             <div class='links'>
-                <span v-on:click='navigateHome'>Home</span>
-                <span v-on:click='navigateDemo'>Demo</span>
+                <span v-on:click='() => navigateTo("/")'>Home</span>
+                <span v-on:click='() => navigateTo("/demo")'>Demo</span>
             </div>
 
-            <block-button :clickHandler='navigateLogin' displayText='Login' displayType='primary'></block-button>
+            <block-button :clickHandler='() => navigateTo("/login")' displayText='Login' displayType='primary'></block-button>
         </header>
         
         <div class='register-blurb'>
@@ -14,14 +14,14 @@
                 <h3>Lightweight, unopinionated task management</h3>
                 <p>Check-listify is a simpler way to manage your to-dos. No overcomplicated features, but instead a mobile friendly application that just works. </p>
             </span>
-            <block-button displayText='Sign Up' displayType='secondary'></block-button>
+            <block-button displayText='Sign Up' displayType='secondary' :clickHandler='() => navigateTo("/register")'></block-button>
         </div>
 
         <div class='information-blurb'>
             <img src='../../assets/checklist_light.png' alt='img of checklistify checklist page' />
             <span>
                 <h3>Track tasks in an uncluttered interface</h3>
-                <p>Tasks appear in a list - modify and mark complete in an intutive manner. Interested? Try out our <b v-on:click='navigateDemo'>demo!</b></p>
+                <p>Tasks appear in a list - modify and mark complete in an intutive manner. Interested? Try out our <b v-on:click='() => navigateTo("/demo")'>demo!</b></p>
             </span>
         </div>
 
