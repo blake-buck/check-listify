@@ -89,6 +89,7 @@ header button{
 }
 
 b{
+    cursor:default;
     font-weight:bold;
 }
 b:hover{
