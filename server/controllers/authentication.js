@@ -78,7 +78,7 @@ async function login(req, res){
 
     let successHandler = (data) => {
         let jwt = data.AuthenticationResult.AccessToken;
-        res.status(200).send({jwt});
+        res.status(200).send({jwt, status:200});
     }
 
     cognito.adminInitiateAuth(params, cognitoCallback(successHandler, res));

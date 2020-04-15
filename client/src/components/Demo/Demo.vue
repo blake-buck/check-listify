@@ -9,10 +9,6 @@
 
             <block-button :clickHandler='navigateLogin' displayText='Login' displayType='primary'></block-button>
         </header>
-
-        <header>
-            <h1>Demo Checklist</h1>
-        </header>
         
         <transition-group name='list'>
             <DemoItem v-for='item in items' :key='item.Id' v-bind:itemProp='item' v-bind:demoDelete='deleteItem'></DemoItem>

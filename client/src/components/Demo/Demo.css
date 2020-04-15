@@ -70,7 +70,7 @@ header.public{
     align-items: center;
     height:50px;
     padding:5px;
-    border-bottom:2px solid black;
+    /* border-bottom:2px solid black; */
 }
 
 header.public * {
