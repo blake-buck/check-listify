@@ -20,6 +20,8 @@
     </div>
 </template>
 
+<style scoped src='./themes.css'></style>
+
 <style scoped>
     .block-select{
         display:flex;
@@ -40,14 +42,7 @@
         align-items: center;
         position:relative;
     }
-    .light .select-box{
-        border:1px solid rgba(0,0,0, 0.8);
-        color: rgba(0,0,0, 0.7);
-    }
-    .dark .select-box{
-        border:1px solid white;
-        color: white;
-    }
+    
     .select-box i{
         font-size:1.4em;
     }
@@ -70,9 +65,6 @@
         top:-1px;
         left:-1px;
     }
-
-
-
 
     .fade-enter-active, .fade-leave-active{
         transition: opacity .25s;

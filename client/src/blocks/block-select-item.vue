@@ -10,6 +10,7 @@
         border:1px solid gray;
     }
 </style>
+<style scoped src='./themes.css'></style>
 
 <script>
 export default {

@@ -1,0 +1,130 @@
+.block-button:hover{
+    opacity:0.9;
+}
+.block-button:active{
+    opacity:0.7;
+}
+.light .block-button{
+    color:white;
+    background:rgba(0,0,0, 1);
+}
+
+.light .block-button.primary, .light .block-fab.primary{
+    background:#1FD15D;
+}
+
+.light .block-button.secondary, .light .block-fab.secondary{
+    background: #39A1D1;
+}
+
+.light .block-button.warn, .light .block-fab.warn{
+    background: #FFCC00;
+}
+
+.light .block-button.attention, .light .block-fab.attention{
+    background:#E50000;
+}
+
+
+.dark .block-button, .dark .block-fab{
+    background:#5c5c5c;
+    color:white;
+}
+
+.dark .block-button.primary, .dark .block-fab.primary{
+    background:#62DE8D;
+}
+
+.dark .block-button.secondary, .dark .block-fab.secondary{
+    background: #9CD0E8;
+}
+
+.dark .block-button.warn, .dark .block-fab.warn{
+    background: #FFE066;
+}
+
+.dark .block-button.attention, .dark .block-fab.attention{
+    background:#FF3333;
+}
+
+.block-icon-button:active{
+    opacity:0.3;
+}
+.block-icon-button:hover{
+    opacity:0.6;
+}
+
+.light .block-icon-button{
+    color:black;
+}
+.light .block-icon-button.primary{
+    color:#1FD15D;
+}
+
+.light .block-icon-button.secondary{
+    color: #39A1D1;
+}
+
+.light .block-icon-button.warn{
+    color: #FFCC00;
+}
+
+.light .block-icon-button.attention{
+    color:#E50000;
+}
+
+.dark .block-icon-button{
+    color:white;
+}
+
+.dark .block-icon-button.primary{
+    color:#62DE8D;
+}
+
+.dark .block-icon-button.secondary{
+    color: #9CD0E8;
+}
+
+.dark .block-icon-button.warn{
+    color: #FFE066;
+}
+
+.dark .block-icon-button.attention{
+    color:#FF3333;
+}
+
+
+.light .block-input input{
+    background:white;
+    color:black;
+}
+
+.dark .block-input input{
+    background:#2c2c2c;
+    color:white;
+}
+
+.block-select-item:hover{
+    opacity:0.7;
+}
+.block-select-item:active{
+    opacity:0.5;
+}
+.light .block-select-item{
+    background:white;
+    color:black;
+}
+.dark .block-select-item{
+    background:#2c2c2c;
+    color:white
+}
+
+
+.light .select-box{
+    border:1px solid rgba(0,0,0, 0.8);
+    color: rgba(0,0,0, 0.7);
+}
+.dark .select-box{
+    border:1px solid white;
+    color: white;
+}

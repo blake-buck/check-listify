@@ -16,14 +16,8 @@
         padding:10px;
         margin:5px;
     }
-
-    .dark .block-input input{
-        background:#2c2c2c;
-        color:white;
-    }
-
-    
 </style>
+<style scoped src='./themes.css'></style>
 
 <script>
 export default {

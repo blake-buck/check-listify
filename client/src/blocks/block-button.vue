@@ -3,7 +3,6 @@
 </template>
 
 <style scoped>
-
     .block-button{
         cursor:pointer;
         font-size:16px;
@@ -11,57 +10,8 @@
         height:100%;
         border:none;
     }
-    .block-button:hover{
-        opacity:0.9;
-    }
-    .block-button:active{
-        opacity:0.7;
-    }
-
-    .light .block-button{
-        color:white;
-        background:rgba(0,0,0, 1);
-    }
-
-    .light .primary{
-        background:#1FD15D;
-    }
-
-    .light .secondary{
-        background: #39A1D1;
-    }
-
-    .light .warn{
-        background: #FFCC00;
-    }
-
-    .light .attention{
-        background:#E50000;
-    }
-
-
-    .dark .block-button{
-        background:#5c5c5c;
-        color:white;
-    }
-
-    .dark .primary{
-        background:#62DE8D;
-    }
-
-    .dark .secondary{
-        background: #9CD0E8;
-    }
-
-    .dark .warn{
-        background: #FFE066;
-    }
-
-    .dark .attention{
-        background:#FF3333;
-    }
-
 </style>
+<style scoped src='./themes.css'></style>
 
 <script>
 export default {

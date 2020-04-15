@@ -19,6 +19,7 @@
         margin:5px;
     }
 </style>
+<style scoped src='./themes.css'></style>
 
 <script>
 export default {

@@ -8,52 +8,8 @@
         font-size:48px;
         margin:5px;
     }
-    .block-icon-button:active{
-        opacity:0.3;
-    }
-    .block-icon-button:hover{
-        opacity:0.6;
-    }
-
-    .light .block-icon-button{
-        color:black;
-    }
-    .light .primary{
-        background:#1FD15D;
-    }
-
-    .light .secondary{
-        background: #39A1D1;
-    }
-
-    .light .warn{
-        background: #FFCC00;
-    }
-
-    .light .attention{
-        background:#E50000;
-    }
-
-    .dark .block-icon-button{
-        color:white;
-    }
-
-    .dark .primary{
-        background:#62DE8D;
-    }
-
-    .dark .secondary{
-        background: #9CD0E8;
-    }
-
-    .dark .warn{
-        background: #FFE066;
-    }
-
-    .dark .attention{
-        background:#FF3333;
-    }
 </style>
+<style scoped src='./themes.css'></style>
 
 <script>
 export default {
