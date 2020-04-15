@@ -57,6 +57,18 @@ export default {
 
         deleteItem(id){
             this.items = this.items.filter(item => item.Id !== id);
+        },
+
+
+
+        navigateHome(){
+            navigateTo('/');
+        },
+        navigateDemo(){
+            navigateTo('/demo');
+        },
+        navigateLogin(){
+            navigateTo('/login');
         }
         
     }

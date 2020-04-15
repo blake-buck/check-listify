@@ -7,7 +7,9 @@ const routes = {
     '/': 'Home',
     '/demo': 'Demo',
     '/user': 'UserChecklists',
-    '/user/account' : 'Account'
+    '/user/account' : 'Account',
+    '/login': 'Login',
+    '/register':'Register'
 }
 
 function router(pathname){

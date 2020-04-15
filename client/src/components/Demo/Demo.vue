@@ -1,5 +1,15 @@
 <template>
     <div class='Demo light'>
+
+        <header class='light public'>
+            <div class='links'>
+                <span v-on:click='navigateHome'>Home</span>
+                <span v-on:click='navigateDemo'>Demo</span>
+            </div>
+
+            <block-button :clickHandler='navigateLogin' displayText='Login' displayType='primary'></block-button>
+        </header>
+
         <header>
             <h1>Demo Checklist</h1>
         </header>

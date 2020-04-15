@@ -1,39 +1,22 @@
-const appService = require('../../store/service');
 const {navigateTo} = require('../../utils/router');
+
 
 export default {
     name:'Home',
-    data(){
-        return{
-            form:{
-                username:'',
-                password:''
-            },
-            LOGIN:'LOGIN',
-            REGISTER: 'REGISTER',
-            USERNAME: 'username',
-            PASSWORD: 'password'
-        }
-    },
+    
     methods:{   
-        async submitForm(e, type){
-            e.preventDefault();
 
-            if(type === this.LOGIN){
-                const response = await appService.login(this.form[this.USERNAME], this.form[this.PASSWORD]);
-                
-                // you're not supposed to store JWTs in local storage, this should be temporary
-                localStorage.setItem('jwt', response.jwt);
-                navigateTo('/user');
-            }
-
-            if(type === this.REGISTER){
-                const response = await appService.register(this.form[this.USERNAME], this.form[this.PASSWORD]);
-                console.log(response);
-            }
+        navigateHome(){
+            navigateTo('/');
         },
-        changeFormValue(e, key){
-            this.form[key] = e.target.value;
+        navigateDemo(){
+            navigateTo('/demo');
+        },
+        navigateLogin(){
+            navigateTo('/login');
+        },
+        navigateRegister(){
+            navigateTo('/register');
         }
     }
 }

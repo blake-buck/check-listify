@@ -60,3 +60,37 @@ header h1{
     from {opacity: 0.4;}
     to   {opacity: 1;}
 }
+
+
+
+header.public{
+    display: flex;
+    justify-content: space-between;
+    background:lightgray;
+    align-items: center;
+    height:50px;
+    padding:5px;
+    border-bottom:2px solid black;
+}
+
+header.public * {
+    margin:10px;
+}
+
+header.public button{
+    padding-left:15px;
+    padding-right:15px;
+    max-height:40px;
+}
+
+.links{
+    font-size:1.2em;
+    font-weight:bold;
+}
+.links span:hover{
+    opacity:0.7;
+}
+
+.links span:active{
+    opacity:0.5;
+}
