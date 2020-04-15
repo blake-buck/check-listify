@@ -78,6 +78,7 @@ export default {
             this.touchStartY = e.touches[0].clientY;
         },
         handleTouchEnd(e){
+            const {touchStartX, touchStartY} = this;
             touchEndHelper(
                 e,
                 {touchStartX, touchStartY},
