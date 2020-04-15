@@ -90,7 +90,7 @@
 <script>
 const {navigateTo} = require('../../utils/router');
 const appService   = require('../../store/service');
-const {isValidPassword} = require('../../utils/isValidPassword');
+const {validatePassword} = require('../../utils/isValidPassword');
 
 export default {
     name:'ForgotPassword',
@@ -119,21 +119,12 @@ export default {
         },
         async submitCodeAndPassword(){
             const {username, password, confirmPassword,code} = this;
-            if(!code || !password|| !confirmPassword){
-                this.stepTwoMessage = 'Please fill out all fields.';
-            }
-            else if(password !== confirmPassword){
-                this.stepTwoMessage = 'Values in password fields must match.';
-            }
-            else if(confirmPassword.length < 8){
-                this.stepTwoMessage = 'Password must be at least 8 characters long.';
-            }
-            else if(!isValidPassword(confirmPassword)){
-                this.stepTwoMessage = 'Password must contain an uppercase letter, number, and special character.';
+            const passwordMessage = validatePassword(password, confirmPassword, code);
+            if(passwordMessage){
+                this.stepTwoMessage = passwordMessage;
             }
             else{
                 const response = await appService.confirmForgotPassword(username, code, confirmPassword);
-
                 if(response.status === 200){
                     this.currentStep = 3;
                 }
@@ -141,10 +132,6 @@ export default {
                     this.stepTwoMessage = response.error.message;
                 }
             }
-
-
-            
-            
         },
 
 
