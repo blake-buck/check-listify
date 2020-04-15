@@ -3,6 +3,8 @@ const {UPDATE_CHECKLIST, DELETE_CHECKLIST} = constants;
 const {navigateTo} = require('../../../utils/router');
 const {blurHelper} = require('../../../utils/blurHelper');
 const {keyupHelper} = require('../../../utils/keyupHelper');
+const {touchEndHelper} = require('../../../utils/touchEndHelper');
+
 export default {
     name:'ListItem',
     props:[
@@ -84,14 +86,13 @@ export default {
             this.touchStartY = e.touches[0].clientY;
         },
         handleTouchEnd(e){
-            // if the users Y scroll moves more than 50px, they are likely scrolling the page and not trying to show/hide action buttons
-            if(this.touchStartX > e.changedTouches[0].clientX && Math.abs(this.touchStartY - e.changedTouches[0].clientY) <= 50){
-                this.showActionButtons();
-            }
-
-            if(this.touchStartX < e.changedTouches[0].clientX && Math.abs(this.touchStartY - e.changedTouches[0].clientY) <= 50){
-                this.hideActionButtons();
-            }
+            const {touchStartX, touchStartY} = this;
+            touchEndHelper(
+                e,
+                {touchStartX, touchStartY},
+                () => this.showActionButtons(),
+                () => this.hideActionButtons()
+            )
         }
     }
 }
