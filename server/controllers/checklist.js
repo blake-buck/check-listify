@@ -1,10 +1,9 @@
 const {checklistModel} = require('../models/models')
-const {decodeToken} = require('./util')
+const {getUserIdFromToken} = require('./util')
 
 async function getUserChecklists(req, res){
-    const {jwt} = req.headers;
-
-    const userId = decodeToken(jwt)['username']
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
     try{
         const results = await checklistModel.getUserChecklists(userId);
@@ -16,9 +15,9 @@ async function getUserChecklists(req, res){
 }
 
 async function createChecklistForUser(req, res){
-    const {jwt}   = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {title} = req.body;
 
     try{
@@ -31,9 +30,9 @@ async function createChecklistForUser(req, res){
 }
 
 async function updateChecklistForUser(req, res){
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {checklistId} = req.params;
     const {title, pinned} = req.body;
 
@@ -47,9 +46,9 @@ async function updateChecklistForUser(req, res){
 }
 
 async function deleteChecklistForUser(req, res){
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {checklistId} = req.params;
 
     try{
@@ -63,9 +62,8 @@ async function deleteChecklistForUser(req, res){
 
 
 async function getUserChecklistItems(req, res){
-    const {jwt} = req.headers;
-
-    const userId = decodeToken(jwt)['username']
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
     try{
         const items = await checklistModel.getUserChecklistItems(userId);
@@ -77,9 +75,9 @@ async function getUserChecklistItems(req, res){
 }
 
 async function createChecklistItem(req, res){
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {checklistId} = req.params;
     const {name} = req.body;
 
@@ -93,9 +91,9 @@ async function createChecklistItem(req, res){
 }
 
 async function updateChecklistItem(req, res){
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {itemId} = req.params;
     const {name, checked} = req.body;
 
@@ -109,9 +107,9 @@ async function updateChecklistItem(req, res){
 }
 
 async function deleteChecklistItem(req, res){
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
-    const userId = decodeToken(jwt)['username'];
     const {itemId} = req.params;
 
     try{

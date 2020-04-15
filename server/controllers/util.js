@@ -10,6 +10,10 @@ function decodeToken(jwt){
     return decodedToken
 }
 
+function getUserIdFromToken(jwt){
+    return decodeToken(jwt)['username'];
+}
+
 // certain Cognito functions require a "Secret Hash", which is an HMAC consisting of the Secret hash for the App Client,
 // the username of the user, and the Id of the App Client
 function createSecrectHash(username){
@@ -54,6 +58,7 @@ function cognitoCallback(successHandler, res){
 
 module.exports = {
     decodeToken,
+    getUserIdFromToken,
     createSecrectHash,
     formatHeaders,
     cognitoCallback

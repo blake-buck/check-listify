@@ -24,7 +24,7 @@ async function hasValidJwt(req, res, next){
 
     // if no json web token is in request header, send a response
     if(!jwt){
-        res.status(400).send({error:{message:'No JSON Web Token in request header'}, status:400});
+        res.status(400).send({error:{message:'No JSON Web Token in request header'}, status:401});
     }
 
     try{

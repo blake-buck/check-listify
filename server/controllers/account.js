@@ -1,13 +1,10 @@
 const {accountModel} = require('../models/models');
-const {decodeToken} = require('./util');
+const {decodeToken, getUserIdFromToken} = require('./util');
 
 async function getAccountConfig(req, res){
-    // get JWT off req.headers
-    const {jwt} = req.headers;
-
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
     try{
-        // get userId from JWT
-        const userId = decodeToken(jwt)['username'];
 
         // get accountConfig from database
         const accountConfig = await accountModel.getAccountConfig(userId)
@@ -22,16 +19,13 @@ async function getAccountConfig(req, res){
 }
 
 async function updateAccountConfig(req, res){
-    // get JWT off req.headers
-    const {jwt} = req.headers;
+    // get userId from JWT
+    const userId = getUserIdFromToken(req.header.jwt);
 
     // get accountConfig off request body
     const accountConfig = req.body;
 
     try{
-        // get userId from JWT
-        const userId = decodeToken(jwt)['username'];
-
         // replace existing accountConfig with new accountConfig
         const message = await accountModel.updateAccountConfig(userId, accountConfig);
         res.status(200).send({message, status:200});
