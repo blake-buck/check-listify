@@ -15,22 +15,23 @@
 }
 
 
-header{
+header.back-header{
     display:flex; 
+    justify-content: flex-start;
     align-items: center;
 }
 
-header h1{
+header.back-header h1{
     font-size:1.5em;
     padding:5px;
     margin:5px;
 }
 
-.Account.light header{
+.Account.light header.back-header{
     background:lightgray;
 }
 
-.Account.dark header{
+.Account.dark header.back-header{
     background:#5c5c5c;
 }
 

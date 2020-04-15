@@ -17,7 +17,7 @@
         margin:5px;
     }
 
-    .dark .block-input{
+    .dark .block-input input{
         background:#2c2c2c;
         color:white;
     }

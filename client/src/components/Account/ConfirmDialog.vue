@@ -40,6 +40,10 @@
         height:30%;
     }
 
+    .light .confirm-dialog{
+        background:white;
+    }
+
     .dark .confirm-dialog{
         background:#2c2c2c;
     }

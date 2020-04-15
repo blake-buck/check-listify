@@ -41,6 +41,7 @@
 
 
     .dark .block-button{
+        background:#5c5c5c;
         color:white;
     }
 

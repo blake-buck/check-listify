@@ -1,6 +1,6 @@
 <template>
     <div class='Account' v-bind:class='accountConfig.themeName'>
-        <header class='light'>
+        <header class='light back-header'>
             <block-icon-button :clickHandler='toChecklists' icon='keyboard_backspace'></block-icon-button>
             <h1>Account Settings</h1>
         </header>
@@ -8,8 +8,8 @@
         <div class='style-rules'>
             <h3>Style Rules</h3>
             <block-select label='Color Theme' placeholder='Choose a color theme' :items='colorThemes' :selectedItem='selectedItem' :selectItem='selectItem'></block-select>
-            <block-toggle displayName='Opacity' :toggle='() => editItem(accountConfig, "Opacity", !accountConfig.Opacity)' :isTrue='accountConfig.Opacity'></block-toggle>
-            <block-toggle displayName='Line Through' :toggle='() => editItem(accountConfig, "LineThrough", !accountConfig.LineThrough)' :isTrue='accountConfig.LineThrough'></block-toggle>
+            <!-- <block-toggle displayName='Opacity' :toggle='() => editItem(accountConfig, "Opacity", !accountConfig.Opacity)' :isTrue='accountConfig.Opacity'></block-toggle> -->
+            <!-- <block-toggle displayName='Line Through' :toggle='() => editItem(accountConfig, "LineThrough", !accountConfig.LineThrough)' :isTrue='accountConfig.LineThrough'></block-toggle> -->
         </div>
 
         <form class='change-password' v-on:submit='changePassword'>
