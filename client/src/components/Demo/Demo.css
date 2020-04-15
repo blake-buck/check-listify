@@ -1,0 +1,62 @@
+.Demo{
+    /* this gives extra breathing room so the fab doesn't obscure list items */
+    padding-bottom:80px;
+    animation:fadeIn 0.5s;
+    height:100vh;
+}
+
+.Demo.dark{
+    background:#2c2c2c;
+    color:white;
+}
+
+.DemoItem:first-of-type{
+    border-top:1px solid gray;
+}
+
+header{
+    display:flex; 
+    align-items: center;
+    height:68px;
+}
+
+header h1{
+    font-size:1.8em;
+    margin:5px;
+    padding:5px;
+}
+
+.Demo.light header{
+    background:lightgray;
+}
+
+.Demo.dark header{
+    background:#5c5c5c;
+    color:white;
+}
+
+
+/* ANIMATIONS */
+
+.list-enter-active {
+    transition: opacity 0.5s;
+}
+.list-leave-active{
+    transition:all 0.5s;
+    transform:translateX(60px);
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+.fade-enter-active{
+    transition: opacity .2s;
+}
+.fade-enter{
+    opacity: 0;
+}
+
+@keyframes fadeIn{
+    from {opacity: 0.4;}
+    to   {opacity: 1;}
+}
