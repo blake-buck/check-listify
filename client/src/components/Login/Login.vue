@@ -9,7 +9,7 @@
             </form>
             <footer>
                 <p v-on:click='navigateTo("/register")'>Not a user?</p>
-                <p>Forgot your password?</p>
+                <p v-on:click='navigateTo("/forgot-password")'>Forgot your password?</p>
             </footer>
         </div>
     </div>

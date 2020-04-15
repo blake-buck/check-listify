@@ -18,6 +18,20 @@ async function register(username, password){
     )
 }
 
+async function forgotPassword(username){
+    return request.post(
+        `${getBaseUrl()}/api/forgot-password`,
+        {username}
+    )
+}
+
+async function confirmForgotPassword(username, confirmationCode, password){
+    return request.post(
+        `${getBaseUrl()}/api/forgot-password/confirm`,
+        {username, confirmationCode, password}
+    )
+}
+
 async function changePassword(previousPassword, proposedPassword){
     return request.post(`${getBaseUrl()}/api/change-password`, {previousPassword, proposedPassword}, true);
 }
@@ -74,6 +88,9 @@ export {
     register,
     changePassword,
     deleteAccount,
+
+    forgotPassword,
+    confirmForgotPassword,
 
     retrieveChecklists,
     addChecklist,

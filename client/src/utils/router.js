@@ -9,7 +9,8 @@ const routes = {
     '/user': 'UserChecklists',
     '/user/account' : 'Account',
     '/login': 'Login',
-    '/register':'Register'
+    '/register':'Register',
+    '/forgot-password':'ForgotPassword'
 }
 
 function router(pathname){
