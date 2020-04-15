@@ -42,7 +42,15 @@ function formatHeaders(headers){
 function cognitoCallback(successHandler, res){
     return function(error, data){
         if(error){
-            res.status(400).send({error, status:400});
+            // Handles edge case -- obscures whether or not a user already exists in the system when the register function is called
+            if(error.message === 'An account with the given email already exists.'){
+                res.status(200).send({status:200, message:'Check your email for a registration message'});
+            }
+            
+            else{
+                res.status(400).send({error, status:400});
+            }
+            
         }
         if(data){
             if(typeof successHandler === 'function'){
