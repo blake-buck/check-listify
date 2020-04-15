@@ -102,7 +102,7 @@
 <script>
 const appService = require('../../store/service');
 const {navigateTo} = require('../../utils/router');
-const {isValidPassword} = require('../../utils/isValidPassword');
+const {validatePassword} = require('../../utils/isValidPassword');
 
 export default {
     name:'Register',
@@ -123,17 +123,10 @@ export default {
         async submitForm(e, type){
             e.preventDefault();
             const {username, password, confirmPassword} = this.form;
-            if(!username || !password|| !confirmPassword){
-                this.form.displayMessage = 'Please fill out all fields.';
-            }
-            else if(password !== confirmPassword){
-                this.form.displayMessage = 'Values in password fields must match.';
-            }
-            else if(confirmPassword.length < 8){
-                this.form.displayMessage = 'Password must be at least 8 characters long.';
-            }
-            else if(!isValidPassword(confirmPassword)){
-                this.form.displayMessage = 'Password must contain an uppercase letter, number, and special character.';
+            const passwordMessage = validatePassword(password, confirmPassword);
+
+            if(passwordMessage){
+                this.form.displayMessage = passwordMessage;
             }
             else{
                 const response =  await appService.register(username, password);

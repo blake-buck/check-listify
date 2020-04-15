@@ -44,10 +44,6 @@ header.back-header h1{
     margin:10px;
 }
 
-
-.Account.light div.buttons{
-    color:black;
-}
 .Account .buttons{
     width:100%;
     display:flex;

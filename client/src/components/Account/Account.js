@@ -4,7 +4,7 @@ const {UPDATE_ACCOUNT_CONFIG} = constants
 const {navigateTo} = require('../../utils/router');
 const appService = require('../../store/service');
 
-const {isValidPassword} = require('../../utils/isValidPassword');
+const {validatePassword} = require('../../utils/isValidPassword');
 
 import ConfirmDialog from './ConfirmDialog';
 
@@ -56,21 +56,12 @@ export default {
 
         async changePassword(e){
             e.preventDefault();
-            const {oldPassword, newPassword, confirmNewPassword} = this.form
-            if(!oldPassword || !newPassword || !confirmNewPassword){
-                this.form.displayMessage = 'Please fill out all fields.';
-            }
-            else if(oldPassword.length < 8){
-                this.form.displayMessage = 'Old password must be at least 8 characters long'
-            }
-            else if(newPassword !== confirmNewPassword){
-                this.form.displayMessage = 'Values in new password fields must match.';
-            }
-            else if(confirmNewPassword.length < 8){
-                this.form.displayMessage = 'New password must be at least 8 characters long.';
-            }
-            else if(!isValidPassword(confirmNewPassword)){
-                this.form.displayMessage = 'New password must contain an uppercase letter, number, and special character.';
+
+            const {oldPassword, newPassword, confirmNewPassword} = this.form;
+            const passwordMessage = validatePassword(newPassword, confirmNewPassword);
+
+            if(passwordMessage){
+                this.form.displayMessage = passwordMessage;
             }
             else{
                 const response = await appService.changePassword(oldPassword, confirmNewPassword);
@@ -80,7 +71,6 @@ export default {
                 else{
                     this.form.displayMessage = response.error.message;
                 }
-                
             }
         },
 
@@ -93,6 +83,7 @@ export default {
         },
         async deleteAccount(){
             const response = await appService.deleteAccount();
+
             if(response.status === 200){
                 localStorage.clear('jwt')
                 navigateTo('/');
