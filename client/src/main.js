@@ -3,10 +3,11 @@ import store from './store/index';
 import './reset.css';
 
 const {router} = require('./utils/router');
-
 const {constants} = require('./store/actions');
 const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, RETRIEVE_ACCOUNT_CONFIG} = constants;
 
+
+// Global components
 const BlockButton = require('./blocks/block-button');
 const BlockFab    = require('./blocks/block-fab');
 const BlockInput  = require('./blocks/block-input');

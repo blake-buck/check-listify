@@ -36,6 +36,8 @@ export default {
         },
 
         toggleComplete(){
+            // if a user clicks on the edit item button, they are also click on the item itself
+            // without this check, everytime a user edits something they would also be marking it complete/uncomplete
             if(this.canToggleComplete){
                 this.$store.dispatch(UPDATE_CHECKLIST_ITEM, {...this.item, Checked:!this.item.Checked});
             }
@@ -43,8 +45,10 @@ export default {
 
         showInput(){
             this.canToggleComplete = false;
+
             this.displayInput = true;
             this.hideActionButtons();
+
             setTimeout(() => this.canToggleComplete = true, 0);
         },
         hideInput(){

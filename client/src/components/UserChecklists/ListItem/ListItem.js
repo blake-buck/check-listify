@@ -35,7 +35,13 @@ export default {
 
         // These functions are used instead of a toggleFunction -> for whatever reason when enter is pressed
         // while chrome is emulating mobile, the event is fired twice, making a toggle go from true => false => true
-
+        showActionButtons(){
+            this.displayActionButtons = true;
+        },
+        hideActionButtons(){
+            this.displayActionButtons = false;
+        },
+        
         // set editing title to true
         editTitle(){
             this.editingTitle = true;
@@ -46,12 +52,7 @@ export default {
             this.editingTitle = false;
         },
 
-        showActionButtons(){
-            this.displayActionButtons = true;
-        },
-        hideActionButtons(){
-            this.displayActionButtons = false;
-        },
+        
 
         navigateToChecklist(id){
             navigateTo(`/user/checklist/${id}`);

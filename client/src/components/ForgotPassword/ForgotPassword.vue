@@ -111,12 +111,16 @@ export default {
         changeValue(key, e){
             this[key] = e.target.value;
         },
+
+        // first the user submits their email -- if the email exists then they get a code
         submitEmail(){
             if(this.username){
                 appService.forgotPassword(this.username);
                 this.currentStep = 2;
             }
         },
+
+        // here the user plugs in their code from email + their new password 
         async submitCodeAndPassword(){
             const {username, password, confirmPassword,code} = this;
             const passwordMessage = validatePassword(password, confirmPassword, code);

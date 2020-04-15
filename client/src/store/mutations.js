@@ -1,4 +1,6 @@
 const SET_CHECKLISTS = 'SET_CHECKLISTS';
+
+// Certain mutations are prefixed with M_ to avoid duplicate naming with actions
 const M_ADD_CHECKLIST = 'M_ADD_CHECKLIST';
 const M_UPDATE_CHECKLIST = 'M_UPDATE_CHECKLIST';
 const M_DELETE_CHECKLIST = 'M_DELETE_CHECKLIST';

@@ -43,10 +43,15 @@ export default {
     },
 
     methods:{
-        editItem(config, key, value){
-            this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value});
-        },
-        selectItem(id){
+        // Commented out while toggles are disabled
+        // In general only one property on an item is getting modified at a time, so the single key-value pair
+        // covers most cases
+        // editItem(config, key, value){
+        //     this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...config, [key]:value});
+        // },
+
+        
+        selectColorTheme(id){
             this.$store.dispatch(UPDATE_ACCOUNT_CONFIG, {...this.accountConfig, ThemeId:id, themeName:this.colorThemes.find(val => val.id === id).name});
         },
 
@@ -58,6 +63,9 @@ export default {
             e.preventDefault();
 
             const {oldPassword, newPassword, confirmNewPassword} = this.form;
+            
+            // given two password strings, validatePassword returns a string describing any errors it finds
+            // and returns null if it finds nothing
             const passwordMessage = validatePassword(newPassword, confirmNewPassword);
 
             if(passwordMessage){

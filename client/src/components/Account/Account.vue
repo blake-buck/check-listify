@@ -7,7 +7,7 @@
 
         <div class='style-rules'>
             <h3>Style Rules</h3>
-            <block-select label='Color Theme' placeholder='Choose a color theme' :items='colorThemes' :selectedItem='selectedItem' :selectItem='selectItem'></block-select>
+            <block-select label='Color Theme' placeholder='Choose a color theme' :items='colorThemes' :selectedItem='selectedItem' :selectItem='selectColorTheme'></block-select>
             <!-- <block-toggle displayName='Opacity' :toggle='() => editItem(accountConfig, "Opacity", !accountConfig.Opacity)' :isTrue='accountConfig.Opacity'></block-toggle> -->
             <!-- <block-toggle displayName='Line Through' :toggle='() => editItem(accountConfig, "LineThrough", !accountConfig.LineThrough)' :isTrue='accountConfig.LineThrough'></block-toggle> -->
         </div>
