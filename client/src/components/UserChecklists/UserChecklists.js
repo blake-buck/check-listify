@@ -1,6 +1,8 @@
 const {constants} = require('../../store/actions');
 const {ADD_CHECKLIST} = constants;
 const {navigateTo} = require('../../utils/router');
+const {blurHelper} = require('../../utils/blurHelper');
+const {keyupHelper} = require('../../utils/keyupHelper');
 
 import ListItem  from './ListItem/ListItem.vue';
 
@@ -34,17 +36,17 @@ export default {
             this.displayChecklistTemplate = false;
         },
         blurChecklist(e){
-             // if the user hasn't typed anything in the input field prevent the input from blurring
-            if(e.target.value !== ''){
-                this.addChecklist(e.target.value)
-            }
-            this.hideChecklistTemplate();
+            blurHelper(
+                e.target.value,
+                () => this.addChecklist(e.target.value),
+                () => this.hideChecklistTemplate()
+            )
         },
         keyupChecklist(e){
-            if(e.key === 'Enter'){
-                e.preventDefault();
-                this.blurChecklist(e);
-            }
+            keyupHelper(
+                e,
+                () => this.blurChecklist(e)
+            )
         },
         addChecklist(title){
             // for whatever reason when enter is pressed, while chrome is emulating mobile, the event is fired twice

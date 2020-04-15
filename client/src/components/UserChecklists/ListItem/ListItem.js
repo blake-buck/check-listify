@@ -1,6 +1,8 @@
 const {constants} = require('../../../store/actions');
 const {UPDATE_CHECKLIST, DELETE_CHECKLIST} = constants;
 const {navigateTo} = require('../../../utils/router');
+const {blurHelper} = require('../../../utils/blurHelper');
+const {keyupHelper} = require('../../../utils/keyupHelper');
 export default {
     name:'ListItem',
     props:[
@@ -54,17 +56,18 @@ export default {
         },
 
         keyupInput(e){
-            if(e.key === 'Enter'){
-                e.preventDefault();
-                this.blurInput(e);
-            }
+            keyupHelper(
+                e,
+                () => this.blurInput(e)
+            )
         },
 
         blurInput(e){
-            if(e.target.value !== ''){
-                this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Title:e.target.value});
-            }
-            this.finishEditingTitle();
+            blurHelper(
+                e.target.value,
+                () => this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Title:e.target.value}),
+                () => this.finishEditingTitle()
+            )
         },
 
         toggleListIsPinned(){

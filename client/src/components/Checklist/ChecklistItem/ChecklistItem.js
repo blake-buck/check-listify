@@ -1,5 +1,7 @@
 const {constants} = require('../../../store/actions');
 const {DELETE_CHECKLIST_ITEM, UPDATE_CHECKLIST_ITEM} = constants;
+const {blurHelper} = require('../../../utils/blurHelper');
+const {keyupHelper} = require('../../../utils/keyupHelper');
 export default {
     name:'ChecklistItem',
     props:[
@@ -60,18 +62,17 @@ export default {
         },
 
         blurInput(e){
-             // if the user hasn't typed anything in the input field prevent the item from updating
-            if(e.target.value !== ''){
-                this.editItem({Name:e.target.value});
-            }
-
-            this.hideInput();
+            blurHelper(
+                e.target.value,
+                () => this.editItem({Name:e.target.value}),
+                () => this.hideInput()
+            )
         },
         keyupInput(e){
-            if(e.key === 'Enter'){
-                e.preventDefault();
-                this.blurInput(e);
-            }
+            keyupHelper(
+                e,
+                () => this.blurInput(e)
+            )
         },
 
 

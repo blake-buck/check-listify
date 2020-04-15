@@ -1,6 +1,8 @@
 const {constants} = require('../../store/actions');
 const {ADD_CHECKLIST_ITEM} = constants;
 const {navigateTo} = require('../../utils/router');
+const {blurHelper} = require('../../utils/blurHelper');
+const {keyupHelper} = require('../../utils/keyupHelper');
 
 import ChecklistItem from './ChecklistItem/ChecklistItem.vue';
 
@@ -42,19 +44,17 @@ export default {
         },
 
         blurInput(e){
-             // if the user hasn't typed anything in the input field prevent the input from blurring
-            if(e.target.value !== ''){
-                this.addItem(e.target.value)
-            }
-
-            this.hideInput();
-
+            blurHelper(
+                e.target.value,
+                () => this.addItem(e.target.value),
+                () => this.hideInput()
+            )
         },
         keyupInput(e){
-            if(e.key === 'Enter'){
-                e.preventDefault();
-                this.blurInput(e);
-            }
+            keyupHelper(
+                e,
+                () => this.blurInput(e)
+            )
         },
 
         addItem(name){
