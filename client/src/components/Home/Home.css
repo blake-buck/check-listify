@@ -37,21 +37,14 @@ header button{
     animation: fadeIn 0.5s;
 }
 
-.information-blurb{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin:10px;
-}
+
 .information-blurb img{
     height: 300px;
     border:1px solid gray;
 }
-.information-blurb h3, .compare-blurb h3{
+.information-blurb h3, .compare-blurb h3, .register-blurb h3{
     font-size:1.5em;
     font-weight:bold;
-    text-align:center;
     margin:5px;
 }
 
@@ -63,7 +56,68 @@ header button{
     margin:10px;
 }
 .compare-blurb img{
-    height: 250px;
+    height: 225px;
     margin:1px;
     border:1px solid gray;
+}
+
+
+.register-blurb, .information-blurb, .compare-blurb{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    margin:10px;
+    border:1px solid gray;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.register-blurb p, .information-blurb p, .compare-blurb p{
+    margin:5px;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:1.1em;
+}
+
+.register-blurb button{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px 20px;
+}
+
+b{
+    font-weight:bold;
+}
+b:hover{
+    opacity:0.7;
+}
+b:active{
+    opacity:0.5;
+}
+
+@media screen and (min-width:760px){
+    .information-blurb{
+        display:flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    .information-blurb img{
+        height: 400px;
+        border:1px solid gray;
+    }
+
+    .compare-blurb{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .compare-blurb .images{
+        display:flex;
+    }
+    .compare-blurb img{
+        height:350px;
+    }
 }
