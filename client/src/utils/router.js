@@ -15,7 +15,7 @@ const routes = {
 
 function router(pathname){
     let matchingRoute = routes[pathname];
-    const isChecklistRoute = /\/user\/checklist\/\d+/.exec(pathname);
+    const isChecklistRoute = /\/user\/checklist\/[-|\d+]/.exec(pathname);
       
     if(isChecklistRoute && isChecklistRoute.length > 0){
       matchingRoute = 'Checklist';

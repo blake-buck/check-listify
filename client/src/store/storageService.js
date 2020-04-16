@@ -1,6 +1,16 @@
-const localStorageConstants = {
+const defaultLocalStorageConstants = {
     currentChecklistId: -1,
     currentChecklistItemId: -1
+}
+const localStorageConstants = retrieveConstants();
+
+
+function storeConstants(){
+    localStorage.setItem('constants', JSON.stringify(localStorageConstants));
+}
+function retrieveConstants(){
+    const constants = JSON.parse(localStorage.getItem('constants'));
+    return constants ? constants : defaultLocalStorageConstants;
 }
 
 function storeStateLocally(state){
@@ -18,7 +28,9 @@ function retrieveChecklists(){
 }
 
 function addChecklist(Title){
-    return {Title, Id:currentChecklistId--, Pinned:false};
+    localStorageConstants.currentChecklistId--;
+    storeConstants();
+    return {Title, Id:localStorageConstants.currentChecklistId, Pinned:false};
 }
 
 module.exports = {
@@ -47,7 +59,9 @@ function retrieveChecklistItems(){
 }
 
 function addChecklistItem(Name, ChecklistId){
-    return {Name, Id:currentChecklistItemId--, ChecklistId, Checked:false};
+    localStorageConstants.currentChecklistItemId--;
+    storeConstants();
+    return {Name, Id:localStorageConstants.currentChecklistItemId, ChecklistId, Checked:false};
 }
 
 // function updateChecklistItem(itemId, body){

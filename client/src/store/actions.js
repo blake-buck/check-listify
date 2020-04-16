@@ -118,7 +118,7 @@ export default {
             (error) => console.log('ERROR ', error),
 
             () => {
-                const response = storageService.addChecklistItem();
+                const response = storageService.addChecklistItem(name, checklistId);
                 context.commit(M_ADD_CHECKLIST_ITEM, response);
             }
         )
