@@ -3,7 +3,7 @@ const {decodeToken, getUserIdFromToken} = require('./util');
 
 async function getAccountConfig(req, res){
     // get userId from JWT
-    const userId = getUserIdFromToken(req.header.jwt);
+    const userId = getUserIdFromToken(req.headers.jwt);
     try{
 
         // get accountConfig from database
@@ -20,7 +20,7 @@ async function getAccountConfig(req, res){
 
 async function updateAccountConfig(req, res){
     // get userId from JWT
-    const userId = getUserIdFromToken(req.header.jwt);
+    const userId = getUserIdFromToken(req.headers.jwt);
 
     // get accountConfig off request body
     const accountConfig = req.body;

@@ -89,4 +89,3 @@ function accountConfigConversion(config){
     return config;
 }
 
-// this code proves that I need to fix the capitilization of variables sooner rather than later

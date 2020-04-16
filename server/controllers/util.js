@@ -11,7 +11,8 @@ function decodeToken(jwt){
 }
 
 function getUserIdFromToken(jwt){
-    return decodeToken(jwt)['username'];
+    const decoded = decodeToken(jwt);
+    return decoded ? decoded['username'] : null;
 }
 
 // certain Cognito functions require a "Secret Hash", which is an HMAC consisting of the Secret hash for the App Client,
