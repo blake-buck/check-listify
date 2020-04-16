@@ -46,9 +46,24 @@ function syncWithDatabase(){
         store.dispatch(constants.DELETE_CHECKLIST, checklist.Id)
     })
 
-    // take "deletedChecklistsItems" from localStorage and send delete requests for each of them
-    // take "updatedChecklistsItems" from localStorage and send put requests for each of them
-    // take "createdChecklistsItems" from localStorage and send post requests for each of them
+    // take "deletedChecklistItems" from localStorage and send delete requests for each of them
+    let deletedChecklistItems = localConstants.deletedChecklistItems ? [...localConstants.deletedChecklistItems] : [];
+    deletedChecklistItems.forEach(id => {
+        store.dispatch(constants.DELETE_CHECKLIST_ITEM, id);
+    })
+
+    // take "updatedChecklistItems" from localStorage and send put requests for each of them
+    let updatedChecklistItems = localConstants.updatedChecklistItems ? [...localConstants.updatedChecklistItems] : [];
+    updatedChecklistItems.forEach(item => {
+        store.dispatch(constants.UPDATE_CHECKLIST_ITEM, item);
+    })
+
+    // take "createdChecklistItems" from localStorage and send post requests for each of them
+    let createdChecklistItems = localConstants.createdChecklistItems ? [...localConstants.createdChecklistItems] : [];
+    createdChecklistItems.forEach(item => {
+        store.dispatch(constants.ADD_CHECKLIST_ITEM,{name: item.Name, checklistId: item.ChecklistId});
+        store.dispatch(constants.DELETE_CHECKLIST_ITEM, item.Id)
+    })
 
     // take accountConfig from stored state and send put request for it -- local account settings always beat out stored account settings
 

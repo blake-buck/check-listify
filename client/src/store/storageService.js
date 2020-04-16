@@ -2,7 +2,7 @@ let defaultLocalStorageConstants = {
     currentChecklistId: -1,
     currentChecklistItemId: -1,
 
-    createdCheckListItems:[],
+    createdChecklistItems:[],
     updatedChecklistItems:[],
     deletedChecklistItems:[],
 
@@ -76,6 +76,8 @@ function deleteChecklist(id){
     storeConstants();
 }
 
+
+
 function retrieveChecklistItems(){
     const state = retrieveState();
     return state ? state.items : null;
@@ -83,9 +85,37 @@ function retrieveChecklistItems(){
 
 function addChecklistItem(Name, ChecklistId){
     localStorageConstants.currentChecklistItemId--;
+    const item = {Name, Id:localStorageConstants.currentChecklistItemId, ChecklistId, Checked:false};
+    localStorageConstants.createdChecklistItems= [...localStorageConstants.createdChecklistItems, item];
     storeConstants();
-    return {Name, Id:localStorageConstants.currentChecklistItemId, ChecklistId, Checked:false};
+    return item;
 }
+
+function updateChecklistItem(item){
+    if(item.Id > 0){
+        localStorageConstants.updatedChecklistItems = [...localStorageConstants.updatedChecklistItems, item];
+    }
+    else{
+        localStorageConstants.createdChecklists = localStorageConstants.createdChecklists.map(val => {
+            if(val.Id === item.Id){
+                return {...item}
+            }
+            return val
+        })
+    }
+    storeConstants();
+}
+
+function deleteChecklistItem(id){
+    if(id > 0){
+        localStorageConstants.deletedChecklistItems = [...localStorageConstants.deletedChecklistItems, id];
+    }
+    else{
+        localStorageConstants.createdCheckListItems.filter(val => val.Id !== id);
+    }
+    storeConstants();
+}
+
 
 function retrieveAccountConfig(){
     const state = retrieveState();
@@ -104,6 +134,9 @@ module.exports = {
 
     retrieveChecklistItems,
     addChecklistItem,
+    updateChecklistItem,
+    deleteChecklistItem,
+
     retrieveAccountConfig,
 
     retrieveConstants,

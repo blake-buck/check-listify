@@ -137,20 +137,26 @@ export default {
     async [constants.UPDATE_CHECKLIST_ITEM](context, item){
         actionCreator(
             () => appService.updateChecklistItem(item.Id, {name:item.Name, checked:item.Checked}),
-            (response) => context.commit(M_UPDATE_CHECKLIST_ITEM, item),
+            () => context.commit(M_UPDATE_CHECKLIST_ITEM, item),
             (error) => console.log('ERROR ', error),
 
-
+            () => {
+                storageService.updateChecklistItem(item);
+                context.commit(M_UPDATE_CHECKLIST_ITEM, item);
+            }
         )
     },
 
     async [constants.DELETE_CHECKLIST_ITEM](context, itemId){
         actionCreator(
             () => appService.deleteChecklistItem(itemId),
-            (response) => context.commit(M_DELETE_CHECKLIST_ITEM, itemId),
+            () => context.commit(M_DELETE_CHECKLIST_ITEM, itemId),
             (error) => console.log('ERROR ', error),
 
-
+            () => {
+                storageService.deleteChecklistItem(itemId);
+                context.commit(M_DELETE_CHECKLIST_ITEM, itemId);
+            }
         )
     },
 
@@ -170,7 +176,7 @@ export default {
     async [constants.UPDATE_ACCOUNT_CONFIG](context, config){
         actionCreator(
             () => appService.updateAccountConfig(accountConfigToNumber(config)),
-            (response) => context.commit(M_UPDATE_ACCOUNT_CONFIG, config),
+            () => context.commit(M_UPDATE_ACCOUNT_CONFIG, config),
             (error) => console.log('ERROR ', error)
         )
     }
