@@ -1,5 +1,6 @@
 const localStorageConstants = {
-    currentChecklistId: -1
+    currentChecklistId: -1,
+    currentChecklistItemId: -1
 }
 
 function storeStateLocally(state){
@@ -7,12 +8,12 @@ function storeStateLocally(state){
 }
 function retrieveState(){
     const state = localStorage.getItem('state');
+    console.log(JSON.parse(state));
     return state ? JSON.parse(state) : null;
 }
 
 function retrieveChecklists(){
     const state = retrieveState();
-    console.log('lcoal retrieve')
     return state ? state.checklists : null;
 }
 
@@ -24,7 +25,10 @@ module.exports = {
     storeStateLocally,
     retrieveState,
     retrieveChecklists,
-    addChecklist
+    addChecklist,
+    retrieveChecklistItems,
+    addChecklistItem,
+    retrieveAccountConfig
 }
 
 // function updateChecklist(item){
@@ -38,11 +42,12 @@ module.exports = {
 
 
 function retrieveChecklistItems(){
-
+    const state = retrieveState();
+    return state ? state.items : null;
 }
 
-function addChecklistItem(name, checklistId){
-
+function addChecklistItem(Name, ChecklistId){
+    return {Name, Id:currentChecklistItemId--, ChecklistId, Checked:false};
 }
 
 // function updateChecklistItem(itemId, body){
@@ -53,9 +58,10 @@ function addChecklistItem(name, checklistId){
 
 // }
 
-// function retrieveAccountConfig(){
-
-// }
+function retrieveAccountConfig(){
+    const state = retrieveState();
+    return state ? state.accountConfig : null;
+}
 
 // function updateAccountConfig(config){
 

@@ -24,7 +24,6 @@ export const constants = {
 }
 
 async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
-    console.log(navigator.onLine)
     // If user is connected to a network they communicate with the server directly, no need to mess around with local storage
     if(navigator.onLine){
         const response = await onlineFunc();
@@ -43,9 +42,15 @@ async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
     }
 
     // // If user is offline, deal directly with localStorage
-    // if(!navigator.onLine && offlineFunc){
-    //     offlineFunc();
-    // }
+    if(!navigator.onLine){
+        if(offlineFunc){
+            offlineFunc();
+        }
+        else{
+            goodRequest();
+        }
+    }
+    
     
 }
 export default {
@@ -57,7 +62,10 @@ export default {
             (response) => context.commit(SET_CHECKLISTS, response.results),
             (error) => console.log('ERROR ', error),
             
-            () => storageService.retrieveChecklists()
+            () => {
+                const response = storageService.retrieveChecklists();
+                context.commit(SET_CHECKLISTS, response);
+            }
         )
     },
     async [constants.ADD_CHECKLIST](context, title){
@@ -66,7 +74,10 @@ export default {
             (response) => context.commit(M_ADD_CHECKLIST, response.message[1][0]),
             (error) => console.log('ERROR ', error),
 
-            () => storageService.addChecklist(title)
+            () => {
+                const response = storageService.addChecklist(title);
+                context.commit(M_ADD_CHECKLIST, response);
+            }
         )
     },
 
@@ -74,9 +85,7 @@ export default {
         actionCreator(
             () => appService.updateChecklist(item),
             () => context.commit(M_UPDATE_CHECKLIST, item),
-            (error) => console.log('ERROR ', error),
-
-            () => context.commit(M_UPDATE_CHECKLIST, item)
+            (error) => console.log('ERROR ', error)
         )
     },
 
@@ -84,51 +93,75 @@ export default {
         actionCreator(
             () => appService.deleteChecklist(id),
             () => context.commit(M_DELETE_CHECKLIST, id),
-            (error) => console.log('ERROR ', error),
-
-            () => context.commit(M_DELETE_CHECKLIST, id)
+            (error) => console.log('ERROR ', error)
         )
     },
 
     async [constants.RETRIEVE_CHECKLIST_ITEMS](context){
         actionCreator(
             () => appService.retrieveChecklistItems(),
-            (response) => context.commit(SET_CHECKLIST_ITEMS, response.items)
+            (response) => context.commit(SET_CHECKLIST_ITEMS, response.items),
+            (error) => console.log('ERROR ', error),
+
+            () => {
+                const response = storageService.retrieveChecklistItems();
+                console.log("CHECKLIST ITEMS ", response);
+                context.commit(SET_CHECKLIST_ITEMS, response);
+            }
         )
     },
 
     async [constants.ADD_CHECKLIST_ITEM](context, {name, checklistId}){
         actionCreator(
             () => appService.addChecklistItem(name, checklistId),
-            (response) => context.commit(M_ADD_CHECKLIST_ITEM, response.message[1][0])
+            (response) => context.commit(M_ADD_CHECKLIST_ITEM, response.message[1][0]),
+            (error) => console.log('ERROR ', error),
+
+            () => {
+                const response = storageService.addChecklistItem();
+                context.commit(M_ADD_CHECKLIST_ITEM, response);
+            }
         )
     },
 
     async [constants.UPDATE_CHECKLIST_ITEM](context, item){
         actionCreator(
             () => appService.updateChecklistItem(item.Id, {name:item.Name, checked:item.Checked}),
-            (response) => context.commit(M_UPDATE_CHECKLIST_ITEM, item)
+            (response) => context.commit(M_UPDATE_CHECKLIST_ITEM, item),
+            (error) => console.log('ERROR ', error),
+
+
         )
     },
 
     async [constants.DELETE_CHECKLIST_ITEM](context, itemId){
         actionCreator(
             () => appService.deleteChecklistItem(itemId),
-            (response) => context.commit(M_DELETE_CHECKLIST_ITEM, itemId)
+            (response) => context.commit(M_DELETE_CHECKLIST_ITEM, itemId),
+            (error) => console.log('ERROR ', error),
+
+
         )
     },
 
     async [constants.RETRIEVE_ACCOUNT_CONFIG](context){
         actionCreator(
             () => appService.retrieveAccountConfig(),
-            (response) => context.commit(SET_ACCOUNT_CONFIG, response.accountConfig[0])
+            (response) => context.commit(SET_ACCOUNT_CONFIG, response.accountConfig[0]),
+            (error) => console.log('ERROR ', error),
+
+            () => {
+                const response = storageService.retrieveAccountConfig();
+                context.commit(SET_ACCOUNT_CONFIG, response);
+            }
         )
     },
 
     async [constants.UPDATE_ACCOUNT_CONFIG](context, config){
         actionCreator(
             () => appService.updateAccountConfig(accountConfigToNumber(config)),
-            (response) => context.commit(M_UPDATE_ACCOUNT_CONFIG, config)
+            (response) => context.commit(M_UPDATE_ACCOUNT_CONFIG, config),
+            (error) => console.log('ERROR ', error)
         )
     }
 
