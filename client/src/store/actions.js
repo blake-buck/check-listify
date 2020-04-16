@@ -85,7 +85,12 @@ export default {
         actionCreator(
             () => appService.updateChecklist(item),
             () => context.commit(M_UPDATE_CHECKLIST, item),
-            (error) => console.log('ERROR ', error)
+            (error) => console.log('ERROR ', error),
+            
+            () => {
+                storageService.updateChecklist(item);
+                context.commit(M_UPDATE_CHECKLIST, item);
+            }
         )
     },
 
@@ -93,7 +98,12 @@ export default {
         actionCreator(
             () => appService.deleteChecklist(id),
             () => context.commit(M_DELETE_CHECKLIST, id),
-            (error) => console.log('ERROR ', error)
+            (error) => console.log('ERROR ', error),
+
+            () => {
+                storageService.deleteChecklist(id);
+                context.commit(M_DELETE_CHECKLIST, id)
+            }
         )
     },
 

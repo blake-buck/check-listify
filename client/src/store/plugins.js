@@ -12,7 +12,6 @@ const storeStateInLocalStorage = (store) => {
             // do nothing -- this empty if statement should get replaced eventually
         }
         else{
-            console.log('STORING STATE')
             storageService.storeStateLocally(JSON.stringify(state));
         }
 
