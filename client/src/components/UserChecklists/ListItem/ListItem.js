@@ -24,6 +24,9 @@ export default {
     computed:{
         accountConfig(){
             return this.$store.getters.getAccountConfig
+        },
+        isSyncingWithDb(){
+            return this.$store.getters.getDatabaseSyncing
         }
     },
 

@@ -20,6 +20,9 @@ export default {
         },
         accountConfig(){
             return this.$store.getters.getAccountConfig
+        },
+        isSyncingWithDb(){
+            return this.$store.getters.getDatabaseSyncing
         }
     },
     data(){

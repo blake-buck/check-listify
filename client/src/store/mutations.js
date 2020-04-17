@@ -14,6 +14,8 @@ const M_DELETE_CHECKLIST_ITEM = 'M_DELETE_CHECKLIST_ITEM';
 const SET_ACCOUNT_CONFIG = 'SET_ACCOUNT_CONFIG';
 const M_UPDATE_ACCOUNT_CONFIG = 'M_UPDATE_ACCOUNT_CONFIG';
 
+const SET_DATABASE_SYNCING = 'SET_DATABASE_SYNCING';
+
 
 module.exports = {
     SET_CHECKLISTS,
@@ -29,6 +31,8 @@ module.exports = {
 
     SET_ACCOUNT_CONFIG,
     M_UPDATE_ACCOUNT_CONFIG,
+
+    SET_DATABASE_SYNCING,
 
     mutations:{
         [SET_CHECKLISTS](state, checklists){
@@ -81,6 +85,11 @@ module.exports = {
 
         [M_UPDATE_ACCOUNT_CONFIG](state, config){
             state.accountConfig = config;
+        },
+
+
+        [SET_DATABASE_SYNCING](state, value){
+            state.databaseSyncing = value;
         }
     }
 }

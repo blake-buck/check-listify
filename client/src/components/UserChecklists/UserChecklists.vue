@@ -7,8 +7,7 @@
         </header>
         
         <div class='list-items'>
-
-            <transition-group name='list'>
+            <transition-group :name='isSyncingWithDb ? "" : "list"'>
                 <ListItem v-for='checklist in pinnedChecklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
                 <ListItem v-for='checklist in checklists' :key='checklist.Id' v-bind:checklist='checklist'></ListItem>
             </transition-group>

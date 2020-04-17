@@ -7,6 +7,8 @@ module.exports = {
         itemsLoaded:false,
 
         accountConfig:{},
-        accountConfigLoaded:false
+        accountConfigLoaded:false,
+
+        databaseSyncing:true
     }
 }

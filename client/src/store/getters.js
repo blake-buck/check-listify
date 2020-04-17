@@ -9,7 +9,9 @@ module.exports = {
         getItemsForChecklist: (state) => (checklistId) => state.items.filter(item => item.ChecklistId === checklistId),
 
         getAccountConfig:state => state.accountConfig,
-        getAccountConfigLoaded: state => state.accountConfigLoaded
+        getAccountConfigLoaded: state => state.accountConfigLoaded,
+        
+        getDatabaseSyncing: state => state.databaseSyncing
     }
     
 }
