@@ -15,6 +15,13 @@ async function createChecklistForUser(userId, title){
     )
 }
 
+async function syncChecklistForUser(userId, title, pinned){
+    return queryToPromise(
+        'INSERT INTO checklists(UserId, Title, Pinned) VALUES (?, ?, ?); SELECT * FROM checklists WHERE UserId = ? ORDER BY ID DESC LIMIT 1; ',
+        [userId, title, pinned, userId]
+    )
+}
+
 async function updateChecklistForUser(userId, checklistId, title, pinned){
     return queryToPromise(
         'UPDATE checklists SET Title = ?, Pinned =? WHERE UserId = ? AND Id = ?',
@@ -45,6 +52,17 @@ async function createChecklistItem(userId, checklistId, name){
     )
 }
 
+async function syncChecklistItems(userId, items, realChecklistId){
+    return Promise.all(
+        items.map(item => 
+            queryToPromise(
+                'INSERT INTO checklist_items(UserId, ChecklistId, Name, Checked) VALUES (?, ?, ?, 0); SELECT * FROM checklist_items WHERE UserId = ? AND ChecklistId = ? ORDER BY ID DESC LIMIT 1;',
+                [userId, realChecklistId, item.Name, userId, realChecklistId]
+            )
+        )
+    )
+}
+
 async function updateChecklistItem(userId, itemId, name, checked){
     return queryToPromise(
         'UPDATE checklist_items SET Name = ?, Checked = ? WHERE UserId =? AND Id = ?',
@@ -62,11 +80,13 @@ async function deleteChecklistItem(userId, itemId){
 module.exports = {
     getUserChecklists,
     createChecklistForUser,
+    syncChecklistForUser,
     updateChecklistForUser,
     deleteChecklistForUser,
 
     getUserChecklistItems,
     createChecklistItem,
+    syncChecklistItems,
     updateChecklistItem,
     deleteChecklistItem,
 }

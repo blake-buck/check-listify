@@ -24,6 +24,19 @@ function syncWithDatabase(){
     // retrieve Local constants
     const localConstants = storageService.retrieveConstants();
 
+    let createdChecklists = localConstants.createdChecklists ? [...localConstants.createdChecklists] : [];
+    let createdChecklistItems = localConstants.createdChecklistItems ? [...localConstants.createdChecklistItems] : [];
+
+    createdChecklists.forEach(checklist => {
+        const items = createdChecklistItems.filter(item => item.ChecklistId === checklist.Id);
+        store.dispatch(constants.SYNC_CHECKLIST_WITH_ITEMS, {checklist, items});
+        store.dispatch(constants.DELETE_CHECKLIST, checklist.Id);
+    })
+
+    createdChecklistItems.filter(item => item.ChecklistId > 0).forEach(item => {
+        store.dispatch(constants.ADD_CHECKLIST_ITEM, {name:item.Name, checklistId:item.ChecklistId});
+    })
+
 
     // take "deletedChecklists" from localStorage and send delete requests for each of them
     let deletedChecklists = localConstants.deletedChecklists ? [...localConstants.deletedChecklists] : [];
@@ -37,12 +50,7 @@ function syncWithDatabase(){
         store.dispatch(constants.UPDATE_CHECKLIST, checklist);
     });
 
-    // take "createdChecklists" from localStorage and dispatch ADD_CHECKLIST for each of them
-    let createdChecklists = localConstants.createdChecklists ? [...localConstants.createdChecklists] : [];
-    createdChecklists.forEach(checklist => {
-        store.dispatch(constants.ADD_CHECKLIST, checklist.Title);
-        store.dispatch(constants.DELETE_CHECKLIST, checklist.Id)
-    });
+    
 
     // take "deletedChecklistItems" from localStorage and send delete requests for each of them
     let deletedChecklistItems = localConstants.deletedChecklistItems ? [...localConstants.deletedChecklistItems] : [];
@@ -56,17 +64,12 @@ function syncWithDatabase(){
         store.dispatch(constants.UPDATE_CHECKLIST_ITEM, item);
     });
 
-    // take "createdChecklistItems" from localStorage and send post requests for each of them
-    let createdChecklistItems = localConstants.createdChecklistItems ? [...localConstants.createdChecklistItems] : [];
-    createdChecklistItems.forEach(item => {
-        store.dispatch(constants.ADD_CHECKLIST_ITEM,{name: item.Name, checklistId: item.ChecklistId});
-        store.dispatch(constants.DELETE_CHECKLIST_ITEM, item.Id)
-    });
-
     // take accountConfig from stored state and send put request for it -- local account settings always beat out stored account settings
     store.dispatch(constants.UPDATE_ACCOUNT_CONFIG, storageService.retrieveAccountConfig());
 
     // retrieve new checklists and items from database
+    store.dispatch(constants.RETRIEVE_CHECKLISTS);
+    store.dispatch(constants.RETRIEVE_CHECKLIST_ITEMS);
 
 
     storageService.clearConstants();

@@ -7,11 +7,13 @@ const M_DELETE_CHECKLIST = 'M_DELETE_CHECKLIST';
 
 const SET_CHECKLIST_ITEMS = 'SET_CHECKLIST_ITEMS';
 const M_ADD_CHECKLIST_ITEM = 'M_ADD_CHECKLIST_ITEM';
+const M_ADD_CHECKLIST_ITEM_GROUP = 'M_ADD_CHECKLIST_ITEM_GROUP';
 const M_UPDATE_CHECKLIST_ITEM = 'M_UPDATE_CHECKLIST_ITEM';
 const M_DELETE_CHECKLIST_ITEM = 'M_DELETE_CHECKLIST_ITEM';
 
 const SET_ACCOUNT_CONFIG = 'SET_ACCOUNT_CONFIG';
 const M_UPDATE_ACCOUNT_CONFIG = 'M_UPDATE_ACCOUNT_CONFIG';
+
 
 module.exports = {
     SET_CHECKLISTS,
@@ -21,6 +23,7 @@ module.exports = {
 
     SET_CHECKLIST_ITEMS,
     M_ADD_CHECKLIST_ITEM,
+    M_ADD_CHECKLIST_ITEM_GROUP,
     M_UPDATE_CHECKLIST_ITEM,
     M_DELETE_CHECKLIST_ITEM,
 
@@ -55,6 +58,9 @@ module.exports = {
         },
         [M_ADD_CHECKLIST_ITEM](state, item){
             state.items = [...state.items, item];
+        },
+        [M_ADD_CHECKLIST_ITEM_GROUP](state, itemGroup){
+            state.items = [...state.items, ...itemGroup];
         },
         [M_UPDATE_CHECKLIST_ITEM](state, updatedItem){
             state.items = state.items.map(item => {

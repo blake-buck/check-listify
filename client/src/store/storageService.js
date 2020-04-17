@@ -30,7 +30,6 @@ function storeStateLocally(state){
 }
 function retrieveState(){
     const state = localStorage.getItem('state');
-    console.log(JSON.parse(state));
     return state ? JSON.parse(state) : null;
 }
 

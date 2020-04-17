@@ -121,6 +121,25 @@ async function deleteChecklistItem(req, res){
     }
 }
 
+async function syncChecklistWithItems(req, res){
+    const userId = getUserIdFromToken(req.headers.jwt);
+    const {checklist, items} = req.body;
+
+    try{
+        const checklistResponse = await checklistModel.syncChecklistForUser(userId, checklist.Title, checklist.Pinned);
+        const createdChecklist = checklistResponse[1][0];
+
+        const itemsResponse = await checklistModel.syncChecklistItems(userId, items, createdChecklist.Id);
+        const itemGroup = itemsResponse.map(response => response[1][0]);
+
+        res.status(200).send({createdChecklist, itemGroup, status:200});
+    }
+    catch(error){
+        console.log(error);
+        res.status(400).send({error, status:400});
+    }
+}
+
 module.exports = {
     getUserChecklists,
     createChecklistForUser,
@@ -130,5 +149,7 @@ module.exports = {
     getUserChecklistItems,
     createChecklistItem,
     updateChecklistItem,
-    deleteChecklistItem
+    deleteChecklistItem,
+
+    syncChecklistWithItems
 }

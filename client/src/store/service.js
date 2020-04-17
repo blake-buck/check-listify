@@ -83,6 +83,11 @@ async function updateAccountConfig(config){
     return request.put(`${getBaseUrl()}/api/user/account`, config, true);
 }
 
+
+async function syncChecklistWithItems(checklist, items){
+    return request.post(`${getBaseUrl()}/api/user/checklist/sync`, {checklist, items}, true);
+}
+
 export {
     login,
     register,
@@ -103,5 +108,7 @@ export {
     deleteChecklistItem,
 
     retrieveAccountConfig,
-    updateAccountConfig
+    updateAccountConfig,
+
+    syncChecklistWithItems
 }

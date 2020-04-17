@@ -1,7 +1,7 @@
 import {
     M_ADD_CHECKLIST, SET_CHECKLISTS, M_UPDATE_CHECKLIST, M_DELETE_CHECKLIST, SET_CHECKLIST_ITEMS, 
     M_ADD_CHECKLIST_ITEM, M_UPDATE_CHECKLIST_ITEM, M_DELETE_CHECKLIST_ITEM, SET_ACCOUNT_CONFIG, 
-    M_UPDATE_ACCOUNT_CONFIG
+    M_UPDATE_ACCOUNT_CONFIG, M_ADD_CHECKLIST_ITEM_GROUP
 } from './mutations';
 
 const appService = require('./service');
@@ -21,6 +21,8 @@ export const constants = {
 
     RETRIEVE_ACCOUNT_CONFIG:'RETRIEVE_ACCOUNT_CONFIG',
     UPDATE_ACCOUNT_CONFIG:'UPDATE_ACCOUNT_CONFIG',
+
+    SYNC_CHECKLIST_WITH_ITEMS:'SYNC_CHECKLIST_WITH_ITEMS'
 }
 
 async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
@@ -50,7 +52,6 @@ async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
             goodRequest();
         }
     }
-    
     
 }
 export default {
@@ -115,7 +116,6 @@ export default {
 
             () => {
                 const response = storageService.retrieveChecklistItems();
-                console.log("CHECKLIST ITEMS ", response);
                 context.commit(SET_CHECKLIST_ITEMS, response);
             }
         )
@@ -178,6 +178,19 @@ export default {
             () => appService.updateAccountConfig(accountConfigToNumber(config)),
             () => context.commit(M_UPDATE_ACCOUNT_CONFIG, config),
             (error) => console.log('ERROR ', error)
+        )
+    },
+
+
+    async [constants.SYNC_CHECKLIST_WITH_ITEMS](context, {checklist, items}){
+        actionCreator(
+            () => appService.syncChecklistWithItems(checklist, items),
+            (response) => {
+                context.commit(M_ADD_CHECKLIST_ITEM_GROUP, response.itemGroup)
+            },
+            (error)    => console.log("ERROR ", error) ,
+
+            () => null
         )
     }
 
