@@ -25,9 +25,7 @@ export async function syncWithDatabase(store){
     store.commit(SET_DATABASE_SYNCING, true);
 
     // retrieve Local constants
-    console.log(storageService.retrieveConstants())
     const localConstants = storageService.retrieveConstants();
-    console.log('LOCAL CONSTANTS ', localConstants);
 
     let createdChecklists = localConstants.createdChecklists;
     let createdChecklistItems = localConstants.createdChecklistItems;
@@ -92,7 +90,6 @@ export async function syncWithDatabase(store){
 
 
     storageService.clearConstants();
-    console.log(storageService.retrieveConstants());
     store.commit(SET_IS_DATABASE_SYNCED, true);
     setTimeout(() => {
         store.commit(SET_DATABASE_SYNCING, false);
