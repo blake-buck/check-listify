@@ -3,8 +3,9 @@
         <div class='actions-wrapper'>
             <form v-on:submit="submitForm($event)">
                 <h3>Check-listify Login</h3>
-                <block-input :keyupHandler="($event) => changeFormValue($event, 'username')" placeholder='Username'></block-input>
-                <block-input :keyupHandler="($event) => changeFormValue($event, 'password')" placeholder='Password' type='password'></block-input>
+                <span>{{form.displayMessage}}</span>
+                <block-input :keyupHandler="($event) => changeFormValue($event, 'username')" :value='form.username' placeholder='Username'></block-input>
+                <block-input :keyupHandler="($event) => changeFormValue($event, 'password')" :value='form.password' placeholder='Password' type='password'></block-input>
                 <block-button displayText='Login' displayType='primary'></block-button>
             </form>
             <footer>
@@ -85,6 +86,7 @@ export default {
     data(){
         return{
             form:{
+                displayMessage:'',
                 username:'',
                 password:''
             }
@@ -104,6 +106,7 @@ export default {
             }
             else{
                 console.log(response);
+                this.form.displayMessage = response.error.message;
             }
 
             
