@@ -48,6 +48,6 @@
     
 </template>
 
-<style src='./Home.css'></style>
+<style scoped src='./Home.css'></style>
 
 <script src='./Home.js'></script>

@@ -83,3 +83,18 @@ window.addEventListener('popstate', (e) => {
   e.preventDefault();
   vm.dataPathname = `${e.target.location.pathname}`;
 })
+
+if('serviceWorker' in navigator){
+  console.log('SERVICE WORKER');
+  navigator.serviceWorker.register('./service-worker.js').then(reg => {
+    if(reg.installing) {
+      console.log('Service worker installing');
+    } else if(reg.waiting) {
+      console.log('Service worker installed');
+    } else if(reg.active) {
+      console.log('Service worker active');
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+}
