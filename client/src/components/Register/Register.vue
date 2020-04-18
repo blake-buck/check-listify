@@ -122,6 +122,7 @@ export default {
     methods:{
         async submitForm(e, type){
             e.preventDefault();
+
             const {username, password, confirmPassword} = this.form;
             const passwordMessage = validatePassword(password, confirmPassword);
 
@@ -129,7 +130,9 @@ export default {
                 this.form.displayMessage = passwordMessage;
             }
             else{
+
                 const response =  await appService.register(username, password);
+
                 if(response.status === 200){
                     this.registerSubmitted = true;
                 }
@@ -140,9 +143,11 @@ export default {
             }
 
         },
+
         changeFormValue(e, key){
             this.form[key] = e.target.value;
         },
+        
         navigateTo:navigateTo
     }
 }

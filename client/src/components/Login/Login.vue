@@ -94,6 +94,7 @@ export default {
     },
 
     methods:{
+        
         async submitForm(e, type){
             e.preventDefault();
 
@@ -109,8 +110,8 @@ export default {
                 this.form.displayMessage = response.error.message;
             }
 
-            
         },
+
         changeFormValue(e, key){
             this.form[key] = e.target.value;
         },

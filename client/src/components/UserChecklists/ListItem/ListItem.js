@@ -22,15 +22,18 @@ export default {
     },
 
     computed:{
+
         accountConfig(){
             return this.$store.getters.getAccountConfig
         },
+
         isSyncingWithDb(){
             return this.$store.getters.getDatabaseSyncing
         }
     },
 
     methods:{
+
         update(){
             this.editTitle();
             this.hideActionButtons();
@@ -41,6 +44,7 @@ export default {
         showActionButtons(){
             this.displayActionButtons = true;
         },
+
         hideActionButtons(){
             this.displayActionButtons = false;
         },
@@ -61,6 +65,17 @@ export default {
             navigateTo(`/user/checklist/${id}`);
         },
 
+
+        toggleListIsPinned(){
+            this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Pinned:!this.checklist.Pinned});
+            this.hideActionButtons();
+        },
+
+        deleteChecklist(id){
+            this.$store.dispatch(DELETE_CHECKLIST, id);
+        },
+
+
         keyupInput(e){
             keyupHelper(
                 e,
@@ -76,19 +91,11 @@ export default {
             )
         },
 
-        toggleListIsPinned(){
-            this.$store.dispatch(UPDATE_CHECKLIST, {...this.checklist, Pinned:!this.checklist.Pinned});
-            this.hideActionButtons();
-        },
-
-        deleteChecklist(id){
-            this.$store.dispatch(DELETE_CHECKLIST, id);
-        },
-
         handleTouchStart(e){
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
         },
+
         handleTouchEnd(e){
             const {touchStartX, touchStartY} = this;
             touchEndHelper(
@@ -98,5 +105,6 @@ export default {
                 () => this.hideActionButtons()
             )
         }
+        
     }
 }

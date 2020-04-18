@@ -44,6 +44,7 @@ export default {
 
     methods:{
         // Commented out while toggles are disabled
+
         // In general only one property on an item is getting modified at a time, so the single key-value pair
         // covers most cases
         // editItem(config, key, value){
@@ -64,8 +65,7 @@ export default {
 
             const {oldPassword, newPassword, confirmNewPassword} = this.form;
             
-            // given two password strings, validatePassword returns a string describing any errors it finds
-            // and returns null if it finds nothing
+            
             const passwordMessage = validatePassword(newPassword, confirmNewPassword);
 
             if(passwordMessage){
@@ -73,12 +73,14 @@ export default {
             }
             else{
                 const response = await appService.changePassword(oldPassword, confirmNewPassword);
+
                 if(response.status === 200){
                     this.form.displayMessage = 'Password successfully updated.';
                 }
                 else{
                     this.form.displayMessage = response.error.message;
                 }
+
             }
         },
 
@@ -89,6 +91,7 @@ export default {
         toggleDeleteDialog(){
             this.deleteDialogOpen = !this.deleteDialogOpen;
         },
+
         async deleteAccount(){
             const response = await appService.deleteAccount();
 
@@ -100,6 +103,7 @@ export default {
                 console.log(response);
                 this.toggleDeleteDialog();
             }
+
         },
 
         logout(){

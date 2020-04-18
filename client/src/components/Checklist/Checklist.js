@@ -69,20 +69,3 @@ export default {
         
     }
 }
-
-
-// if user is in a checklist that was created offline, boot them to the checklists screen whenever
-// database is syncing
-window.addEventListener('load', () => {
-    const id = +window.location.pathname.split('/').pop();
-    if(navigator.onLine && id < 0){
-        navigateTo('/user');
-    }
-})
-
-window.addEventListener('online', () => {
-    const id = +window.location.pathname.split('/').pop();
-    if(id < 0){
-        navigateTo('/user');
-    }
-})

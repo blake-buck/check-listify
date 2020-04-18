@@ -108,6 +108,7 @@ export default {
         }
     },
     methods:{
+        
         changeValue(key, e){
             this[key] = e.target.value;
         },
@@ -124,18 +125,22 @@ export default {
         async submitCodeAndPassword(){
             const {username, password, confirmPassword,code} = this;
             const passwordMessage = validatePassword(password, confirmPassword, code);
+
             if(passwordMessage){
                 this.stepTwoMessage = passwordMessage;
             }
             else{
                 const response = await appService.confirmForgotPassword(username, code, confirmPassword);
+                
                 if(response.status === 200){
                     this.currentStep = 3;
                 }
                 else{
                     this.stepTwoMessage = response.error.message;
                 }
+                
             }
+
         },
 
 

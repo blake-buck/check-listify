@@ -18,11 +18,35 @@ function storeConstants(){
 }
 function retrieveConstants(){
     const constants = JSON.parse(localStorage.getItem('constants'));
-    return constants ? constants : {...defaultLocalStorageConstants};
+    return constants ? constants : {
+        currentChecklistId: -1,
+        currentChecklistItemId: -1,
+    
+        createdChecklistItems:[],
+        updatedChecklistItems:[],
+        deletedChecklistItems:[],
+    
+        createdChecklists:[],
+        updatedChecklists:[],
+        deletedChecklists:[]
+    };
 }
 
 function clearConstants(){
     localStorage.removeItem('constants');
+    localStorage.setItem('constants', JSON.stringify({
+        currentChecklistId: -1,
+        currentChecklistItemId: -1,
+    
+        createdChecklistItems:[],
+        updatedChecklistItems:[],
+        deletedChecklistItems:[],
+    
+        createdChecklists:[],
+        updatedChecklists:[],
+        deletedChecklists:[]
+    }))
+    localStorageConstants = retrieveConstants();
 }
 
 function storeStateLocally(state){

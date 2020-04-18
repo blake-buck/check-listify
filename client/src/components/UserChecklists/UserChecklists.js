@@ -12,15 +12,19 @@ export default {
         ListItem
     },
     computed:{
+
         checklists(){
             return this.$store.getters.getChecklists.filter(list => !list.Pinned)
         },
+
         pinnedChecklists(){
             return this.$store.getters.getChecklists.filter(list => list.Pinned)
         },
+
         accountConfig(){
             return this.$store.getters.getAccountConfig
         },
+
         isSyncingWithDb(){
             return this.$store.getters.getDatabaseSyncing
         }
@@ -35,9 +39,11 @@ export default {
         showChecklistTemplate(){
             this.displayChecklistTemplate = true;
         },
+
         hideChecklistTemplate(){
             this.displayChecklistTemplate = false;
         },
+
         blurChecklist(e){
             blurHelper(
                 e.target.value,
@@ -45,12 +51,14 @@ export default {
                 () => this.hideChecklistTemplate()
             )
         },
+
         keyupChecklist(e){
             keyupHelper(
                 e,
                 () => this.blurChecklist(e)
             )
         },
+
         addChecklist(title){
             // for whatever reason when enter is pressed, while chrome is emulating mobile, the event is fired twice
             // this check prevents a duplicate action from being fired
@@ -58,6 +66,7 @@ export default {
                 this.$store.dispatch(ADD_CHECKLIST, title);
             }
         },
+        
         toAccountPage(){
             navigateTo('/user/account')
         }

@@ -31,9 +31,11 @@ export default {
         showActionButtons(){
             this.displayActionButtons = true;
         },
+
         hideActionButtons(){
             this.displayActionButtons = false;
         },
+
 
         toggleComplete(){
             // if a user clicks on the edit item button, they are also click on the item itself
@@ -43,6 +45,7 @@ export default {
             }
         },
 
+
         showInput(){
             this.canToggleComplete = false;
 
@@ -51,10 +54,12 @@ export default {
 
             setTimeout(() => this.canToggleComplete = true, 0);
         },
+
         hideInput(){
             this.displayInput = false;
             this.hideActionButtons();
         },
+
 
         deleteItem(id){
             this.$store.dispatch(DELETE_CHECKLIST_ITEM, id);
@@ -66,6 +71,7 @@ export default {
             }
         },
 
+
         blurInput(e){
             blurHelper(
                 e.target.value,
@@ -73,6 +79,7 @@ export default {
                 () => this.hideInput()
             )
         },
+
         keyupInput(e){
             keyupHelper(
                 e,
@@ -85,6 +92,7 @@ export default {
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
         },
+
         handleTouchEnd(e){
             const {touchStartX, touchStartY} = this;
             touchEndHelper(
@@ -94,5 +102,6 @@ export default {
                 () => this.hideActionButtons()
             )
         }
+
     }
 }
