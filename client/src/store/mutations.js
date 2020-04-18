@@ -15,6 +15,7 @@ const SET_ACCOUNT_CONFIG = 'SET_ACCOUNT_CONFIG';
 const M_UPDATE_ACCOUNT_CONFIG = 'M_UPDATE_ACCOUNT_CONFIG';
 
 const SET_DATABASE_SYNCING = 'SET_DATABASE_SYNCING';
+const SET_IS_DATABASE_SYNCED = 'SET_IS_DATABASE_SYNCED';
 
 
 module.exports = {
@@ -33,6 +34,7 @@ module.exports = {
     M_UPDATE_ACCOUNT_CONFIG,
 
     SET_DATABASE_SYNCING,
+    SET_IS_DATABASE_SYNCED,
 
     mutations:{
         [SET_CHECKLISTS](state, checklists){
@@ -90,6 +92,9 @@ module.exports = {
 
         [SET_DATABASE_SYNCING](state, value){
             state.databaseSyncing = value;
+        },
+        [SET_IS_DATABASE_SYNCED](state, value){
+            state.isDatabaseSynced = value;
         }
     }
 }

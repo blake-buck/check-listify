@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import {state} from './state';
 import {getters} from './getters';
-import {mutations, SET_DATABASE_SYNCING} from './mutations';
+import {mutations, SET_DATABASE_SYNCING, SET_IS_DATABASE_SYNCED} from './mutations';
 import {plugins} from './plugins';
 import actions , {constants} from './actions';
 import storageService from './storageService';
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     plugins
 });
 
-async function syncWithDatabase(){
+export async function syncWithDatabase(){
     // When syncing with the database
     store.commit(SET_DATABASE_SYNCING, true);
 
@@ -76,20 +76,15 @@ async function syncWithDatabase(){
     // retrieve new checklists and items from database
     await store.dispatch(constants.RETRIEVE_CHECKLISTS);
     await store.dispatch(constants.RETRIEVE_CHECKLIST_ITEMS);
+    await store.dispatch(constants.RETRIEVE_ACCOUNT_CONFIG);
 
 
     storageService.clearConstants();
-    setTimeout(() => store.commit(SET_DATABASE_SYNCING, false), 2500);
+    store.commit(SET_IS_DATABASE_SYNCED, true);
+    setTimeout(() => {
+        store.commit(SET_DATABASE_SYNCING, false);
+    }, 2500);
 }
 
-window.addEventListener('load', () => {
-    if(navigator.onLine){
-        syncWithDatabase();
-    }
-})
-
-window.addEventListener('online', () => {
-    syncWithDatabase();
-})
 
 export default store

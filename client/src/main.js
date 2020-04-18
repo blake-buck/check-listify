@@ -3,8 +3,8 @@ import store from './store/index';
 import './reset.css';
 
 const {router} = require('./utils/router');
-const {constants} = require('./store/actions');
-const {RETRIEVE_CHECKLISTS, RETRIEVE_CHECKLIST_ITEMS, RETRIEVE_ACCOUNT_CONFIG} = constants;
+const {syncWithDatabase} = require('./store/index')
+const {SET_IS_DATABASE_SYNCED} = require('./store/mutations');
 
 
 // Global components
@@ -51,16 +51,8 @@ let vm = new Vue({
           case 'Account':
           case 'Checklist':
             // proto-route guards
-            if(!this.$store.getters.getChecklistsLoaded){
-              this.$store.dispatch(RETRIEVE_CHECKLISTS);
-            }
-
-            if(!this.$store.getters.getItemsLoaded){
-              this.$store.dispatch(RETRIEVE_CHECKLIST_ITEMS);
-            }
-
-            if(!this.$store.getters.getAccountConfigLoaded){
-              this.$store.dispatch(RETRIEVE_ACCOUNT_CONFIG);
+            if(this.$store.getters.getIsDatabaseSynced === false && navigator.onLine){
+              syncWithDatabase();
             }
 
           break;
@@ -84,8 +76,14 @@ window.addEventListener('popstate', (e) => {
   vm.dataPathname = `${e.target.location.pathname}`;
 })
 
-if('serviceWorker' in navigator){
-  console.log('SERVICE WORKER');
+window.addEventListener('offline', () => {
+  store.commit(SET_IS_DATABASE_SYNCED, false);
+})
+window.addEventListener('online', () => {
+  syncWithDatabase();
+})
+
+if(process.env.VUE_APP_ENVIRONMENT !== 'local' && 'serviceWorker' in navigator){
   navigator.serviceWorker.register('./service-worker.js').then(reg => {
     if(reg.installing) {
       console.log('Service worker installing');

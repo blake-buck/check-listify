@@ -11,7 +11,8 @@ module.exports = {
         getAccountConfig:state => state.accountConfig,
         getAccountConfigLoaded: state => state.accountConfigLoaded,
         
-        getDatabaseSyncing: state => state.databaseSyncing
+        getDatabaseSyncing: state => state.databaseSyncing,
+        getIsDatabaseSynced: state => state.isDatabaseSynced
     }
     
 }
