@@ -32,6 +32,13 @@ useAuthenticationRoutes(app);
 useAccountRoutes(app);
 useChecklistRoutes(app);
 
-app.get('*', express.static(path.join(__dirname, '../client/dist/')));
+app.get(
+    '*', 
+    express.static(path.join(__dirname, '../client/dist/')),
+    (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+    }
+);
+
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
