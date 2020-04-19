@@ -4,7 +4,7 @@
 .block-button:active{
     opacity:0.7;
 }
-.light .block-button{
+.light .block-button, .light .block-fab{
     color:white;
     background:rgba(0,0,0, 1);
 }

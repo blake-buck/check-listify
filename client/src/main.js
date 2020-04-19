@@ -7,6 +7,8 @@ const {initializeGlobalComponents} = require('./utils/initializeGlobalComponents
 const {syncWithDatabase, initializeSyncListeners} = require('./store/index');
 const {registerServiceWorker} = require('./utils/registerServiceWorker');
 
+const SyncingDialog = require('./components/SyncingDialog/SyncingDialog').default;
+
 initializeGlobalComponents(Vue);
 Vue.config.productionTip = false;
 
@@ -49,7 +51,13 @@ let vm = new Vue({
   },
 
   render: function(createComponent){
-    return createComponent(this.viewComponent)
+    return createComponent(
+      'div',
+      [
+        createComponent(this.viewComponent),
+        createComponent(SyncingDialog)
+      ]
+    )
   }
 
 });
