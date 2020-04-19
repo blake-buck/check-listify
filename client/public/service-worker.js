@@ -1,10 +1,16 @@
 self.addEventListener('install', e => {
     e.waitUntil(
         caches.open('v1').then(cache => {
+            console.log('CACHING')
             return cache.addAll([
                 '/',
+                '/login',
                 '/index.html',
                 '/favicon.ico',
+
+                // '/manifest.json',
+                // '/icon192.png',
+                // '/icon512.png',
                 
                 '/css/app.925a991d.css',
                 '/js/app.5bf1d475.js',
@@ -12,6 +18,7 @@ self.addEventListener('install', e => {
                 '/img/checklist_light.43267f33.png',
                 '/img/landing_page_light.baddfee8.png',
                 '/img/landing_page_dark.feb9e14b.png',
+                
 
                 'https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2',
             ])
