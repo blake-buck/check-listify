@@ -11,6 +11,9 @@ function useAuthenticationRoutes(app){
     app.post('/api/register', limitThreeAttempts, authController.register);
     app.post('/api/login', rateLimiter(10, 60), slowdown(3, 60, 1),  authController.login);
 
+    // requires refresh token
+    app.post('/api/refresh-token', authController.refreshToken);
+
     // previousPassword, proposedPassword --> fields on req.body
     app.post('/api/change-password', limitThreeAttempts, authController.changePassword)
 

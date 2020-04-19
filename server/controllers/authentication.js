@@ -2,7 +2,7 @@ require('dotenv').config();
 const aws = require('aws-sdk');
 
 const {authModel} = require('../models/models');
-const {createSecrectHash, formatHeaders, cognitoCallback} = require('./util');
+const {createSecrectHash, formatHeaders, cognitoCallback, getUserIdFromToken} = require('./util');
 
 // Environment Variables
 const {
@@ -53,7 +53,7 @@ async function register(req, res){
     cognito.signUp(params, cognitoCallback(successHandler, res));
 }
 
-// Log a user in using username and passwsord, returning a JWT
+// Log a user in using username and passwsord, returning a JWT and refreshToken
 async function login(req, res){
     const {username, password} = req.body;
 
@@ -78,8 +78,35 @@ async function login(req, res){
 
     let successHandler = (data) => {
         let jwt = data.AuthenticationResult.AccessToken;
-        res.status(200).send({jwt, status:200});
+        let refresh = data.AuthenticationResult.RefreshToken;
+        res.status(200).send({jwt, refresh, status:200});
     }
+
+    cognito.adminInitiateAuth(params, cognitoCallback(successHandler, res));
+}
+
+async function refreshToken(req, res){
+    const params = {
+        UserPoolId: AWS_USER_POOL_ID,
+        ClientId: AWS_CLIENT_ID,
+        AuthFlow:'REFRESH_TOKEN_AUTH',
+        
+        AuthParameters:{
+            REFRESH_TOKEN:req.body.refresh,
+            SECRET_HASH: createSecrectHash(getUserIdFromToken(req.headers.jwt)),
+        },
+
+        ContextData:{
+            IpAddress:   req.ip,
+            ServerName:  SERVER_NAME,
+            ServerPath:  '/api/refresh-token',
+            HttpHeaders: formatHeaders(req.headers)
+        }
+    };
+
+    let successHandler = (data) => {
+        res.status(200).send({data, status:200});
+    };
 
     cognito.adminInitiateAuth(params, cognitoCallback(successHandler, res));
 }
@@ -141,6 +168,7 @@ async function confirmForgotPassword(req, res){
 module.exports = {
     register,
     login,
+    refreshToken,
     deleteAccount,
     changePassword,
     forgotPassword,

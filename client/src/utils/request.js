@@ -1,17 +1,19 @@
-function get(url, useJwt){
+const {getBaseUrl} = require('./getBaseUrl');
+
+async function get(url, useJwt){
     let headers = {}
     if(useJwt){
-        headers.jwt = localStorage.getItem('jwt');
+        headers.jwt = await getToken();
     }
     return fetch(url, {method:'GET', headers}).then(res => res.json());
 }
 
-function post(url, body, useJwt){
+async function post(url, body, useJwt){
     let headers = {
         'Content-Type':'application/json'
     }
     if(useJwt){
-        headers.jwt = localStorage.getItem('jwt');
+        headers.jwt = await getToken();
     }
     return fetch(
         url, 
@@ -23,12 +25,12 @@ function post(url, body, useJwt){
     ).then(response => response.json());
 }
 
-function put(url, body, useJwt){
+async function put(url, body, useJwt){
     let headers = {
         'Content-Type':'application/json'
     }
     if(useJwt){
-        headers.jwt = localStorage.getItem('jwt');
+        headers.jwt = await getToken();
     }
     return fetch(
         url,
@@ -40,10 +42,10 @@ function put(url, body, useJwt){
     ).then(response => response.json())
 }
 
-function del(url, useJwt){
+async function del(url, useJwt){
     let headers = {}
     if(useJwt){
-        headers.jwt = localStorage.getItem('jwt');
+        headers.jwt = await getToken();
     }
     return fetch(
         url,
@@ -52,6 +54,44 @@ function del(url, useJwt){
             headers
         }
     ).then(response => response.json())
+}
+
+
+async function getToken(){
+    const jwt = localStorage.getItem('jwt');
+
+    // get the middle section of the JWT, decode it from Base64, then parse the result
+    const jwtObj = JSON.parse(
+        atob(localStorage.getItem('jwt').split('.')[1])
+    );
+
+    const body = JSON.stringify({
+        refresh:localStorage.getItem('refresh')
+    });
+
+
+    // if token is expired, get a new access token
+    if(Date.now() / 1000 > jwtObj.exp){
+        const headers = {
+            jwt
+        };
+    
+        const response = await fetch(
+            `${getBaseUrl()}/api/refresh-token`,
+            {
+                method:'POST',
+                body,
+                headers
+            }
+        );
+
+        const json = await response.json();
+
+        return json.data.AuthenticationResult.AccessToken;
+    }
+
+
+    return jwt;
 }
 
 module.exports = {

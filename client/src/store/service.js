@@ -90,6 +90,7 @@ async function syncChecklistWithItems(checklist, items){
 
 export {
     login,
+    refreshToken,
     register,
     changePassword,
     deleteAccount,

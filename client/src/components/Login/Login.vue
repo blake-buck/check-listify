@@ -93,6 +93,13 @@ export default {
         }
     },
 
+    created(){
+        const jwt = localStorage.getItem('jwt');
+        if(jwt){
+            navigateTo('/user');
+        }
+    },
+
     methods:{
         
         async submitForm(e, type){
@@ -103,6 +110,7 @@ export default {
             if(response.status === 200){
                 // you're not supposed to store JWTs in local storage, this should be temporary
                 localStorage.setItem('jwt', response.jwt);
+                localStorage.setItem('refresh', response.refresh);
                 navigateTo('/user');
             }
             else{
