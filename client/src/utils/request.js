@@ -65,22 +65,20 @@ async function getToken(){
         atob(localStorage.getItem('jwt').split('.')[1])
     );
 
-    const body = JSON.stringify({
-        refresh:localStorage.getItem('refresh')
-    });
-
-
     // if token is expired, get a new access token
     if(Date.now() / 1000 > jwtObj.exp){
         const headers = {
+            'Content-Type':'application/json',
             jwt
         };
+
+       const  body = {refresh:localStorage.getItem('refresh')}
     
         const response = await fetch(
             `${getBaseUrl()}/api/refresh-token`,
             {
                 method:'POST',
-                body,
+                body:JSON.stringify(body),
                 headers
             }
         );
