@@ -1,41 +1,39 @@
 <template>
-    <div class='backdrop' v-if='isSyncing'>
-        <div class='dialog'>
-            <h3>Syncing with Database</h3>
-            <i class='material-icons'>autorenew</i>
-        </div>
+<div class='backdrop' v-if='isSyncing'>
+    <div class='dialog' >
+        <h3>Syncing with Database</h3>
+        <i class='material-icons'>autorenew</i>
     </div>
+</div>
 </template>
 
 <style scoped>
     div.backdrop{
         position:fixed;
-        top:0px;
+        bottom:0px;
         left:0px;
-        width:100vw;
-        height:100vh;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        background:rgba(0,0,0, 0.1);
+        width:100%;
+        background:rgba(0,0,0,0);
     }
     div.dialog{
-        width:100%;
-        max-width:500px;
-        background:gray;
+        background:rgba(0,0,0, .7);
+        color:white;
         display:flex;
-        flex-direction: column;
-        align-items: center;
-        padding:20px;
+        justify-content: center;
+        align-items:center;
+        max-width:500px;
+        margin-left:auto;
+        margin-right:auto;
+        padding:5px;
     }
     h3{
         font-size:1.5em;
         font-weight:bold;
-        text-align: center;
+        margin-right:40px;
     }
     i{
-        font-size:150px;
-        margin:20px;
+        margin-left:40px;
+        font-size:36px;
         animation:rotate 3s infinite;
     }
 

@@ -30,49 +30,48 @@ export async function syncWithDatabase(store){
     let createdChecklists = localConstants.createdChecklists;
     let createdChecklistItems = localConstants.createdChecklistItems;
 
-    createdChecklists.forEach(async checklist => {
-        const items = createdChecklistItems.filter(item => item.ChecklistId === checklist.Id);
-        await store.dispatch(constants.SYNC_CHECKLIST_WITH_ITEMS, {checklist, items});
-        await store.dispatch(constants.DELETE_CHECKLIST, checklist.Id);
-    })
+    await Promise.all(
+        createdChecklists.map(async checklist => {
+            const items = createdChecklistItems.filter(item => item.ChecklistId === checklist.Id);
+            return await Promise.all([
+                store.dispatch(constants.SYNC_CHECKLIST_WITH_ITEMS, {checklist, items}),
+                store.dispatch(constants.DELETE_CHECKLIST, checklist.Id)
+            ]);
+        })
+    );
 
-    createdChecklistItems.filter(item => item.ChecklistId > 0).forEach(item => {
-        store.dispatch(constants.ADD_CHECKLIST_ITEM, {name:item.Name, checklistId:item.ChecklistId});
-    })
-
+    await Promise.all(
+        createdChecklistItems.filter(item => item.ChecklistId > 0).map(async item => await store.dispatch(constants.ADD_CHECKLIST_ITEM, {name:item.Name, checklistId:item.ChecklistId}))
+    );
 
 
     // take "deletedChecklists" from localStorage and send delete requests for each of them
     let deletedChecklists = localConstants.deletedChecklists ? [...localConstants.deletedChecklists] : [];
-    deletedChecklists.forEach(async id => {
-        await store.dispatch(constants.DELETE_CHECKLIST, id);
-    });
-
+    await Promise.all(
+        deletedChecklists.map(async id => await store.dispatch(constants.DELETE_CHECKLIST, id))
+    );
 
 
     // take "updatedChecklists" from localStorage and send put requests for each of them
     let updatedChecklists = localConstants.updatedChecklists ? [...localConstants.updatedChecklists] : [];
-    updatedChecklists.forEach(async checklist => {
-        await store.dispatch(constants.UPDATE_CHECKLIST, checklist);
-    });
-
+    await Promise.all(
+        updatedChecklists.map(async checklist => await store.dispatch(constants.UPDATE_CHECKLIST, checklist))
+    );
     
 
     // take "deletedChecklistItems" from localStorage and send delete requests for each of them
     let deletedChecklistItems = localConstants.deletedChecklistItems ? [...localConstants.deletedChecklistItems] : [];
-    deletedChecklistItems.forEach(id => {
-        store.dispatch(constants.DELETE_CHECKLIST_ITEM, id);
-    });
-
-
+    
+    await Promise.all(
+        deletedChecklistItems.map(async id => await store.dispatch(constants.DELETE_CHECKLIST_ITEM, id))
+    );
 
     // take "updatedChecklistItems" from localStorage and send put requests for each of them
     let updatedChecklistItems = localConstants.updatedChecklistItems ? [...localConstants.updatedChecklistItems] : [];
-    updatedChecklistItems.forEach(async item => {
-        await store.dispatch(constants.UPDATE_CHECKLIST_ITEM, item);
-    });
-
-
+    
+    await Promise.all(
+        updatedChecklistItems.map(item => store.dispatch(constants.UPDATE_CHECKLIST_ITEM, item))
+    );
 
     // take accountConfig from stored state and send put request for it -- local account settings always beat out stored account settings
     const localAccountConfig = storageService.retrieveAccountConfig();
@@ -83,17 +82,15 @@ export async function syncWithDatabase(store){
 
 
     // retrieve new checklists and items from database
-    await store.dispatch(constants.RETRIEVE_CHECKLISTS);
-    await store.dispatch(constants.RETRIEVE_CHECKLIST_ITEMS);
-    await store.dispatch(constants.RETRIEVE_ACCOUNT_CONFIG);
-
-
+    await Promise.all([
+        store.dispatch(constants.RETRIEVE_CHECKLISTS),
+        store.dispatch(constants.RETRIEVE_CHECKLIST_ITEMS),
+        store.dispatch(constants.RETRIEVE_ACCOUNT_CONFIG)
+    ]);
 
     storageService.clearConstants();
     store.commit(SET_IS_DATABASE_SYNCED, true);
-    setTimeout(() => {
-        store.commit(SET_DATABASE_SYNCING, false);
-    }, 2500);
+    store.commit(SET_DATABASE_SYNCING, false);
 }
 
 export function initializeSyncListeners(vm){
@@ -125,6 +122,5 @@ export function initializeSyncListeners(vm){
 
     })
 }
-
 
 export default store
