@@ -84,8 +84,9 @@ async function getToken(){
         );
 
         const json = await response.json();
-
-        return json.data.AuthenticationResult.AccessToken;
+        const newToken = json.data.AuthenticationResult.AccessToken;
+        localStorage.setItem('jwt', newToken);
+        return newToken;
     }
 
 
