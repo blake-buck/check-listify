@@ -5,9 +5,11 @@
             <h1>{{checklist.Title}}</h1>
         </header>
         
-        <transition-group name='list'>
-            <ChecklistItem v-for='item in items' :key='item.Id' v-bind:item='item'></ChecklistItem>
-        </transition-group>
+        <div class='list-items'>
+            <transition-group name='list'>
+                <ChecklistItem v-for='item in items' :key='item.Id' v-bind:item='item'></ChecklistItem>
+            </transition-group>
+        </div>
 
         <transition name='fade'>
             <block-input v-if='addingNewItem' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='New Checklist Item'></block-input>

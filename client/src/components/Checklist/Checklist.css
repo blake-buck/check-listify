@@ -42,7 +42,9 @@ header h1{
     color:white;
 }
 
-
+.list-items{
+    overflow:hidden;
+}
 /* ANIMATIONS */
 
 .list-enter-active {

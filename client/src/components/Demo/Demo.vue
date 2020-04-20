@@ -9,10 +9,11 @@
 
             <block-button :clickHandler='navigateLogin' displayText='Login' displayType='primary'></block-button>
         </header>
-        
-        <transition-group name='list'>
-            <DemoItem v-for='item in items' :key='item.Id' v-bind:itemProp='item' v-bind:demoDelete='deleteItem'></DemoItem>
-        </transition-group>
+        <div class='list-items'>
+            <transition-group name='list'>
+                <DemoItem v-for='item in items' :key='item.Id' v-bind:itemProp='item' v-bind:demoDelete='deleteItem'></DemoItem>
+            </transition-group>
+        </div>
 
         <transition name='fade'>
             <block-input v-if='addingNewItem' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='New Checklist Item'></block-input>
