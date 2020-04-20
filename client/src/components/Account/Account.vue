@@ -12,7 +12,7 @@
             <!-- <block-toggle displayName='Line Through' :toggle='() => editItem(accountConfig, "LineThrough", !accountConfig.LineThrough)' :isTrue='accountConfig.LineThrough'></block-toggle> -->
         </div>
 
-        <form class='change-password' v-on:submit='changePassword'>
+        <form class='change-password' v-if='isOnline' v-on:submit='changePassword'>
             <h3>Change Password</h3>
             <span v-if='form.displayMessage'>{{form.displayMessage}}</span>
             <block-input placeholder='Old Password' :value='form.oldPassword' :keyupHandler='($event) => changeForm($event, "oldPassword")' type='password'></block-input>
@@ -22,7 +22,7 @@
         </form>
 
         <div class='buttons'>
-            <block-button displayText='Delete Account' displayType='attention' :clickHandler='toggleDeleteDialog'></block-button>
+            <block-button v-if='isOnline' displayText='Delete Account' displayType='attention' :clickHandler='toggleDeleteDialog'></block-button>
             <block-button displayText='Logout' displayType='warn' :clickHandler='logout'></block-button>
         </div>
 

@@ -29,7 +29,9 @@ export default {
                 confirmNewPassword:''
             },
             
-            deleteDialogOpen:false
+            deleteDialogOpen:false,
+
+    
         }
     },
 
@@ -39,6 +41,9 @@ export default {
         },
         selectedItem(){
             return this.accountConfig.ThemeId;
+        },
+        isOnline(){
+            return navigator.onLine
         }
     },
 
@@ -108,6 +113,7 @@ export default {
 
         logout(){
             localStorage.clear('jwt');
+            localStorage.clear('refresh');
             navigateTo('/');
         }
     }
