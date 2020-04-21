@@ -36,6 +36,21 @@ async function queryToPromise(queryString, parameters){
     })
 }
 
+async function logError(ip, e){
+    console.log(e);
+    try{
+        await queryToPromise(
+            'INSERT INTO errors(Ip, Message) VALUES(?, ?)',
+            [JSON.stringify(ip), JSON.stringify(e)]
+        )
+    }
+    catch(realErr){
+        console.log('CANT LOG TO DB');
+        console.log(realErr);
+    }
+}
+
 module.exports = {
-    queryToPromise
+    queryToPromise,
+    logError
 }

@@ -1,11 +1,11 @@
 const {accountModel} = require('../models/models');
-const {decodeToken, getUserIdFromToken} = require('./util');
+const {logError} = require('../models/util');
+const {getUserIdFromToken} = require('./util');
 
 async function getAccountConfig(req, res){
     // get userId from JWT
     const userId = getUserIdFromToken(req.headers.jwt);
     try{
-
         // get accountConfig from database
         const accountConfig = await accountModel.getAccountConfig(userId)
 
@@ -13,6 +13,7 @@ async function getAccountConfig(req, res){
         res.status(200).send({accountConfig, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
     
@@ -31,7 +32,7 @@ async function updateAccountConfig(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
-        console.log(error);
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 

@@ -1,5 +1,6 @@
-const {checklistModel} = require('../models/models')
-const {getUserIdFromToken} = require('./util')
+const {checklistModel} = require('../models/models');
+const {logError} = require('../models/util');
+const {getUserIdFromToken} = require('./util');
 
 async function getUserChecklists(req, res){
     // get userId from JWT
@@ -10,6 +11,7 @@ async function getUserChecklists(req, res){
         res.status(200).send({results, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -25,6 +27,7 @@ async function createChecklistForUser(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -41,6 +44,7 @@ async function updateChecklistForUser(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status: 400});
     }
 }
@@ -56,6 +60,7 @@ async function deleteChecklistForUser(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -70,6 +75,7 @@ async function getUserChecklistItems(req, res){
         res.status(200).send({items, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -86,6 +92,7 @@ async function createChecklistItem(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -102,6 +109,7 @@ async function updateChecklistItem(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -117,6 +125,7 @@ async function deleteChecklistItem(req, res){
         res.status(200).send({message, status:200});
     }
     catch(error){
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }
@@ -135,7 +144,7 @@ async function syncChecklistWithItems(req, res){
         res.status(200).send({createdChecklist, itemGroup, status:200});
     }
     catch(error){
-        console.log(error);
+        logError(req.ip, error);
         res.status(400).send({error, status:400});
     }
 }

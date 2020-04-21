@@ -1,6 +1,7 @@
 const jsonwebtoken = require('jsonwebtoken');
 const crypto = require('crypto');
 const { AWS_COGNITO_SECRET_HASH, AWS_CLIENT_ID } = process.env;
+const {logError} = require('../models/util');
 
 // this decodes a JWT without verifying its signature. 
 // Should only be used when the jwt being decoded has been previously verified in the call, e.g. by using
@@ -40,9 +41,10 @@ function formatHeaders(headers){
 // Standardized cognitoCallback function pattern
 // successHandler can be a string or a function, if a string then it is used as a message. If it is a function the function
 // is executed
-function cognitoCallback(successHandler, res){
+function cognitoCallback(successHandler, res, ip){
     return function(error, data){
         if(error){
+            logError(ip, error);
             // Handles edge case -- obscures whether or not a user already exists in the system when the register function is called
             if(error.message === 'An account with the given email already exists.'){
                 res.status(200).send({status:200, message:'Check your email for a registration message'});
