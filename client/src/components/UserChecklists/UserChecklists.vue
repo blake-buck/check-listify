@@ -16,6 +16,8 @@
                 <block-input :shouldAutofocus='true' v-if='displayChecklistTemplate' :blurHandler='blurChecklist' :keyupHandler='keyupChecklist' placeholder='Checklist title'></block-input>
             </transition>
 
+            <div class='spacer'> </div>
+
         </div>
 
         <transition name='fade'>

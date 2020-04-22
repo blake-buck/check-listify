@@ -1,8 +1,7 @@
 .Checklist{
-    /* this gives extra breathing room so the fab doesn't obscure list items */
-    padding-bottom:80px;
+    
     animation:fadeIn 0.5s;
-    height:100vh;
+    min-height:100vh;
 }
 
 .Checklist.dark{
@@ -44,6 +43,11 @@ header h1{
 
 .list-items{
     overflow:hidden;
+}
+
+.spacer{
+    /* this gives extra breathing room so the fab doesn't obscure list items */
+    margin-bottom:80px;
 }
 /* ANIMATIONS */
 

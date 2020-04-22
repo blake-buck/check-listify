@@ -12,8 +12,8 @@ self.addEventListener('install', e => {
                 // '/icon192.png',
                 // '/icon512.png',
                 
-                '/css/app.925a991d.css',
-                '/js/app.5bf1d475.js',
+                '/css/app.6366d054.css',
+                '/js/app.51789bba.js',
                 '/js/chunk-vendors.57d69925.js',
                 '/img/checklist_light.43267f33.png',
                 '/img/landing_page_light.baddfee8.png',

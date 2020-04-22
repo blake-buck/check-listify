@@ -4,7 +4,7 @@ function getBaseUrl(){
     }
 
     if(process.env.VUE_APP_ENVIRONMENT === 'prod'){
-        return 'http://localhost:9090'
+        return 'http://localhost:3000'
     }
 
     throw new Error('Environment not recognized.')

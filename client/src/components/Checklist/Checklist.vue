@@ -9,11 +9,15 @@
             <transition-group name='list'>
                 <ChecklistItem v-for='item in items' :key='item.Id' v-bind:item='item'></ChecklistItem>
             </transition-group>
+
+            <transition name='fade'>
+                <block-input v-if='addingNewItem' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='New Checklist Item'></block-input>
+            </transition>
+
+            <div class='spacer'> </div>
         </div>
 
-        <transition name='fade'>
-            <block-input v-if='addingNewItem' :shouldAutofocus='true' :keyupHandler="($event) => keyupInput($event)" :blurHandler="($event) => blurInput($event)" placeholder='New Checklist Item'></block-input>
-        </transition>
+        
 
         <transition name='fade'>
             <block-fab displayType='primary' v-if='!addingNewItem' :clickHandler='displayInput' displayText='Add Item'></block-fab>
