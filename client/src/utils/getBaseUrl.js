@@ -4,7 +4,7 @@ function getBaseUrl(){
     }
 
     if(process.env.VUE_APP_ENVIRONMENT === 'prod'){
-        return 'http://localhost:3000'
+        return 'https://check-listify.com'
     }
 
     throw new Error('Environment not recognized.')
