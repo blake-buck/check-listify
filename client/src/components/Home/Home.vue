@@ -12,7 +12,7 @@
         <div class='register-blurb'>
             <span>
                 <h3>Lightweight, unopinionated task management</h3>
-                <p>Check-listify is a simpler way to manage your to-dos. No overcomplicated features, but instead a mobile friendly application that just works. </p>
+                <p>Check-listify is a mobile friendly application that just works. If you're tired of dealing with complicated task management software, Check-listify presents a simpler alternative. </p>
             </span>
             <block-button displayText='Sign Up' displayType='secondary' :clickHandler='() => navigateTo("/register")'></block-button>
         </div>
@@ -32,7 +32,7 @@
             </span>
             <span>
                 <h3>Choose between dark and light themes</h3>
-                <p>Prefer working with a darker theme? No problem at all!</p>
+                <p>Prefer working with a darker theme? Check-listify gives you that option.</p>
             </span>
         </div>
 

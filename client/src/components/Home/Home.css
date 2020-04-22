@@ -48,6 +48,7 @@ header button{
     margin:5px;
 }
 
+
 .compare-blurb{
     display:flex;
     flex-direction: column;
@@ -86,6 +87,11 @@ header button{
     margin-left:auto;
     margin-right:auto;
     padding:10px 20px;
+}
+
+.register-blurb span *, .register-blurb button{
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
 b{
