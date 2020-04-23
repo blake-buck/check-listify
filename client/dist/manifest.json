@@ -1,7 +1,7 @@
 {
     "name":"Check-listify",
     "short_name":"Checklistify",
-    "start_url":"/",
+    "start_url":"/user",
     "display":"standalone",
     "background_color":"#fff",
     "description":"Lightweight, unopinionated task management.",

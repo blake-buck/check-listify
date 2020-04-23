@@ -1,10 +1,13 @@
 self.addEventListener('install', e => {
     e.waitUntil(
-        caches.open('v1').then(cache => {
+        caches.open('v2').then(cache => {
             console.log('CACHING')
             return cache.addAll([
                 '/',
                 '/login',
+                '/demo',
+                '/user',
+                '/user/account',
                 '/index.html',
                 '/favicon.ico',
 
@@ -12,12 +15,12 @@ self.addEventListener('install', e => {
                 // '/icon192.png',
                 // '/icon512.png',
                 
-                '/css/app.6366d054.css',
-                '/js/app.c745c41f.js',
-                '/js/chunk-vendors.aec150d7.js',
-                '/img/checklist_light.43267f33.png',
-                '/img/landing_page_light.baddfee8.png',
-                '/img/landing_page_dark.feb9e14b.png',
+                '/css/app.css',
+                '/js/app.js',
+                '/js/chunk-vendors.js',
+                '/img/checklist_light.png',
+                '/img/landing_page_light.png',
+                '/img/landing_page_dark.png',
                 
 
                 'https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2',
@@ -34,7 +37,9 @@ self.addEventListener('fetch', e => {
             return response;
         }).catch(err => {
             return caches.match(e.request).then(response => {
-                return response
+                if(response !== undefined){
+                    return response
+                }
             })
         })
     )

@@ -58,11 +58,16 @@ async function del(url, useJwt){
 
 
 async function getToken(){
+
     const jwt = localStorage.getItem('jwt');
+
+    if(!jwt){
+        return null;
+    }
 
     // get the middle section of the JWT, decode it from Base64, then parse the result
     const jwtObj = JSON.parse(
-        atob(localStorage.getItem('jwt').split('.')[1])
+        atob(jwt.split('.')[1])
     );
 
     // if token is expired, get a new access token

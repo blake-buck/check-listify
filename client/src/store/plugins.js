@@ -10,7 +10,7 @@ const storeStateInLocalStorage = (store) => {
         // localStorage: checklists:[2items], items:[3items]
         // SET_CHECKLISTS
         // localStorage: checklists:[2items], items:[]
-        if(mutation.type.includes('SET_') && !navigator.onLine){
+        if((mutation.type.includes('SET_' ) || mutation.type.includes('M_UPDATE_ACCOUNT_CONFIG')) && !navigator.onLine){
             // do nothing -- this empty if statement should get replaced eventually
         }
         else{

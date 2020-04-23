@@ -1,5 +1,5 @@
 function registerServiceWorker(){
-    if(process.env.VUE_APP_ENVIRONMENT !== 'local' && 'serviceWorker' in navigator){
+    if('serviceWorker' in navigator){
         navigator.serviceWorker.register('service-worker.js').then(reg => {
           if(reg.installing) {
             console.log('Service worker installing');

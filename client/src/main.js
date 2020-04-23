@@ -38,7 +38,7 @@ let vm = new Vue({
           case 'Account':
           case 'Checklist':
 
-            if(this.$store.getters.getIsDatabaseSynced === false && navigator.onLine){
+            if(this.$store.getters.getIsDatabaseSynced === false){
               syncWithDatabase(this.$store);
             }
 

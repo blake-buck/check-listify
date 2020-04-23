@@ -42,9 +42,8 @@ async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
             }
         }
     }
-
-    // // If user is offline, deal directly with localStorage
-    if(!navigator.onLine){
+    else{
+        // If user is offline, deal directly with localStorage
         if(offlineFunc){
             offlineFunc();
         }
@@ -52,11 +51,12 @@ async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
             goodRequest();
         }
     }
+
+    
     
 }
 export default {
-    
-    
+
     async [constants.RETRIEVE_CHECKLISTS](context){
         actionCreator(
             () => appService.retrieveChecklists(),
@@ -69,6 +69,7 @@ export default {
             }
         )
     },
+
     async [constants.ADD_CHECKLIST](context, title){
         actionCreator(
             () => appService.addChecklist(title),
@@ -177,7 +178,9 @@ export default {
         actionCreator(
             () => appService.updateAccountConfig(accountConfigToNumber(config)),
             () => context.commit(M_UPDATE_ACCOUNT_CONFIG, config),
-            (error) => console.log('ERROR ', error)
+            (error) => console.log('ERROR ', error),
+
+            () => null
         )
     },
 
