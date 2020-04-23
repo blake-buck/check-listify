@@ -52,3 +52,10 @@ input{
 	border-radius: 0px;
 	box-shadow:none;
 }
+
+body.light{
+	background:white;
+}
+body.dark{
+	background:#2c2c2c;
+}

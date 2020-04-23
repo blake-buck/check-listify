@@ -1,5 +1,5 @@
 const storageService = require('./storageService');
-const {M_ADD_CHECKLIST, M_ADD_CHECKLIST_ITEM} = require('./mutations');
+const {M_ADD_CHECKLIST, M_ADD_CHECKLIST_ITEM, SET_ACCOUNT_CONFIG, M_UPDATE_ACCOUNT_CONFIG} = require('./mutations');
 const {scrollToBottom} = require('../utils/scrollToBottom');
 
 // store state locally after every mutation
@@ -36,9 +36,27 @@ const scrollAfterAddingListItem = store => {
     })
 }
 
+const applyClassToPageBody = store => {
+    store.subscribe((mutation) => {
+
+        switch(mutation.type){
+
+            case M_UPDATE_ACCOUNT_CONFIG:
+            case SET_ACCOUNT_CONFIG:
+                document.body.className = mutation.payload.themeName;
+                break;
+                
+            default:
+                break;
+        }
+
+    })
+}
+
 module.exports = {
     plugins:[
         storeStateInLocalStorage,
-        scrollAfterAddingListItem
+        scrollAfterAddingListItem,
+        applyClassToPageBody
     ]
 }
