@@ -62,7 +62,6 @@ export default {
         addItem(name){
             if(this.addingNewItem){
                 this.$store.dispatch(ADD_CHECKLIST_ITEM, {name, checklistId: this.checklistId});
-                scrollToBottom();
             }
         },
 

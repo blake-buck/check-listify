@@ -1,4 +1,6 @@
 const storageService = require('./storageService');
+const {M_ADD_CHECKLIST, M_ADD_CHECKLIST_ITEM} = require('./mutations');
+const {scrollToBottom} = require('../utils/scrollToBottom');
 
 // store state locally after every mutation
 const storeStateInLocalStorage = (store) => {
@@ -19,8 +21,24 @@ const storeStateInLocalStorage = (store) => {
     })
 }
 
+const scrollAfterAddingListItem = store => {
+    store.subscribe((mutation) => {
+        switch(mutation.type){
+            case M_ADD_CHECKLIST:
+            case M_ADD_CHECKLIST_ITEM:
+
+                // scrollToBottom();
+                setTimeout(() => scrollToBottom(), 250);
+                break;
+            default:
+                break;
+        }
+    })
+}
+
 module.exports = {
     plugins:[
-        storeStateInLocalStorage
+        storeStateInLocalStorage,
+        scrollAfterAddingListItem
     ]
 }

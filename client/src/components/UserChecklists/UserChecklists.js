@@ -66,7 +66,6 @@ export default {
             // this check prevents a duplicate action from being fired
             if(this.displayChecklistTemplate){
                 this.$store.dispatch(ADD_CHECKLIST, title);
-                scrollToBottom();
             }
         },
         
