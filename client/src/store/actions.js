@@ -33,7 +33,7 @@ async function actionCreator(onlineFunc, goodRequest, badRequest, offlineFunc){
             goodRequest(response);
         }
         else if(response.status === 401){
-            localStorage.clear('jwt');
+            localStorage.clear();
             navigateTo('/');
         }
         else{

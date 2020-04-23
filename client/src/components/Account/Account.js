@@ -101,7 +101,7 @@ export default {
             const response = await appService.deleteAccount();
 
             if(response.status === 200){
-                localStorage.clear('jwt')
+                localStorage.clear();
                 navigateTo('/');
             }
             else{
@@ -112,8 +112,7 @@ export default {
         },
 
         logout(){
-            localStorage.clear('jwt');
-            localStorage.clear('refresh');
+            localStorage.clear();
             navigateTo('/');
         }
     }
