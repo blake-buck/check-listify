@@ -51,11 +51,10 @@ export default {
 
             this.displayInput = true;
             this.hideActionButtons();
-
-            setTimeout(() => this.canToggleComplete = true, 0);
         },
 
         hideInput(){
+            this.canToggleComplete = true
             this.displayInput = false;
             this.hideActionButtons();
         },
