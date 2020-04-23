@@ -3,6 +3,7 @@ const {ADD_CHECKLIST_ITEM} = constants;
 const {navigateTo} = require('../../utils/router');
 const {blurHelper} = require('../../utils/blurHelper');
 const {keyupHelper} = require('../../utils/keyupHelper');
+const {scrollToBottom} = require('../../utils/scrollToBottom');
 
 import ChecklistItem from './ChecklistItem/ChecklistItem.vue';
 
@@ -38,6 +39,7 @@ export default {
     methods:{
         displayInput(){
             this.addingNewItem = true;
+            scrollToBottom();
         },
         hideInput(){
             this.addingNewItem = false;
@@ -60,6 +62,7 @@ export default {
         addItem(name){
             if(this.addingNewItem){
                 this.$store.dispatch(ADD_CHECKLIST_ITEM, {name, checklistId: this.checklistId});
+                scrollToBottom();
             }
         },
 

@@ -3,6 +3,7 @@ const {ADD_CHECKLIST} = constants;
 const {navigateTo} = require('../../utils/router');
 const {blurHelper} = require('../../utils/blurHelper');
 const {keyupHelper} = require('../../utils/keyupHelper');
+const {scrollToBottom} = require('../../utils/scrollToBottom')
 
 import ListItem  from './ListItem/ListItem.vue';
 
@@ -38,6 +39,7 @@ export default {
 
         showChecklistTemplate(){
             this.displayChecklistTemplate = true;
+            scrollToBottom();
         },
 
         hideChecklistTemplate(){
@@ -64,6 +66,7 @@ export default {
             // this check prevents a duplicate action from being fired
             if(this.displayChecklistTemplate){
                 this.$store.dispatch(ADD_CHECKLIST, title);
+                scrollToBottom();
             }
         },
         

@@ -1,4 +1,5 @@
 const {navigateTo} = require('../../utils/router');
+const {scrollToBottom} = require('../../utils/scrollToBottom');
 
 import DemoItem from './DemoItem/DemoItem.vue';
 
@@ -24,6 +25,7 @@ export default {
     methods:{
         displayInput(){
             this.addingNewItem = true;
+            scrollToBottom();
         },
         hideInput(){
             this.addingNewItem = false;
@@ -48,6 +50,7 @@ export default {
         addItem(name){
             if(this.addingNewItem){
                 this.items = [...this.items, {Id:++this.currentId, Name:name, Checked:false}];
+                scrollToBottom();
             }
         },
 
