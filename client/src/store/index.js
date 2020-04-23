@@ -88,9 +88,14 @@ export async function syncWithDatabase(store){
         store.dispatch(constants.RETRIEVE_ACCOUNT_CONFIG)
     ]);
 
+    let timeoutPeriod = 0;
+    if(createdChecklistItems.length > 0 || createdChecklists.length > 0 || deletedChecklistItems.length > 0 || deletedChecklists.length > 0){
+        timeoutPeriod = 1500;
+    }
+
     storageService.clearConstants();
     store.commit(SET_IS_DATABASE_SYNCED, true);
-    store.commit(SET_DATABASE_SYNCING, false);
+    setTimeout(() => store.commit(SET_DATABASE_SYNCING, false), timeoutPeriod);
 }
 
 export function initializeSyncListeners(vm){
