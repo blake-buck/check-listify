@@ -11,6 +11,9 @@ self.addEventListener('install', e => {
                 '/index.html',
                 '/favicon.ico',
 
+                '/fonts/RobotoCondensed-Regular.ttf',
+                '/fonts/useRoboto.css',
+
                 // '/manifest.json',
                 // '/icon192.png',
                 // '/icon512.png',
@@ -21,9 +24,6 @@ self.addEventListener('install', e => {
                 '/img/checklist_light.png',
                 '/img/landing_page_light.png',
                 '/img/landing_page_dark.png',
-                
-
-                'https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2',
             ])
         }).catch(e => console.log(e))
     )
@@ -36,7 +36,7 @@ self.addEventListener('fetch', e => {
         fetch(e.request).then(response => {
             return response;
         }).catch(err => {
-            return caches.match(e.request).then(response => {
+            return caches.match(e.request.url).then(response => {      
                 if(response !== undefined){
                     return response
                 }
