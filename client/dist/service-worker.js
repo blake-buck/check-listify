@@ -13,6 +13,8 @@ self.addEventListener('install', e => {
 
                 '/fonts/RobotoCondensed-Regular.ttf',
                 '/fonts/useRoboto.css',
+                '/fonts/MaterialIcons-Regular.ttf',
+                '/fonts/useIcons.css',
 
                 // '/manifest.json',
                 // '/icon192.png',
