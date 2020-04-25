@@ -39,7 +39,6 @@ export default {
     methods:{
         displayInput(){
             this.addingNewItem = true;
-            scrollToBottom();
         },
         hideInput(){
             this.addingNewItem = false;

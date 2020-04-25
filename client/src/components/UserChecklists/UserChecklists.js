@@ -39,7 +39,6 @@ export default {
 
         showChecklistTemplate(){
             this.displayChecklistTemplate = true;
-            scrollToBottom();
         },
 
         hideChecklistTemplate(){
