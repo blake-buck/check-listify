@@ -14,9 +14,9 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(cors({
-    origin:['http://localhost:8080','http://localhost:5000']
-}))
+// app.use(cors({
+//     origin:['http://localhost:8080','http://localhost:5000']
+// }))
 
 // global slowdown
 app.use(
