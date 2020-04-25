@@ -1,5 +1,5 @@
 function scrollToBottom(){
-    window.scrollBy({left:0, top:window.outerHeight + 1000, behavior:'smooth'});
+    window.scrollBy({left:0, top:window.outerHeight, behavior:'smooth'});
 }
 
 module.exports = {
