@@ -4,27 +4,6 @@
 .block-button:active{
     opacity:0.7;
 }
-.light .block-button, .light .block-fab{
-    color:white;
-    background:rgba(0,0,0, 1);
-}
-
-.light .block-button.primary, .light .block-fab.primary{
-    background:#1FD15D;
-}
-
-.light .block-button.secondary, .light .block-fab.secondary{
-    background: #39A1D1;
-}
-
-.light .block-button.warn, .light .block-fab.warn{
-    background: #FFCC00;
-}
-
-.light .block-button.attention, .light .block-fab.attention{
-    background:#E50000;
-}
-
 
 .dark .block-button, .dark .block-fab{
     background:#5c5c5c;
@@ -46,6 +25,28 @@
 .dark .block-button.attention, .dark .block-fab.attention{
     background:#FF3333;
 }
+
+.light .block-button, .light .block-fab{
+    color:white;
+    background:rgba(0,0,0, 1);
+}
+
+.light .block-button.primary, .light .block-fab.primary{
+    background:#1FD15D;
+}
+
+.light .block-button.secondary, .light .block-fab.secondary{
+    background: #39A1D1;
+}
+
+.light .block-button.warn, .light .block-fab.warn{
+    background: #FFCC00;
+}
+
+.light .block-button.attention, .light .block-fab.attention{
+    background:#E50000;
+}
+
 
 .block-icon-button:active{
     opacity:0.3;

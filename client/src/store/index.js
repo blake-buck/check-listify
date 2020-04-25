@@ -100,6 +100,8 @@ export async function syncWithDatabase(store){
 
 export function initializeSyncListeners(vm){
 
+    const hasJwt = localStorage.getItem('jwt') ? true : false;
+
     window.addEventListener('offline', () => {
         store.commit(SET_IS_DATABASE_SYNCED, false);
     })
@@ -107,15 +109,17 @@ export function initializeSyncListeners(vm){
     // if user is in a checklist that was created offline, boot them to the checklists screen whenever
     // database is syncing
     window.addEventListener('online', () => {
-        vm.$store.commit(SET_IS_DATABASE_SYNCED, true);
+        if(hasJwt){
+            vm.$store.commit(SET_IS_DATABASE_SYNCED, true);
 
-        const id = +window.location.pathname.split('/').pop();
-
-        if(id && id < 0){
-            navigateTo('/user');
+            const id = +window.location.pathname.split('/').pop();
+    
+            if(id && id < 0){
+                navigateTo('/user');
+            }
+    
+            syncWithDatabase(vm.$store);
         }
-
-        syncWithDatabase(vm.$store);
     })
 
     window.addEventListener('load', () => {
@@ -125,6 +129,22 @@ export function initializeSyncListeners(vm){
             navigateTo('/user');
         }
 
+    })
+
+    document.addEventListener('visibilitychange', () => {
+
+        if(hasJwt){
+
+            if(document.hidden){
+                vm.$store.commit(SET_IS_DATABASE_SYNCED, false);
+            }
+
+            else{
+                syncWithDatabase(vm.$store);
+            }
+            
+        }
+        
     })
 }
 

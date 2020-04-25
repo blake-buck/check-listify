@@ -26,8 +26,6 @@ const scrollAfterAddingListItem = store => {
         switch(mutation.type){
             case M_ADD_CHECKLIST:
             case M_ADD_CHECKLIST_ITEM:
-
-                // scrollToBottom();
                 setTimeout(() => scrollToBottom(), 250);
                 break;
             default:

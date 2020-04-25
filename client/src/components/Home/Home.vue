@@ -9,7 +9,7 @@
             <block-button :clickHandler='() => navigateTo("/login")' displayText='Login' displayType='primary'></block-button>
         </header>
         
-        <div class='register-blurb'>
+        <div class='register-blurb light'>
             <span>
                 <h3>Lightweight, unopinionated task management</h3>
                 <p>Check-listify is a mobile friendly application that just works. If you're tired of dealing with complicated task management software, Check-listify presents a simpler alternative. </p>

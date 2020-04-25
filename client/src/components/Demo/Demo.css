@@ -3,9 +3,8 @@
     min-height:100vh;
 }
 
-.Demo.dark{
-    background:#2c2c2c;
-    color:white;
+.Demo.light{
+    background:white;
 }
 
 .DemoItem:first-of-type{
@@ -26,11 +25,6 @@ header h1{
 
 .Demo.light header{
     background:lightgray;
-}
-
-.Demo.dark header{
-    background:#5c5c5c;
-    color:white;
 }
 
 .list-items{

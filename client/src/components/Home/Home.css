@@ -1,3 +1,7 @@
+.Home.light{
+    background:white;
+}
+
 header{
     display: flex;
     justify-content: space-between;
