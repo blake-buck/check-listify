@@ -61,7 +61,7 @@ export default {
     mounted(){
         if(this.shouldAutofocus){
             this.$refs.inputToAutofocus.focus();
-            setTimeout(() => this.$refs.inputToAutofocus.scrollIntoView(false, 50));
+            setTimeout(() => this.$refs.inputToAutofocus.scrollIntoView(false), 50);
         }
     }
 }
