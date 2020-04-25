@@ -18,11 +18,11 @@
 
     min-height:50px;
     height:100%;
-    width:70vw;
-    max-width:70vw;
+    width:75vw;
+    max-width:75vw;
 
     top:0px;
-    right:-70vw;
+    right:-75vw;
     transition:0.25s;
     
 } 
