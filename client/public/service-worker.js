@@ -1,6 +1,6 @@
 self.addEventListener('install', e => {
     e.waitUntil(
-        caches.open('v2').then(cache => {
+        caches.open('v3').then(cache => {
             console.log('CACHING')
             return cache.addAll([
                 '/',
@@ -31,6 +31,8 @@ self.addEventListener('install', e => {
         }).catch(e => console.log(e))
     )
 })
+
+
 
 // follows a network falling back to cache model -> should probably use a cache then network model in the future
 // but this works for now
@@ -74,7 +76,16 @@ self.addEventListener('fetch', e => {
 
     e.respondWith(
         fetch(request).then(response => {
-            return response;
+
+            caches.open('v3').then(cache => {
+
+                if(!/\/user\/checklist\/\d+/.test(url)){
+                    cache.put(request, response);
+                }
+                
+            })
+
+            return response.clone();
         }).catch(err => {
             
             // if the user is inside a checklist and refreshes, serve them the /user/checklist/ cached route

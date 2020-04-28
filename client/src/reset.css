@@ -48,6 +48,7 @@ header{
 }
 
 input{
+	font-family:'Roboto Condensed', sans-serif;
 	border:1px solid gray;
 	border-radius: 0px;
 	box-shadow:none;
