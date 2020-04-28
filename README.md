@@ -1,7 +1,9 @@
-![Image of Check-listify Landing Page](./client/src/assets/landing_page_light.png)
+<p align="center">
+  <img src="https://github.com/blake-buck/check-listify/blob/master/client/src/assets/landing_page_light.png" alt="Image of Check-listify Landing Page" width="321" height="570" /> 
+</p>
 
 # Check-listify
-Check-lisitfy is a simple to-do list tracker, with an emphasis placed on mobile and offline usage. It is also a Progressive Web App.
+Check-listify is a simple to-do list tracker, with an emphasis placed on mobile and offline usage. It is also a Progressive Web App.
 
 ## Features
 
