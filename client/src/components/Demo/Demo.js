@@ -16,9 +16,10 @@ export default {
             items:[
                 {Id:1, Name:'Click the "Add Item" button to add another item to the list', Checked:false},
                 {Id:2, Name:'Tap/click on an item to toggle completion', Checked:true},
-                {Id:3, Name:'If on mobile, slide from right to left on an item to edit/delete it', Checked:false}
+                {Id:3, Name:'If on mobile, slide from right to left on an item to edit/delete it', Checked:false},
+                {Id:4, Name:'If on IOS, tap "share" then "Add to homescreen" to add Check-listify as an app to your homescreen', Checked:false}
             ],
-            currentId:3
+            currentId:4
         }
     },
 
