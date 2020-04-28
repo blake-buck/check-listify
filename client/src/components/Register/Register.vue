@@ -28,6 +28,8 @@
         display:flex;
         justify-content: center;
         align-items: center;
+        background:white;
+        color:black;
     }
     .actions-wrapper{
         border:1px solid gray;

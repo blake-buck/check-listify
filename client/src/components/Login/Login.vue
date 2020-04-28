@@ -23,6 +23,8 @@
         display:flex;
         justify-content: center;
         align-items: center;
+        background:white;
+        color:black;
     }
     .actions-wrapper{
         border:1px solid gray;
@@ -96,7 +98,7 @@ export default {
     created(){
         const jwt = localStorage.getItem('jwt');
         if(jwt){
-            navigateTo('/user');
+            setTimeout(() => navigateTo('/user'), 0);
         }
     },
 

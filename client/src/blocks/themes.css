@@ -95,14 +95,15 @@
 }
 
 
-.light .block-input input{
-    background:white;
-    color:black;
-}
+
 
 .dark .block-input input{
     background:#2c2c2c;
     color:white;
+}
+.light .block-input input{
+    background:white;
+    color:black;
 }
 
 .block-select-item:hover{
