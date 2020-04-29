@@ -3,7 +3,7 @@
 </p>
 
 # Check-listify
-Check-listify is a simple to-do list tracker, with an emphasis placed on mobile and offline usage. It is also a Progressive Web App.
+Check-listify is a simple to-do list tracker, with an emphasis placed on mobile and offline usage. It is also a Progressive Web App. Hosted example: https://check-listify.com/
 
 ## Features
 
@@ -27,3 +27,4 @@ A guide to self-hosting can be found [here.](https://github.com/blake-buck/check
 * Add additional color themes
 * Expand test coverage
 * Clean up code surrounding database syncing
+* Add basic markdown support
